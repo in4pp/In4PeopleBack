@@ -3,8 +3,11 @@ package com.in4peopl.bootrestapi.member.dto;
 
 import com.in4peopl.bootrestapi.deptandteam.dto.DepartmentDTO;
 import com.in4peopl.bootrestapi.deptandteam.dto.TeamDTO;
+import com.in4peopl.bootrestapi.member.entity.MemAuthority;
 import com.in4peopl.bootrestapi.position.dto.PositionDTO;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,4 +35,6 @@ public class MemberDTO{
     private TeamDTO teamCode; // 팀코드
     private PositionDTO positionCode; // 직급코드
 
+    // 다 대 다 -> 일 대 다  + 일 대 다
+    private List<MemAuthorityDTO> memAuthorityList; // 권한 목록
 }

@@ -1,5 +1,6 @@
 package com.in4peopl.bootrestapi.member.dto;
 
+import com.in4peopl.bootrestapi.deptandteam.dto.DepartmentDTO;
 import lombok.*;
 
 @Getter
@@ -9,6 +10,9 @@ import lombok.*;
 @ToString
 public class AuthorityDTO {
 
-	private String authName; //PK. ROLE_ADMIN / ROLE_MEMBER
-	private int authCode; // 1 / 2  - /읽기/매니징
+	private int authNumber;   // 시퀀스 / 경우의 수 14개
+
+	private DepartmentDTO departmentCode;
+
+	private String authName; //권한 명
 }
