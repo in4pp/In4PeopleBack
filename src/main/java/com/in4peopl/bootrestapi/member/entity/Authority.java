@@ -1,62 +1,39 @@
 package com.in4peopl.bootrestapi.member.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.in4peopl.bootrestapi.deptandteam.entity.Department;
+import lombok.*;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
-@Table(name = "TBL_AUTHORITY")
+@Table(name = "AUTHORITY")
 public class Authority {
-	
+	/* 다 대 다를 해소하기 위한 매핑 table.
+	ManyToMany를 해소하기 위해 ManyToOne, oneToMany로 바꿔줬다.
+	*  */
+
 	@Id
-	@Column(name = "AUTHORITY_CODE")
-	private int authorityCode;
-	
-	@Column(name = "AUTHORITY_NAME")
-	private String authorityName;
-	
-	@Column(name = "AUTHORITY_DESC")
-	private String authorityDesc;
+	@Column(name = "AUTH_NUMBER")
+	private int authNumber;   // 시퀀스 / 경우의 수 14개
 
-	public Authority() {
-	}
+	@ManyToOne
+	@JoinColumn(name = "DEPARTMENT_CODE")
+	private Department departmentCode;
 
-	public Authority(int authorityCode, String authorityName, String authorityDesc) {
-		this.authorityCode = authorityCode;
-		this.authorityName = authorityName;
-		this.authorityDesc = authorityDesc;
-	}
+	@Column(name = "AUTH_NAME")
+	private String authName; //권한 명
 
-	public int getAuthorityCode() {
-		return authorityCode;
-	}
-
-	public void setAuthorityCode(int authorityCode) {
-		this.authorityCode = authorityCode;
-	}
-
-	public String getAuthorityName() {
-		return authorityName;
-	}
-
-	public void setAuthorityName(String authorityName) {
-		this.authorityName = authorityName;
-	}
-
-	public String getAuthorityDesc() {
-		return authorityDesc;
-	}
-
-	public void setAuthorityDesc(String authorityDesc) {
-		this.authorityDesc = authorityDesc;
-	}
-
-	@Override
-	public String toString() {
-		return "Authority [authorityCode=" + authorityCode + ", authorityName=" + authorityName + ", authorityDesc="
-				+ authorityDesc + "]";
-	}
+	//ManyToOne
+	//에서는
+	//One이 필요하면 클래스 변수로,
+	//필요없으면 기본 자료형으로 받아줌.
+	//
+	//oneToMany에서 Many가 필요하면 List로 받고, 아니면 안써줌
 }
 
 
