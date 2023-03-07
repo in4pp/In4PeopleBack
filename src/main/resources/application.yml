@@ -6,8 +6,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username:
-    password:
+    username: C##INSAPP
+    password: INSAPP
   servlet:
     multipart:
       enabled: true
@@ -15,7 +15,7 @@ spring:
       max-request-size: 20MB
   web:
     resources:
-      static-locations: classpath:/img/
+      static-locations: classpath:/imgs/
 
   ## jpa config
   jpa:
@@ -41,12 +41,12 @@ springdoc:
 image:
 
   ## WebConfig에 세팅
-  add-resource-locations: classpath:/static/img/
-  add-resource-handler: /img/**
+  add-resource-locations: classpath:/static/imgs/
+  add-resource-handler: /imgs/**
 
   ## ProductService에 세팅
-  image-dir: src/main/resources/static/img
-  image-url: http://localhost:7777/img/
+  image-dir: src/main/resources/static/imgs
+  image-url: http://localhost:7777/imgs/
 
 # Logging Level
 logging:

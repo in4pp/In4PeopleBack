@@ -5,11 +5,17 @@ import com.in4peopl.bootrestapi.deptandteam.entity.Team;
 import com.in4peopl.bootrestapi.position.entity.Position;
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+//@Entity
+//@Table(name = "MEMBER")
 public class Member {
 
     private String memCode; //사원번호 PK
@@ -30,6 +36,9 @@ public class Member {
     private Department departmentCode; // 부서코드
     private Team teamCode; // 팀코드
     private Position positionCode; // 직급코드
+
+    // 다 대 다 -> 일 대 다  + 일 대 다
+    private List<MemAuthority> memAuthorityList; // 권한 목록
 }
 
 
