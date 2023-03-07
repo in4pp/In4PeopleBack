@@ -17,7 +17,7 @@ public class DailyWorkerDTO {
     private String workerAddress;
     private Date createAt;
     private Date updatedAt;
-    private DailyWorkerAccountDTO dailyWorkerAccount;
+//    private EMPLOYEE_SALARY_SETTING employeeSalarySetting;
 
 
 

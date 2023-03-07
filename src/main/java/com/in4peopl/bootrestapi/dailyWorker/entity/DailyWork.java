@@ -5,6 +5,10 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "DAILY_WORK")
+@SequenceGenerator(	name = "DAILY_WORK_SEQ_GENERATOR",
+        sequenceName = "WORK_CODE_SEQ",
+        initialValue = 1, allocationSize = 1
+)
 public class DailyWork {
 
     @Id
