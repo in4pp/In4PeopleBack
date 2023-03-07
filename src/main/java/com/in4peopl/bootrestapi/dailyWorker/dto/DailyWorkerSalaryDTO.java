@@ -19,7 +19,6 @@ public class DailyWorkerSalaryDTO {
     private int tax;
     private Date createAt;
     private Date updatedAt;
-    private DailyWorkerAccountDTO dailyWorkerAccount;
     private DailyWorkerDTO dailyWorker;
 
 }

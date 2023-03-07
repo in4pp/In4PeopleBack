@@ -1,5 +1,6 @@
 package com.in4peopl.bootrestapi.dailyWorker.entity;
 
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -37,6 +38,7 @@ public class DailyWorkerSalary {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-
-//    private DailyWorkerDTO dailyWorker;
+    @ManyToOne
+    @JoinColumn(name = "WORKER_CODE")
+    private DailyWorker dailyWorker;
 }
