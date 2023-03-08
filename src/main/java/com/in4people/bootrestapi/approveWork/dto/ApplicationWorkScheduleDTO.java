@@ -1,6 +1,7 @@
 package com.in4people.bootrestapi.approveWork.dto;
 
 
+import com.in4people.bootrestapi.member.dto.MemberDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -22,11 +23,11 @@ public class ApplicationWorkScheduleDTO {
     private String worktypeCode;           // 근무 유형 코드
 
     // FK
-    private String workSettingNumber;      // 근무 설정 번호
+    private WorkSettingDTO workSettingNumber;      // 근무 설정 번호
 
-    private String memCode;                // 사원 번호
+    private MemberDTO memCode;                // 사원 번호
 
-    private String reporterTagCode;        // 상신자 태그 코드
+    private ReporterTagDTO reporterTagCode;        // 상신자 태그 코드
 
-    private String documentNumber;         // 전자 결제 번호
+    private DocumentApprovalDTO documentNumber;         // 전자 결제 번호
 }

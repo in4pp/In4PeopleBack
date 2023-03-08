@@ -2,10 +2,7 @@ package com.in4people.bootrestapi.approveWork.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 // 근무 설정 entity
 @Getter
@@ -43,7 +40,8 @@ public class WorkSetting {
     @Column(name = "WORKDAY_RULE")
     private int workdayRule;            // 근무 요일 규정
 
-    @Column(name = "WORKTYPE_CODE")
-    private String worktypeCode;        // 근무 유형 코드 FK
+    @ManyToOne
+    @JoinColumn(name = "WORKTYPE_CODE")
+    private WorktypeCategory worktypeCode;        // 근무 유형 코드 FK
 
 }

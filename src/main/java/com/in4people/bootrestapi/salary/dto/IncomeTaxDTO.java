@@ -2,6 +2,7 @@ package com.in4people.bootrestapi.salary.dto;
 
 import lombok.*;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -10,13 +11,10 @@ import lombok.*;
 public class IncomeTaxDTO {
 
     private String incomeTaxCode;                        // 소득세코드
-    private int lowerTaxBaseLimit;                       // 과세표준상한
-    private int upperTaxBaseLimit;                       // 과세표준하한
-    private float taxRate;                               // 세율
-    private int deductionAmount;                         // 공제금액
-
-
-
+    private long lowerTaxBaseLimit;                       // 과세표준상한
+    private long upperTaxBaseLimit;                       // 과세표준하한
+    private double taxRate;                               // 세율
+    private long deductionAmount;                         // 공제금액
 
 
 
