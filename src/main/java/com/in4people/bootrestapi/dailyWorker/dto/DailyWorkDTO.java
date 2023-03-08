@@ -18,5 +18,7 @@ public class DailyWorkDTO {
     private Date createAt;        //생성시간
     private Date updatedAt;       //수정시간
 
+
 }
-//생성자랑 getter setter toString 만들어야함
+
+

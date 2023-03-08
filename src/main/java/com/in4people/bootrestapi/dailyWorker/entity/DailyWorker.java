@@ -1,9 +1,8 @@
-package com.in4peopl.bootrestapi.dailyWorker.entity;
+package com.in4people.bootrestapi.dailyWorker.entity;
 
-import com.in4peopl.bootrestapi.salary.entity.EmployeeSalarySetting;
+import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 

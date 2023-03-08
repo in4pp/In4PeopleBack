@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.dailyWorker.entity;
+package com.in4people.bootrestapi.dailyWorker.entity;
 
 import java.io.Serializable;
 

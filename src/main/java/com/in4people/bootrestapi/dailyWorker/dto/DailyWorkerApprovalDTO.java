@@ -21,6 +21,6 @@ public class DailyWorkerApprovalDTO {
     private int payment;                //지급액
     private Date createAt;              //생성시간
     private Date updatedAt;             //수정시간
-//    private Approval approval;        //결재
+    private Approval approval;        //결재
 
 }
