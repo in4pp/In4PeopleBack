@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.approveWork.entity;
+package com.in4people.bootrestapi.approveWork.entity;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.approveWork.entity;
+package com.in4people.bootrestapi.approveWork.entity;
 
 import com.in4peopl.bootrestapi.common.StringPrefixSequenceGenerator;
 import org.hibernate.annotations.GenericGenerator;

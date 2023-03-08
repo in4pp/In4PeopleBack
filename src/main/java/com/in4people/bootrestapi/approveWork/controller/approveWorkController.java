@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.approveWork.controller;
+package com.in4people.bootrestapi.approveWork.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
