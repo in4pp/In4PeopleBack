@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.common;
+package com.in4people.bootrestapi.common;
 
 import org.hibernate.HibernateException;
 import org.hibernate.MappingException;
