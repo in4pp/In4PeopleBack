@@ -15,5 +15,4 @@ public class ApprovalService {
     private static final Logger log = LoggerFactory.getLogger(MemberService.class);
     private final ApprovalRepository approvalRepository;
     private final ModelMapper modelMapper;
-
 }
