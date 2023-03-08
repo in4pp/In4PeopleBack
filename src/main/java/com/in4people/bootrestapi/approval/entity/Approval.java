@@ -46,6 +46,11 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private Bookmark bookmark; //
     // doc을 들고오고, JOIN BOOKMARK에 where BOOKMARK.memCode를 자신을 준다.
+
+    @OneToMany
+    @JoinColumn(name = "DOC_CODE")
+    private List<DocAttachment> docAttachmentList; // 결재_첨부파일
+
     /*
     상신함 - memCode = 나
     참조된함 - WHERE REFFEREE.memCode = 나
