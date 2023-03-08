@@ -1,6 +1,6 @@
 package com.in4people.bootrestapi.dailyWorker.dto;
 
-import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
+import com.in4people.bootrestapi.salary.dto.EmployeeSalarySettingDTO;
 import lombok.*;
 
 import javax.persistence.Embeddable;
@@ -20,7 +20,7 @@ public class DailyWorkerDTO  {
     private String workerAddress;           //주소
     private Date createAt;                  //생성시간
     private Date updatedAt;                 //수정시간
-    private EmployeeSalarySetting employeeSalarySetting;    //급여설정
+    private EmployeeSalarySettingDTO employeeSalarySetting;    //급여설정
 
 
 }
