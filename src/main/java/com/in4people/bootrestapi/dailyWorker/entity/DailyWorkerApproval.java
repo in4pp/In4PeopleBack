@@ -1,5 +1,7 @@
 package com.in4people.bootrestapi.dailyWorker.entity;
 
+import com.in4people.bootrestapi.approval.entity.Approval;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -37,5 +39,7 @@ public class DailyWorkerApproval {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-
+    @ManyToOne
+    @JoinColumn(name = "DOC_CODE", insertable = false, updatable = false)
+    private Approval approval;
 }
