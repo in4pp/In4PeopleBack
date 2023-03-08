@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.personnel.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
 import javax.persistence.*;
 

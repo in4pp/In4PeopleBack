@@ -1,6 +1,6 @@
-package com.in4peopl.bootrestapi.personnel.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4peopl.bootrestapi.member.dto.MemberDTO;
+import com.in4people.bootrestapi.member.dto.MemberDTO;
 
 import javax.persistence.*;
 import java.util.Date;

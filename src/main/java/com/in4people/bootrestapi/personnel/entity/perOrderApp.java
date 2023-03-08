@@ -1,6 +1,6 @@
-package com.in4peopl.bootrestapi.personnel.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4peopl.bootrestapi.personnel.dto.PerOrderDTO;
+import com.in4people.bootrestapi.personnel.dto.PerOrderDTO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Entity
-@Table(name = "PER_ORDER_APP")
+//@Entity
+//@Table(name = "PER_ORDER_APP")
 public class perOrderApp {
 
     // 인사발령신청

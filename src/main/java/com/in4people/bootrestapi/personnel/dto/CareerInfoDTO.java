@@ -1,6 +1,6 @@
-package com.in4peopl.bootrestapi.personnel.dto;
+package com.in4people.bootrestapi.personnel.dto;
 
-import com.in4peopl.bootrestapi.member.dto.MemberDTO;
+import com.in4people.bootrestapi.member.dto.MemberDTO;
 import lombok.*;
 
 import java.util.Date;

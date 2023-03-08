@@ -1,4 +1,4 @@
-package com.in4peopl.bootrestapi.personnel.dto;
+package com.in4people.bootrestapi.personnel.dto;
 
 import lombok.*;
 

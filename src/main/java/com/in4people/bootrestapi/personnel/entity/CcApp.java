@@ -1,13 +1,10 @@
-package com.in4peopl.bootrestapi.personnel.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4peopl.bootrestapi.personnel.dto.CcExpenseDTO;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "CC_APP")
+//@Entity
+//@Table(name = "CC_APP")
 public class CcApp {
 
     // 경조비 신청

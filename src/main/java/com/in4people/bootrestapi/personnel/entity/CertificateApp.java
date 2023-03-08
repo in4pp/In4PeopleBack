@@ -1,14 +1,14 @@
-package com.in4peopl.bootrestapi.personnel.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4peopl.bootrestapi.personnel.dto.CertificateDTO;
+import com.in4people.bootrestapi.personnel.dto.CertificateDTO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "CERTIFICATE_APP")
+//@Entity
+//@Table(name = "CERTIFICATE_APP")
 public class CertificateApp {
 
     // 증명서 신청
