@@ -1,10 +1,17 @@
 package com.in4people.bootrestapi.dailyWorker.entity;
 
+import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "DAILY_WORKER")
+@SequenceGenerator(    name = "DAILY_WORKER_SEQ_GENERATOR",
+        sequenceName = "WORKER_CODE_SEQ",
+        initialValue = 1, allocationSize = 1
+)
 public class DailyWorker {
 
     @Id
@@ -30,6 +37,11 @@ public class DailyWorker {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-//    @Column(name = "ACCOUNT_CODE")
-//    private DailyWorkerAccountDTO dailyWorkerAccount;
+    @ManyToOne
+    @JoinColumn(name = "SALARY_SETTING_CODE")
+    private EmployeeSalarySetting employeeSalarySetting;
+
+    @OneToMany
+    @JoinColumn(name = "WORKER_CODE")
+    private List<EmploymentHistory> employmentHistoryList;
 }
