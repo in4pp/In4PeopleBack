@@ -1,6 +1,6 @@
 package com.in4people.bootrestapi.approveWork.entity;
 
-import com.in4peopl.bootrestapi.common.StringPrefixSequenceGenerator;
+import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ public class AdjustingAttendance {
     @Id
     @Column(name = "ADJUST_ATTEND_NUMBER")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ATTEND_CODE")
-    @GenericGenerator(name = "SEQ_ATTEND_CODE", strategy = "com.in4peopl.bootrestapi.common.StringPrefixSequenceGenerator",
+    @GenericGenerator(name = "SEQ_ATTEND_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
             parameters = {
                     @Parameter(name = StringPrefixSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "ATTEND")
             })
