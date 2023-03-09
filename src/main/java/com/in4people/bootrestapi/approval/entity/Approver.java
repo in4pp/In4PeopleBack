@@ -22,7 +22,7 @@ public class Approver {
     private String docCode;
 
     @Id
-    @JoinColumn(name = "MEM_CODE")
+    @Column(name = "MEM_CODE")
     private String memCode; // 결재자
     
     @Column(name = "IS_SIGN")
