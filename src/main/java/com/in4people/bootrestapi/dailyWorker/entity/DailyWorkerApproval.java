@@ -40,6 +40,10 @@ public class DailyWorkerApproval {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "DOC_CODE", insertable = false, updatable = false)
+    @JoinColumns(value = {
+            @JoinColumn(name = "MEM_CODE"),
+            @JoinColumn(name = "DOC_CODE")
+    })
     private Approval approval;
+
 }

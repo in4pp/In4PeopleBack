@@ -9,7 +9,9 @@ public interface DailyWorkerRepository extends JpaRepository<DailyWorker, Intege
     DailyWorker findByWorkerCode(int workerCode);
 
 
-    @Query("SELECT MAX(a.workerCode) FROM DailyWorker a")
-    int maxMemberCode();
+    @Query("SELECT w.workerCode FROM DailyWorker w")
+    int workerCode();
+
+
 
 }
