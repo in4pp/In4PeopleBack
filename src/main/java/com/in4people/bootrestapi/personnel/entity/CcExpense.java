@@ -1,10 +1,17 @@
 package com.in4people.bootrestapi.personnel.entity;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "CC_EXPENSE")
 public class CcExpense {
