@@ -1,10 +1,16 @@
 package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
+import com.in4people.bootrestapi.member.entity.Member;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "CAREER_INFO")
 @SequenceGenerator(
@@ -41,9 +47,9 @@ public class CareerInfo {
     @Column(name = "REASONS_RETIREMENT")
     private String reasonsRetirement; // 퇴직사유
 
-    // 사원번호
-//    @ManyToOne
-//    @JoinColumn(name = "MEM_CODE")
-//    private MemberDTO memberDTO;
+//     사원번호
+    @ManyToOne
+    @JoinColumn(name = "MEM_CODE")
+    private Member member;
 
 }

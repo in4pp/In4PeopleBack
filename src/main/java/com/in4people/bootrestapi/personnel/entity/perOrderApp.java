@@ -1,20 +1,29 @@
 package com.in4people.bootrestapi.personnel.entity;
 
-import com.in4people.bootrestapi.personnel.dto.PerOrderDTO;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
-//@Table(name = "PER_ORDER_APP")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
+@Table(name = "PER_ORDER_APP")
+@IdClass(AppPK.class)
 public class perOrderApp {
 
     // 인사발령신청
-
     // 결재 FK, NOT NULL
+    @Id
+    @Column(name = "DOC_CODE")
+    private String docCode; // 문서번호
+
+    @Id
+    @Column(name = "MEM_CODE")
+    private String memCode; // 사원번호
 
     @Column(name = "DATE_LEAVE")
     private Date dateLeave; // 휴직일자
@@ -34,6 +43,7 @@ public class perOrderApp {
     @Column(name = "PER_REASON")
     private String perReason; // 사유
 
+    @ManyToOne
     @JoinColumn(name = "PER_CODE")
-    private PerOrderDTO perOrderDTO; // 인사발령코드, FK, NOT NULL
+    private PerOrder perOrder; // 인사발령코드, FK, NOT NULL
 }

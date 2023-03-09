@@ -11,10 +11,10 @@ public class CertificateAppDTO {
 
     // 증명서 신청
 
+//    private String docCode; // 문서번호
+//
+//    private String memCode; // 사원번호
 
-//    private // 결재 FK
-
-    private String cerReason; // 사유
 
     private CertificateDTO cerCode; // 증명서 코드, FK, NOT NULL
 
