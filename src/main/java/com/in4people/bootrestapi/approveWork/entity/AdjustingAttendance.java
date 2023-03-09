@@ -1,6 +1,9 @@
 package com.in4people.bootrestapi.approveWork.entity;
 
+
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
+import com.in4people.bootrestapi.schedule.entity.ApplicationWorkSchedule;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +11,11 @@ import java.util.Date;
 
 import org.hibernate.annotations.Parameter;
 // 근태 조정 신청 entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "ADJUSTING_ATTENDANCE")
 public class AdjustingAttendance {
@@ -38,116 +46,18 @@ public class AdjustingAttendance {
 
 
     // FK
-    @Column(name = "SCHEDULE_NUMBER")
-    private String scheduleNumber;       // 스케줄 번호
+    @ManyToOne
+    @JoinColumn(name = "SCHEDULE_NUMBER")
+    private ApplicationWorkSchedule scheduleNumber;       // 스케줄 번호
 
-    @Column(name = "REPORTER_TAG_CODE")
-    private String reporterTagCode;      // 상신자 태그 코드
+    @ManyToOne
+    @JoinColumn(name = "REPORTER_TAG_CODE")
+    private ReporterTag reporterTagCode;      // 상신자 태그 코드
 
-    @Column(name = "DOCUMENT_NUMBER")
-    private String documentNumber;       // 전자결제번호
+    @ManyToOne
+    @JoinColumn(name = "DOCUMENT_NUMBER")
+    private DocumentApproval documentNumber;       // 전자결제번호
 
-    public AdjustingAttendance() {
-    }
-
-    public AdjustingAttendance(String adjustAttendNumber, Date adjustApplicationDate, String adjustScheduleDate, String adjustStarttime, String adjustEndtime, String adjustReason, String scheduleNumber, String reporterTagCode, String documentNumber) {
-        this.adjustAttendNumber = adjustAttendNumber;
-        this.adjustApplicationDate = adjustApplicationDate;
-        this.adjustScheduleDate = adjustScheduleDate;
-        this.adjustStarttime = adjustStarttime;
-        this.adjustEndtime = adjustEndtime;
-        this.adjustReason = adjustReason;
-        this.scheduleNumber = scheduleNumber;
-        this.reporterTagCode = reporterTagCode;
-        this.documentNumber = documentNumber;
-    }
-
-    public String getAdjustAttendNumber() {
-        return adjustAttendNumber;
-    }
-
-    public void setAdjustAttendNumber(String adjustAttendNumber) {
-        this.adjustAttendNumber = adjustAttendNumber;
-    }
-
-    public Date getAdjustApplicationDate() {
-        return adjustApplicationDate;
-    }
-
-    public void setAdjustApplicationDate(Date adjustApplicationDate) {
-        this.adjustApplicationDate = adjustApplicationDate;
-    }
-
-    public String getAdjustScheduleDate() {
-        return adjustScheduleDate;
-    }
-
-    public void setAdjustScheduleDate(String adjustScheduleDate) {
-        this.adjustScheduleDate = adjustScheduleDate;
-    }
-
-    public String getAdjustStarttime() {
-        return adjustStarttime;
-    }
-
-    public void setAdjustStarttime(String adjustStarttime) {
-        this.adjustStarttime = adjustStarttime;
-    }
-
-    public String getAdjustEndtime() {
-        return adjustEndtime;
-    }
-
-    public void setAdjustEndtime(String adjustEndtime) {
-        this.adjustEndtime = adjustEndtime;
-    }
-
-    public String getAdjustReason() {
-        return adjustReason;
-    }
-
-    public void setAdjustReason(String adjustReason) {
-        this.adjustReason = adjustReason;
-    }
-
-    public String getScheduleNumber() {
-        return scheduleNumber;
-    }
-
-    public void setScheduleNumber(String scheduleNumber) {
-        this.scheduleNumber = scheduleNumber;
-    }
-
-    public String getReporterTagCode() {
-        return reporterTagCode;
-    }
-
-    public void setReporterTagCode(String reporterTagCode) {
-        this.reporterTagCode = reporterTagCode;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "AdjustingAttendance{" +
-                "adjustAttendNumber='" + adjustAttendNumber + '\'' +
-                ", adjustApplicationDate=" + adjustApplicationDate +
-                ", adjustScheduleDate='" + adjustScheduleDate + '\'' +
-                ", adjustStarttime='" + adjustStarttime + '\'' +
-                ", adjustEndtime='" + adjustEndtime + '\'' +
-                ", adjustReason='" + adjustReason + '\'' +
-                ", scheduleNumber='" + scheduleNumber + '\'' +
-                ", reporterTagCode='" + reporterTagCode + '\'' +
-                ", documentNumber='" + documentNumber + '\'' +
-                '}';
-    }
 }
 
 
