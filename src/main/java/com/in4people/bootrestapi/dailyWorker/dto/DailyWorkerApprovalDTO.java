@@ -1,5 +1,6 @@
 package com.in4people.bootrestapi.dailyWorker.dto;
 
+import com.in4people.bootrestapi.approval.entity.Approval;
 import lombok.*;
 
 import javax.persistence.Embeddable;
@@ -21,6 +22,6 @@ public class DailyWorkerApprovalDTO {
     private int payment;                //지급액
     private Date createAt;              //생성시간
     private Date updatedAt;             //수정시간
-//    private Approval approval;        //결재
+    private Approval approval;        //결재
 
 }

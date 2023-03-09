@@ -1,9 +1,15 @@
 package com.in4people.bootrestapi.dailyWorker.entity;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Date;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "DAILY_WORKER_SALARY")
 @SequenceGenerator(    name = "DAILY_WORKER_SALARY_SEQ_GENERATOR",
@@ -39,6 +45,20 @@ public class DailyWorkerSalary {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "WORKER_CODE")
+    @JoinColumn(name = "WORKER_CODE", insertable = false, updatable = false)
     private DailyWorker dailyWorker;
+
+    @Override
+    public String toString() {
+        return "DailyWorkerSalary{" +
+                "salaryCode=" + salaryCode +
+                ", totalPayment=" + totalPayment +
+                ", afterTaxIncome=" + afterTaxIncome +
+                ", paymentDate=" + paymentDate +
+                ", payCompleteYn=" + payCompleteYn +
+                ", tax=" + tax +
+                ", createAt=" + createAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }
