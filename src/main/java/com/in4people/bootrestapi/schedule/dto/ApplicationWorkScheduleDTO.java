@@ -1,7 +1,10 @@
-package com.in4people.bootrestapi.approveWork.dto;
+package com.in4people.bootrestapi.schedule.dto;
 
 
+import com.in4people.bootrestapi.approveWork.dto.DocumentApprovalDTO;
+import com.in4people.bootrestapi.approveWork.dto.ReporterTagDTO;
 import com.in4people.bootrestapi.member.dto.MemberDTO;
+import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
 import lombok.*;
 
 import java.util.Date;

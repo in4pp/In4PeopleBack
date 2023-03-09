@@ -1,12 +1,20 @@
 package com.in4people.bootrestapi.approveWork.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.in4people.bootrestapi.approveWork.dto.AlldayCategoryDTO;
+import com.in4people.bootrestapi.approveWork.dto.DocumentApprovalDTO;
+import com.in4people.bootrestapi.approveWork.dto.ReporterTagDTO;
+import com.in4people.bootrestapi.approveWork.dto.VacationCategoryDTO;
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.Date;
 
 //휴가 신청 entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "APPLICATION_VACATION")
 public class ApplicationVacation {
@@ -28,117 +36,21 @@ public class ApplicationVacation {
     private String vacationReason;          // 휴가 사유
 
     // FK
-    @Column(name = "VACATION_CODE")
-    private String vacationCode;            // 휴가 코드
+    @ManyToOne
+    @JoinColumn(name = "VACATION_CODE")
+    private VacationCategory vacationCode;            // 휴가 코드
 
-    @Column(name = "ALLDAY_CODE")
-    private String alldayCode;              // 전일/반일 코드
 
-    @Column(name = "REPORTER_TAG_CODE")
-    private String reporterTagCode;         // 상신자 태그 코드
+    @ManyToOne
+    @JoinColumn(name = "ALLDAY_CODE")
+    private AlldayCategory alldayCode;              // 전일/반일 코드
 
-    @Column(name = "DOCUMENT_NUMBER")
-    private String documentNumber;          // 전자 결제 번호
+    @ManyToOne
+    @JoinColumn(name = "REPORTER_TAG_CODE")
+    private ReporterTag reporterTagCode;         // 상신자 태그 코드
 
-    public ApplicationVacation() {
-    }
+    @OneToOne
+    @JoinColumn(name = "DOCUMENT_NUMBER")
+    private DocumentApproval documentNumber;          // 전자 결제 번호
 
-    public ApplicationVacation(String vacationNumber, Date vacationApplicationDate, Date vacationStartDate, Date vacationEndDate, String vacationReason, String vacationCode, String alldayCode, String reporterTagCode, String documentNumber) {
-        this.vacationNumber = vacationNumber;
-        this.vacationApplicationDate = vacationApplicationDate;
-        this.vacationStartDate = vacationStartDate;
-        this.vacationEndDate = vacationEndDate;
-        this.vacationReason = vacationReason;
-        this.vacationCode = vacationCode;
-        this.alldayCode = alldayCode;
-        this.reporterTagCode = reporterTagCode;
-        this.documentNumber = documentNumber;
-    }
-
-    public String getVacationNumber() {
-        return vacationNumber;
-    }
-
-    public void setVacationNumber(String vacationNumber) {
-        this.vacationNumber = vacationNumber;
-    }
-
-    public Date getVacationApplicationDate() {
-        return vacationApplicationDate;
-    }
-
-    public void setVacationApplicationDate(Date vacationApplicationDate) {
-        this.vacationApplicationDate = vacationApplicationDate;
-    }
-
-    public Date getVacationStartDate() {
-        return vacationStartDate;
-    }
-
-    public void setVacationStartDate(Date vacationStartDate) {
-        this.vacationStartDate = vacationStartDate;
-    }
-
-    public Date getVacationEndDate() {
-        return vacationEndDate;
-    }
-
-    public void setVacationEndDate(Date vacationEndDate) {
-        this.vacationEndDate = vacationEndDate;
-    }
-
-    public String getVacationReason() {
-        return vacationReason;
-    }
-
-    public void setVacationReason(String vacationReason) {
-        this.vacationReason = vacationReason;
-    }
-
-    public String getVacationCode() {
-        return vacationCode;
-    }
-
-    public void setVacationCode(String vacationCode) {
-        this.vacationCode = vacationCode;
-    }
-
-    public String getAlldayCode() {
-        return alldayCode;
-    }
-
-    public void setAlldayCode(String alldayCode) {
-        this.alldayCode = alldayCode;
-    }
-
-    public String getReporterTagCode() {
-        return reporterTagCode;
-    }
-
-    public void setReporterTagCode(String reporterTagCode) {
-        this.reporterTagCode = reporterTagCode;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "ApplicationVacation{" +
-                "vacationNumber='" + vacationNumber + '\'' +
-                ", vacationApplicationDate=" + vacationApplicationDate +
-                ", vacationStartDate=" + vacationStartDate +
-                ", vacationEndDate=" + vacationEndDate +
-                ", vacationReason='" + vacationReason + '\'' +
-                ", vacationCode='" + vacationCode + '\'' +
-                ", alldayCode='" + alldayCode + '\'' +
-                ", reporterTagCode='" + reporterTagCode + '\'' +
-                ", documentNumber='" + documentNumber + '\'' +
-                '}';
-    }
 }

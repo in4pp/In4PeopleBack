@@ -1,6 +1,7 @@
 package com.in4people.bootrestapi.approveWork.dto;
 
 import com.in4people.bootrestapi.member.dto.MemberDTO;
+import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
 import lombok.*;
 
 import java.util.Date;

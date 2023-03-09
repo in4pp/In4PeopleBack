@@ -1,8 +1,16 @@
 package com.in4people.bootrestapi.approveWork.dto;
 
+import com.in4people.bootrestapi.schedule.dto.ApplicationWorkScheduleDTO;
+import lombok.*;
+
 import java.util.Date;
 
 // 전자 결제 이력 DTO
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class DocumentApprovalDTO {
 
     private String documentNumber;          //전자 결제 번호 PK

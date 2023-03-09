@@ -1,4 +1,4 @@
-package com.in4people.bootrestapi.approveWork.dto;
+package com.in4people.bootrestapi.schedule.dto;
 
 
 
@@ -13,7 +13,7 @@ import lombok.*;
 public class WorkSettingDTO {
 
 
-    private String workSettingNumber;   // 근무 설정 번호 FK
+    private String workSettingNumber;   // 근무 설정 번호 PK
 
 
     private String basicworkTime;       // 기본 근무 시간
