@@ -21,9 +21,6 @@ public class DocAttachment {
     @Column(name = "DOC_CODE")
     private String docCode;
 
-    @Column(name = "MEM_CODE")
-    private String memCode; // 상신인
-
     @Column(name = "FILE_NAME")
     private String fileName; // 파일이름
 

@@ -13,17 +13,15 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "APPROVAL")
-@IdClass(ApprovalPK.class)
 public class Approval {
 
     @Id
     @Column(name = "DOC_CODE")
     private String docCode;
 
-    @Id
     @OneToOne
     @JoinColumn(name = "MEM_CODE")
-    private Member memCode; //FK+PK 상신인
+    private Member memCode; //FK 상신인
 
     @Column(name = "DOC_TYPE")
     private String docType;  // 결재종류(ex:업무, 근태)
