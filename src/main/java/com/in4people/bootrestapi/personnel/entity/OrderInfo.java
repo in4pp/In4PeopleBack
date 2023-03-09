@@ -1,7 +1,15 @@
 package com.in4people.bootrestapi.personnel.entity;
 
+import com.in4people.bootrestapi.member.entity.Member;
+import lombok.*;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "ORDER_INFO")
 @SequenceGenerator(
@@ -28,5 +36,8 @@ public class OrderInfo {
 
 
     // 사원번호, NOT NULL
+    @ManyToOne
+    @JoinColumn(name = "MEM_CODE")
+    private Member memCode;
 
 }

@@ -14,6 +14,9 @@ public class PerOrderAppDTO {
     // 인사발령신청
 
     // 결재 FK, NOT NULL
+//    private String docCode; // 문서번호
+//
+//    private String memCode; // 사원번호
 
     private Date dateLeave; // 휴직일자
 
@@ -25,7 +28,6 @@ public class PerOrderAppDTO {
 
     private Date orderDate; // 발령일자
 
-    private String perReason; // 사유
 
     private PerOrderDTO perCode; // 인사발령코드, FK, NOT NULL
 
