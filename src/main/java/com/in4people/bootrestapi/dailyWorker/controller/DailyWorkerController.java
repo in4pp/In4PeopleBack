@@ -25,6 +25,7 @@ public class DailyWorkerController {
     @Operation(summary = "일용직사원 정보 조회 요청", description = "일용직사원 한명이 조회됩니다.", tags = { "DailyWorkerController" })
     @GetMapping("/dailyWorker/{workerCode}")
     public ResponseEntity<ResponseDTO> selectDailyWorkerInfo(@PathVariable int workerCode) {
+
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", dailyWorkerService.selectDailyWorkerInfo(workerCode)));
     }
 

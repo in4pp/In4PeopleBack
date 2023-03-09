@@ -3,6 +3,7 @@ package com.in4people.bootrestapi.member.entity;
 import com.in4people.bootrestapi.deptandteam.entity.Department;
 import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.position.entity.Position;
+import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "MEMBER")
-@ToString
 public class Member {
 
 
@@ -57,11 +57,37 @@ public class Member {
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
 
+    @OneToMany
+    @JoinColumn(name = "MEM_CODE")
+    private List<EmployeeSalarySetting> employeeSalarySettingList; // 급여설정코드
+
     // 다 대 다 -> 일 대 다  + 일 대 다
     @OneToMany
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
 
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memCode='" + memCode + '\'' +
+                ", memName='" + memName + '\'' +
+                ", password='" + password + '\'' +
+                ", regiNumber='" + regiNumber + '\'' +
+                ", gender=" + gender +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", memPic='" + memPic + '\'' +
+                ", isMarried=" + isMarried +
+                ", isWorking=" + isWorking +
+                ", address='" + address + '\'' +
+                ", hourlyWage='" + hourlyWage + '\'' +
+                ", departmentCode=" + departmentCode +
+                ", teamCode=" + teamCode +
+                ", positionCode=" + positionCode +
+                '}';
+    }
 }
 
 

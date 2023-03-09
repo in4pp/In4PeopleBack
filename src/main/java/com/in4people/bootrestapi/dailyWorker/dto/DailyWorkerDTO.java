@@ -6,11 +6,11 @@ import lombok.*;
 import javax.persistence.Embeddable;
 import java.sql.Date;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Embeddable
 public class DailyWorkerDTO  {
 
     private int workerCode;                 //일용직사원 코드
