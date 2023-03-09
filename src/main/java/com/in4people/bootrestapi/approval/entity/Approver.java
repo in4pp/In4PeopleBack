@@ -14,16 +14,14 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name ="APPROVER")
-@IdClass(ApprovalPK.class)
 public class Approver {
 
     @Id
     @Column(name = "DOC_CODE")
     private String docCode;
 
-    @Id
     @Column(name = "MEM_CODE")
-    private String memCode; // 결재자
+    private String memCode; // 결재자 memCode
     
     @Column(name = "IS_SIGN")
     private char isSign; // W/Y/N(대기,승인,반려)
