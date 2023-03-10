@@ -1,7 +1,9 @@
 package com.in4people.bootrestapi.approveWork.service;
 
-import com.in4people.bootrestapi.approveWork.dto.WorkSettingDTO;
-import com.in4people.bootrestapi.approveWork.entity.WorkSetting;
+import com.in4people.bootrestapi.approveWork.dto.DocumentApprovalDTO;
+import com.in4people.bootrestapi.approveWork.entity.DocumentApproval;
+import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
+import com.in4people.bootrestapi.schedule.entity.WorkSetting;
 import com.in4people.bootrestapi.approveWork.repository.ApproveworkRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,18 +21,32 @@ public class SettingService {
 
     private final ModelMapper modelMapper;
 
-    public Object selectWorkSetting(String workSettingNumber) {
 
-        log.info("SettingService selectWorkSetting Start =============");
+    public Object selectDocumentApproval(String documentNumber) {
 
-        WorkSetting workset = approveworkRepository.findByWorkSettingNumber(workSettingNumber);
+        log.info("SettingService selectDocumentApproval Start =============");
 
-        log.info("[SettingService] {}" , workset);
+        DocumentApproval document = approveworkRepository.findByDocumentNumber(documentNumber);
+
+        log.info("[SettingService] {}" , document);
         log.info("[SettingService] selectWorkSetting End ======");
 
 
-        return modelMapper.map(workset, WorkSettingDTO.class);
+        return modelMapper.map(document, DocumentApprovalDTO.class);
     }
 
+    public Object insertDocument(DocumentApprovalDTO newDocu) {
 
+        log.info("SettingService insertDocumentApproval Start =============");
+
+        DocumentApproval insertDocu = modelMapper.map(newDocu, DocumentApproval.class);
+
+        DocumentApproval document = approveworkRepository.save(insertDocu);
+
+        log.info("[SettingService] {}" , document);
+        log.info("[SettingService] insertDocumentApproval End ======");
+
+
+        return modelMapper.map(document, DocumentApprovalDTO.class);
+    }
 }

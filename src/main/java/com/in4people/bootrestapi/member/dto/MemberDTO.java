@@ -4,6 +4,7 @@ package com.in4people.bootrestapi.member.dto;
 import com.in4people.bootrestapi.deptandteam.dto.DepartmentDTO;
 import com.in4people.bootrestapi.deptandteam.dto.TeamDTO;
 import com.in4people.bootrestapi.position.dto.PositionDTO;
+import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,6 +41,7 @@ public class MemberDTO implements UserDetails {
     // 다 대 다 -> 일 대 다  + 일 대 다
     private List<MemAuthorityDTO> memAuthorityList; // 권한 목록
 
+    private List<EmployeeSalarySetting> employeeSalarySettingList; // 급여설정코드
 
 
     /* 이하 코드들을 UserDetails로부터 물려받는 추상메소드들을 오버라이딩 한 것이다.(필요한 것만 작성하자) */

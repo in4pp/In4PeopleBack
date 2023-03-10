@@ -1,22 +1,23 @@
-package com.in4people.bootrestapi.member.entity;
+package com.in4people.bootrestapi.workState.entity;
+
 
 import com.in4people.bootrestapi.deptandteam.entity.Department;
 import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.position.entity.Position;
-import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
+// 근태관리 전용 MEMBER entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @ToString
+@Entity
 @Table(name = "MEMBER")
-public class Member {
+public class WorkMember {
+
 
     @Id
     @Column(name = "MEM_CODE")
@@ -39,7 +40,7 @@ public class Member {
     private String memPic;
     @Column(name = "IS_MARRIED")
     private char isMarried;
-    @Column(name = "IS_WORING")
+    @Column(name = "IS_WORKING")
     private char isWorking;  // 재직구분
     @Column(name = "ADDRESS")
     private String address;
@@ -47,32 +48,13 @@ public class Member {
     private String hourlyWage; //시급
 
     // FK
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
     private Department departmentCode; // 부서코드
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
-
-    @OneToMany
-    @JoinColumn(name = "MEM_CODE")
-    private List<EmployeeSalarySetting> employeeSalarySettingList; // 급여설정코드
-
-    // 다 대 다 -> 일 대 다  + 일 대 다
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEM_CODE")
-    private List<MemAuthority> memAuthorityList; // 권한 목록
-
-
-
 }
-
-
-
-
-
-

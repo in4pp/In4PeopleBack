@@ -1,6 +1,8 @@
 package com.in4people.bootrestapi.approveWork.dto;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
+
+import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
+import com.in4people.bootrestapi.workState.dto.WorkMemberDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -21,7 +23,7 @@ public class ApplicationOvertimeWorkDTO {
 
 
     //FK
-    private MemberDTO memCode;                  // 사원번호
+    private WorkMemberDTO memCode;                  // 사원번호
 
     private ReporterTagDTO reporterTagCode;          // 상신자 태그 코드
 

@@ -49,16 +49,5 @@ public class DailyWorker {
     @JoinColumn(name = "SALARY_SETTING_CODE")
     private EmployeeSalarySetting employeeSalarySetting;
 
-    @Override
-    public String toString() {
-        return "DailyWorker{" +
-                "workerCode=" + workerCode +
-                ", workerName='" + workerName + '\'' +
-                ", workerRegNumber='" + workerRegNumber + '\'' +
-                ", workerPhone='" + workerPhone + '\'' +
-                ", workerAddress='" + workerAddress + '\'' +
-                ", createAt=" + createAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }
+//커밋테스트

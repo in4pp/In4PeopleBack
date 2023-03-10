@@ -1,12 +1,19 @@
 package com.in4people.bootrestapi.approveWork.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import com.in4people.bootrestapi.schedule.entity.WorkSetting;
+import com.in4people.bootrestapi.workState.entity.WorkMember;
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.Date;
 
 // 연장 근무 신청 Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "APPLICATION_OVERTIME_WORK")
 public class ApplicationOvertimeWork {
@@ -23,99 +30,22 @@ public class ApplicationOvertimeWork {
 
 
     //FK
-    @Column(name = "MEM_CODE")
-    private String memCode;                  // 사원번호
+    @ManyToOne
+    @JoinColumn(name = "MEM_CODE")
+    private WorkMember memCode;                  // 사원번호
 
-    @Column(name = "REPORTER_TAG_CODE")
-    private String reporterTagCode;          // 상신자 태그 코드
+    @ManyToOne
+    @JoinColumn(name = "REPORTER_TAG_CODE")
+    private ReporterTag reporterTagCode;          // 상신자 태그 코드
 
-    @Column(name = "WORK_SETTING_NUMBER")
-    private String workSettingNumber;        // 근무 설정 번호
+    @ManyToOne
+    @JoinColumn(name = "WORK_SETTING_NUMBER")
+    private WorkSetting workSettingNumber;        // 근무 설정 번호
 
-    @Column(name = "DOCUMENT_NUMBER")
-    private String documentNumber;           // 전자 결제 번호
+    @ManyToOne
+    @JoinColumn(name = "DOCUMENT_NUMBER")
+    private DocumentApproval documentNumber;           // 전자 결제 번호
 
-    public ApplicationOvertimeWork() {
-    }
-
-    public ApplicationOvertimeWork(String overtimeNumber, Date overtimeApplicationDate, String overtimeScheduleDate, String memCode, String reporterTagCode, String workSettingNumber, String documentNumber) {
-        this.overtimeNumber = overtimeNumber;
-        this.overtimeApplicationDate = overtimeApplicationDate;
-        this.overtimeScheduleDate = overtimeScheduleDate;
-        this.memCode = memCode;
-        this.reporterTagCode = reporterTagCode;
-        this.workSettingNumber = workSettingNumber;
-        this.documentNumber = documentNumber;
-    }
-
-    public String getOvertimeNumber() {
-        return overtimeNumber;
-    }
-
-    public void setOvertimeNumber(String overtimeNumber) {
-        this.overtimeNumber = overtimeNumber;
-    }
-
-    public Date getOvertimeApplicationDate() {
-        return overtimeApplicationDate;
-    }
-
-    public void setOvertimeApplicationDate(Date overtimeApplicationDate) {
-        this.overtimeApplicationDate = overtimeApplicationDate;
-    }
-
-    public String getOvertimeScheduleDate() {
-        return overtimeScheduleDate;
-    }
-
-    public void setOvertimeScheduleDate(String overtimeScheduleDate) {
-        this.overtimeScheduleDate = overtimeScheduleDate;
-    }
-
-    public String getMemCode() {
-        return memCode;
-    }
-
-    public void setMemCode(String memCode) {
-        this.memCode = memCode;
-    }
-
-    public String getReporterTagCode() {
-        return reporterTagCode;
-    }
-
-    public void setReporterTagCode(String reporterTagCode) {
-        this.reporterTagCode = reporterTagCode;
-    }
-
-    public String getWorkSettingNumber() {
-        return workSettingNumber;
-    }
-
-    public void setWorkSettingNumber(String workSettingNumber) {
-        this.workSettingNumber = workSettingNumber;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "ApplicationOvertimeWork{" +
-                "overtimeNumber='" + overtimeNumber + '\'' +
-                ", overtimeApplicationDate=" + overtimeApplicationDate +
-                ", overtimeScheduleDate='" + overtimeScheduleDate + '\'' +
-                ", memCode='" + memCode + '\'' +
-                ", reporterTagCode='" + reporterTagCode + '\'' +
-                ", workSettingNumber='" + workSettingNumber + '\'' +
-                ", documentNumber='" + documentNumber + '\'' +
-                '}';
-    }
 }
 
 

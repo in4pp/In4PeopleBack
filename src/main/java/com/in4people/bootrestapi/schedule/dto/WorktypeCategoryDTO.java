@@ -1,4 +1,4 @@
-package com.in4people.bootrestapi.approveWork.dto;
+package com.in4people.bootrestapi.schedule.dto;
 
 import lombok.*;
 

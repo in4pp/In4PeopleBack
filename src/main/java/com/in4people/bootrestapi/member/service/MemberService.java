@@ -22,6 +22,7 @@ public class MemberService {
         log.info("[MemberService] selectMemberInfo Start ============");
 
         Member member = memberRepository.findByMemCode(memCode);
+
         log.info("[MemberService] {}", member);
         log.info("[MemberService] selectMemberInfo End ============");
 
