@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "MEMBER")
 public class Member {
 
@@ -68,27 +69,7 @@ public class Member {
     private List<MemAuthority> memAuthorityList; // 권한 목록
 
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "memCode='" + memCode + '\'' +
-                ", memName='" + memName + '\'' +
-                ", password='" + password + '\'' +
-                ", regiNumber='" + regiNumber + '\'' +
-                ", gender=" + gender +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", memPic='" + memPic + '\'' +
-                ", isMarried=" + isMarried +
-                ", isWorking=" + isWorking +
-                ", address='" + address + '\'' +
-                ", hourlyWage='" + hourlyWage + '\'' +
-                ", departmentCode=" + departmentCode +
-                ", teamCode=" + teamCode +
-                ", positionCode=" + positionCode +
-                '}';
-    }
+
 }
 
 

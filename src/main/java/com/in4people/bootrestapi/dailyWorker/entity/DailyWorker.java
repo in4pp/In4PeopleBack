@@ -52,16 +52,4 @@ public class DailyWorker {
     @JoinColumn(name = "WORKER_CODE")
     private List<EmploymentHistory> employmentHistoryList;
 
-    @Override
-    public String toString() {
-        return "DailyWorker{" +
-                "workerCode=" + workerCode +
-                ", workerName='" + workerName + '\'' +
-                ", workerRegNumber='" + workerRegNumber + '\'' +
-                ", workerPhone='" + workerPhone + '\'' +
-                ", workerAddress='" + workerAddress + '\'' +
-                ", createAt=" + createAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }
