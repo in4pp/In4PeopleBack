@@ -54,13 +54,10 @@ public class Member {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
-
-    @OneToMany
-    @JoinColumn(name = "MEM_CODE")
-    private List<EmployeeSalarySetting> employeeSalarySettingList; // 급여설정코드
 
     // 다 대 다 -> 일 대 다  + 일 대 다
     @OneToMany(fetch = FetchType.LAZY)
