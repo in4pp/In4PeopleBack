@@ -26,9 +26,9 @@ public class EmployeeSalarySetting {
     //JoinColumn 내가 사용할 클래스타입이랑 연결해주겠다
     //String
 
-    @ManyToOne
-    @JoinColumn(name = "MEM_CODE")
-    private SalsetMember memCode;
+
+    @Column(name = "MEM_CODE")
+    private String memCode;
 
 
 

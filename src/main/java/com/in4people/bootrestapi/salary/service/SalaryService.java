@@ -3,8 +3,10 @@ package com.in4people.bootrestapi.salary.service;
 import com.in4people.bootrestapi.salary.dto.EmpSalSettingDTO;
 import com.in4people.bootrestapi.salary.dto.EmployeeSalarySettingDTO;
 import com.in4people.bootrestapi.salary.dto.IncomeTaxDTO;
+import com.in4people.bootrestapi.salary.dto.SalsetMemberDTO;
 import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import com.in4people.bootrestapi.salary.entity.IncomeTax;
+import com.in4people.bootrestapi.salary.entity.SalsetMember;
 import com.in4people.bootrestapi.salary.repository.EmployeeSalarySettingRepository;
 import com.in4people.bootrestapi.salary.repository.SalaryRepository;
 import com.in4people.bootrestapi.salary.repository.SalsetRepository;
@@ -33,6 +35,7 @@ public class SalaryService {
 
 
 
+
     public Object selectIncomeTax() {
         log.info(("[SalaryService] selectIncomeTax Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
 
@@ -51,12 +54,12 @@ public class SalaryService {
     public Object selectSalarySetting() {
         log.info(("[SalaryService] selectIncomeTax Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
 
-        List<EmployeeSalarySetting> employeeSalarySettingList = employeeSalarySettingRepository.findAll();
+        List<SalsetMember> salsetMemberList = salsetRepository.findAll();
 
-        log.info("[SalaryService] {}", employeeSalarySettingList);
+        log.info("[SalaryService] {}", salsetMemberList);
         log.info(("[SalaryService] selectIncomeTax End ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑"));
 
-        return employeeSalarySettingList.stream().map(employeeSalarySetting -> modelMapper.map(employeeSalarySetting, EmployeeSalarySettingDTO.class)).collect(Collectors.toList());
+        return salsetMemberList.stream().map(salsetMember -> modelMapper.map(salsetMember, SalsetMemberDTO.class)).collect(Collectors.toList());
 
     }
 

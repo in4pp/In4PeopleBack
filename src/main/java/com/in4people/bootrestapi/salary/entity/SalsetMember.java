@@ -12,9 +12,9 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "MEMBER")
-@ToString
 public class SalsetMember {
 
 
@@ -42,8 +42,12 @@ public class SalsetMember {
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
 
+    @OneToMany
+    @JoinColumn(name = "MEM_CODE")
+    private List<EmployeeSalarySetting> employeeSalarySettingList;
 
 
 
 
 }
+
