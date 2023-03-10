@@ -1,7 +1,7 @@
 package com.in4people.bootrestapi.vacation.entity;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
-import com.in4people.bootrestapi.member.entity.Member;
+
+import com.in4people.bootrestapi.workState.entity.WorkMember;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,7 +39,7 @@ public class AnnualMake {
 
     @ManyToOne
     @JoinColumn(name = "MEM_CODE")
-    private Member memCode;   // 연차생성번호 FK
+    private WorkMember memCode;   // 연차생성번호 FK
 
 
 }

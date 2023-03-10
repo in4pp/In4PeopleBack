@@ -3,8 +3,7 @@ package com.in4people.bootrestapi.schedule.dto;
 
 import com.in4people.bootrestapi.approveWork.dto.DocumentApprovalDTO;
 import com.in4people.bootrestapi.approveWork.dto.ReporterTagDTO;
-import com.in4people.bootrestapi.member.dto.MemberDTO;
-import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
+import com.in4people.bootrestapi.workState.dto.WorkMemberDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -28,7 +27,7 @@ public class ApplicationWorkScheduleDTO {
     // FK
     private WorkSettingDTO workSettingNumber;      // 근무 설정 번호
 
-    private MemberDTO memCode;                // 사원 번호
+    private WorkMemberDTO memCode;                // 사원 번호
 
     private ReporterTagDTO reporterTagCode;        // 상신자 태그 코드
 
