@@ -1,7 +1,6 @@
 package com.in4people.bootrestapi.workState.entity;
 
 
-import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,7 +34,7 @@ public class AttendRegist {
     // FK
     @ManyToOne
     @JoinColumn(name = "MEM_CODE")
-    private Member memCode;    // 사원번호
+    private WorkMember memCode;    // 사원번호
 
     @ManyToOne
     @JoinColumn(name = "WORK_STATE_CODE")

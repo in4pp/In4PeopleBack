@@ -1,7 +1,8 @@
 package com.in4people.bootrestapi.approveWork.entity;
 
 
-import com.in4people.bootrestapi.member.entity.Member;
+
+import com.in4people.bootrestapi.workState.entity.WorkMember;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,6 @@ public class ReporterTag {
 
     @ManyToOne
     @JoinColumn(name = "MEM_CODE")
-    private Member memCode;           // 사원번호 PK
+    private WorkMember memCode;           // 사원번호 PK
 
 }
