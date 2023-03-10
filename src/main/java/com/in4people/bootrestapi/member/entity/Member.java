@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "MEMBER")
 public class Member {
 
-
     @Id
     @Column(name = "MEM_CODE")
     private String memCode; //사원번호 PK
