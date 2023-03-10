@@ -37,4 +37,14 @@ public class EmployeeSalarySetting {
     @JoinColumn(name = "SALARY_SETTING_CODE")
     private List<DailyWorker> dailyWorkerList;
 
+    @Override
+    public String toString() {
+        return "EmployeeSalarySetting{" +
+                "salarySettingCode='" + salarySettingCode + '\'' +
+                ", bank=" + bank +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", settingDate=" + settingDate +
+                ", memCode='" + memCode + '\'' +
+                '}';
+    }
 }

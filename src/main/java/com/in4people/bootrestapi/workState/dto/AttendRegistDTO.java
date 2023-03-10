@@ -1,6 +1,6 @@
 package com.in4people.bootrestapi.workState.dto;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
+
 import lombok.*;
 
 import java.util.Date;
@@ -23,7 +23,7 @@ public class AttendRegistDTO {
 
 
     // FK
-    private MemberDTO memCode;    // 사원번호
+    private WorkMemberDTO memCode;    // 사원번호
 
     private WorkStateDTO workStateCode;  // 근태 상태 코드
 

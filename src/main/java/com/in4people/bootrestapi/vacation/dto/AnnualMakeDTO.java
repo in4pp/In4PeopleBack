@@ -1,6 +1,7 @@
 package com.in4people.bootrestapi.vacation.dto;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
+
+import com.in4people.bootrestapi.workState.dto.WorkMemberDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -25,6 +26,6 @@ public class AnnualMakeDTO {
 
     private int lastyearAnnual;  // 전년도 잔여 연차
 
-    private MemberDTO memCode;   // 연차생성번호 FK
+    private WorkMemberDTO memCode;   // 연차생성번호 FK
 
 }

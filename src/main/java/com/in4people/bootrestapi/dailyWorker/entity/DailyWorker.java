@@ -45,11 +45,8 @@ public class DailyWorker {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-    @Column(name = "SALARY_SETTING_CODE")
-    private String salarySettingCode;
-
-    @OneToMany
-    @JoinColumn(name = "WORKER_CODE")
-    private List<EmploymentHistory> employmentHistoryList;
+    @ManyToOne
+    @JoinColumn(name = "SALARY_SETTING_CODE")
+    private EmployeeSalarySetting employeeSalarySetting;
 
 }
