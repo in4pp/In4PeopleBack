@@ -14,9 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "MEMBER")
 public class Member {
-
 
     @Id
     @Column(name = "MEM_CODE")
@@ -47,47 +47,25 @@ public class Member {
     private String hourlyWage; //시급
 
     // FK
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEPARTMENT_CODE")
     private Department departmentCode; // 부서코드
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
 
-    @OneToMany
-    @JoinColumn(name = "MEM_CODE")
-    private List<EmployeeSalarySetting> employeeSalarySettingList; // 급여설정코드
-
     // 다 대 다 -> 일 대 다  + 일 대 다
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
 
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "memCode='" + memCode + '\'' +
-                ", memName='" + memName + '\'' +
-                ", password='" + password + '\'' +
-                ", regiNumber='" + regiNumber + '\'' +
-                ", gender=" + gender +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", memPic='" + memPic + '\'' +
-                ", isMarried=" + isMarried +
-                ", isWorking=" + isWorking +
-                ", address='" + address + '\'' +
-                ", hourlyWage='" + hourlyWage + '\'' +
-                ", departmentCode=" + departmentCode +
-                ", teamCode=" + teamCode +
-                ", positionCode=" + positionCode +
-                '}';
-    }
+
 }
 
 

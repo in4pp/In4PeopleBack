@@ -10,6 +10,10 @@ import java.util.List;
 public interface ApprovalRepository extends JpaRepository<Approval, String> {
     List<Approval> findByMemCode(Member member);
 
+//    List<Approval> workDocList(String docType);
+
+    List<Approval> findAllByDocType(String docType);
+
 //    @Query("SELECT a FROM Approval a WHERE a.memCode = ?1 ")
 //    List<Approval> findByMemCode(String memCode);
 }

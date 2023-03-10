@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "EMPLOYEE_SALARY_SETTING")
+@ToString
 public class EmployeeSalarySetting {
 
     @Id

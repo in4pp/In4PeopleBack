@@ -36,4 +36,14 @@ public class ApprovalService {
 
         return approvalList.stream().map(approval -> modelMapper.map(approval, ApprovalDTO.class)).collect(Collectors.toList());
     }
+
+    public Object workDocList(String docType) {
+        log.info("[ApprovalService] getWorkList Start =============== ");
+
+        List<Approval> workDocList = approvalRepository.findAllByDocType(docType);
+        log.info("[ApprovalService] {}", workDocList);
+        log.info("[ApprovalService] getWorkList End =============== ");
+
+        return workDocList.stream().map(approval -> modelMapper.map(approval, ApprovalDTO.class)).collect(Collectors.toList());
+    }
 }

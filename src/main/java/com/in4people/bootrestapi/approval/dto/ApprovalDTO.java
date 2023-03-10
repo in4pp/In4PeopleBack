@@ -23,7 +23,7 @@ public class ApprovalDTO {
     private List<RefereeDTO> refereeDTOList; // 참조인 리스트
     private String title; //제목
     private Bookmark bookmark; //
-    private List<DocAttachment> docAttachmentList; // 결재_첨부파일
+    private List<DocAttachmentDTO> docAttachmentList; // 결재_첨부파일
 
     
 }
