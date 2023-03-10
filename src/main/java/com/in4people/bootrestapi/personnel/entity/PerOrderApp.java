@@ -5,12 +5,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 @Entity
 @Table(name = "PER_ORDER_APP")
 public class PerOrderApp {
@@ -22,9 +23,8 @@ public class PerOrderApp {
     @Column(name = "ID_NUM")
     private int idNum;
 
-    @OneToOne
-    @JoinColumn (name = "DOC_CODE")
-    private Approval docCode; // 문서번호
+    @Column (name = "DOC_CODE")
+    private String docCode; // 문서번호
 
     @Column(name = "DATE_LEAVE")
     private Date dateLeave; // 휴직일자

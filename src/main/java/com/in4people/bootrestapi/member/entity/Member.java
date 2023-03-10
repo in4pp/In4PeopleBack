@@ -47,20 +47,20 @@ public class Member {
     private String hourlyWage; //시급
 
     // FK
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
     private Department departmentCode; // 부서코드
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
 
     // 다 대 다 -> 일 대 다  + 일 대 다
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
 

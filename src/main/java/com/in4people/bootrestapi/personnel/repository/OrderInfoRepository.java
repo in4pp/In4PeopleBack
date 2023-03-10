@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface OrderInfoRepository extends JpaRepository <Approval, Integer> {
+public interface OrderInfoRepository extends JpaRepository <Approval, String> {
 
 //    @Query(value = "select DISTINCT c from PerOrderApp c left join fetch c.")
     Page<Approval> findByDocTypeAndIsApproved(String docType, String isApproved, Pageable paging);

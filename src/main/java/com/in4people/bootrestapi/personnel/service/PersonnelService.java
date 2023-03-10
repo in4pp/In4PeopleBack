@@ -47,7 +47,7 @@ public class PersonnelService {
         List<Approval> orderInfoList = orderInfoRepository.findByDocTypeAndIsApproved("인사발령", "Y");
 
         log.info("[PersonnelService] selectOrderInfoTotal end ============================ ");
-
+        log.info("[orderInfoList count] >>>>>>>>>>>>> " , orderInfoList);
         return orderInfoList.size();
     }
 
@@ -59,15 +59,15 @@ public class PersonnelService {
 
         int count = cri.getAmount();
 
-        Pageable paging = PageRequest.of(index, count, Sort.by("idNum").descending());
-
+        Pageable paging = PageRequest.of(index, count, Sort.by("docCode").descending());
+        log.info("[orderInfoList] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 야호");
         Page<Approval> result = orderInfoRepository.findByDocTypeAndIsApproved("인사발령","Y", paging);
 
-        List<Approval> orderInfoList = (List<Approval>)result.getContent();
-
+        List<Approval> orderInfoList = result.getContent();
+        log.info("[orderInfoList] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + result.getContent() );
         log.info("[PersonnelService] selectOrderInfoListWithPaging end ============================ ");
 
-        return orderInfoList.stream().map(orderInfo -> modelMapper.map(orderInfo, PerOrderApp.class)).collect(Collectors.toList());
+        return orderInfoList.stream().map(orderInfo -> modelMapper.map(orderInfo, Approval.class)).collect(Collectors.toList());
 
     }
 

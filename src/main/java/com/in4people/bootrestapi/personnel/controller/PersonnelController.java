@@ -34,7 +34,7 @@ public class PersonnelController {
         log.info("[PersonnelController] selectOrderInfoListWithPaging : " + offset);
 
         int total = personnelService.selectOrderInfoTotal();
-
+        log.info("[PersonnelController] total ================================ " + total);
         Criteria cri = new Criteria(Integer.valueOf(offset), 10);
 
         PagingResponseDTO pagingResponseDTO = new PagingResponseDTO();
