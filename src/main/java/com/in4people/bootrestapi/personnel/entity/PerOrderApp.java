@@ -1,5 +1,6 @@
 package com.in4people.bootrestapi.personnel.entity;
 
+import com.in4people.bootrestapi.approval.entity.Approval;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,18 +13,18 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "PER_ORDER_APP")
-@IdClass(AppPK.class)
-public class perOrderApp {
+public class PerOrderApp {
 
     // 인사발령신청
-    // 결재 FK, NOT NULL
-    @Id
-    @Column(name = "DOC_CODE")
-    private String docCode; // 문서번호
+    // 결재 NOT NULL
 
     @Id
-    @Column(name = "MEM_CODE")
-    private String memCode; // 사원번호
+    @Column(name = "ID_NUM")
+    private int idNum;
+
+    @OneToOne
+    @JoinColumn (name = "DOC_CODE")
+    private Approval docCode; // 문서번호
 
     @Column(name = "DATE_LEAVE")
     private Date dateLeave; // 휴직일자
@@ -40,8 +41,8 @@ public class perOrderApp {
     @Column(name = "ORDER_DATE")
     private Date orderDate; // 발령일자
 
-    @Column(name = "PER_REASON")
-    private String perReason; // 사유
+    @Column(name = "ORDER_DETAILS")
+    private String orderDetails;
 
     @ManyToOne
     @JoinColumn(name = "PER_CODE")
