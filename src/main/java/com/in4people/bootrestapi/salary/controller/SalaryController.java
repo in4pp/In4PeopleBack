@@ -36,12 +36,12 @@ public class SalaryController {
     }
 
 
-    @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })
-    @PostMapping(("/empsalsetting"))
-    public ResponseEntity<ResponseDTO> insertEmpSalSetting(@RequestBody EmpSalSettingDTO empSalSettingDTO){
-
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(empSalSettingDTO)));
-    }
+//    @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })
+//    @PostMapping(("/empsalsetting"))
+//    public ResponseEntity<ResponseDTO> insertEmpSalSetting(@RequestBody EmpSalSettingDTO empSalSettingDTO){
+//
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(empSalSettingDTO)));
+//    }
 
 
 
