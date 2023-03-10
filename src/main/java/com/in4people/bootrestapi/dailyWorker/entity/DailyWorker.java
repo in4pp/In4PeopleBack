@@ -45,23 +45,9 @@ public class DailyWorker {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-    @Column(name = "SALARY_SETTING_CODE")
-    private String salarySettingCode;
+    @ManyToOne
+    @JoinColumn(name = "SALARY_SETTING_CODE")
+    private EmployeeSalarySetting employeeSalarySetting;
 
-    @OneToMany
-    @JoinColumn(name = "WORKER_CODE")
-    private List<EmploymentHistory> employmentHistoryList;
-
-    @Override
-    public String toString() {
-        return "DailyWorker{" +
-                "workerCode=" + workerCode +
-                ", workerName='" + workerName + '\'' +
-                ", workerRegNumber='" + workerRegNumber + '\'' +
-                ", workerPhone='" + workerPhone + '\'' +
-                ", workerAddress='" + workerAddress + '\'' +
-                ", createAt=" + createAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }
+//커밋테스트

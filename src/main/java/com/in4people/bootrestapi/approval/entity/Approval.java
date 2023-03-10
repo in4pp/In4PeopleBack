@@ -1,6 +1,7 @@
 package com.in4people.bootrestapi.approval.entity;
 
 import com.in4people.bootrestapi.member.entity.Member;
+import com.in4people.bootrestapi.personnel.entity.PerOrderApp;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class Approval {
     private String docType;  // 결재종류(ex:업무, 근태)
 
     @Column(name = "IS_APPROVED")
-    private char isApproved; // W/Y/N
+    private String isApproved; // W/Y/N
 
     @OneToMany
     @JoinColumn(name = "DOC_CODE")
@@ -49,10 +50,14 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private List<DocAttachment> docAttachmentList; // 결재_첨부파일
 
+    @OneToMany
+    @JoinColumn(name = "DOC_CODE")
+    private List<PerOrderApp> perOrderAppList;
+
+//    perOrderAppList.get(0).getDateLeave
     /*
     상신함 - memCode = 나
     참조된함 - WHERE REFFEREE.memCode = 나
     결재함 - WHERE APPROVER.memCode = 나
-
     * */
 }

@@ -69,7 +69,7 @@ public class TokenProvider {
                 
                 /* 1-3. 토큰의 만료 기간을 DATE형으로 토큰에 추가("exp"라는 클레임으로 long 형으로 토큰에 추가 */
                 .setExpiration(accessTokenExpiresIn)
-                .signWith(key, SignatureAlgorithm.ES512) // HS512:암호화방식
+                .signWith(key, SignatureAlgorithm.HS512) // HS512:암호화방식
                 .compact();
         log.info("[TokenProvider] generateTokenDTO end ==========================");
             // [ROLE_ADMIN,  ROLE_USER]
