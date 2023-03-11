@@ -32,7 +32,7 @@ public class AuthService {
         
         /* 1. 아이디 조회 */
         Member member = memberRepository.findByMemCode(memberDTO.getMemCode());
-
+        System.out.println("member들어왔니..??= " + member);
         if(member == null){
             throw new LoginFailedException(memberDTO.getMemCode() + "를 찾을 수 없습니다.");
         } // 예외처리를 통해 밑으로 내려가지 않게함.
