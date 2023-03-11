@@ -19,9 +19,9 @@ public class Approval {
     @Column(name = "DOC_CODE")
     private String docCode;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "MEM_CODE")
-    private Member memCode; // memCode FK 상신인
+    private ApprovalMem memCode; // memCode FK 상신인
 
     @Column(name = "DOC_TYPE")
     private String docType;  // 결재종류(ex:업무, 근태)
@@ -33,7 +33,7 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private List<Approver> approverList; // 결재자 리스트
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     @JoinColumn(name = "DOC_CODE")
     private List<Referee> refereeList; // 참조인 리스트
 

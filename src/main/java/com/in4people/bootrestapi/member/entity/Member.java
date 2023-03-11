@@ -54,9 +54,9 @@ public class Member {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POSITION_CODE")
+
     private Position positionCode; // 직급코드
 
     // 다 대 다 -> 일 대 다  + 일 대 다
