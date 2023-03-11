@@ -33,9 +33,6 @@ public class SalaryService {
     private final SalsetRepository salsetRepository;
 
 
-
-
-
     public Object selectIncomeTax() {
         log.info(("[SalaryService] selectIncomeTax Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
 
@@ -64,40 +61,26 @@ public class SalaryService {
     }
 
 
+    public Object insertSalset(EmployeeSalarySettingDTO employeeSalarySettingDTO) {
+        log.info(("[SalaryService] insertSalset Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
+        log.info(("[SalaryService] employeeSalarySettingDTO : " + employeeSalarySettingDTO));
+
+        int result = 0;
+
+        try {
 
 
+            EmployeeSalarySetting insertSalset = modelMapper.map(employeeSalarySettingDTO, EmployeeSalarySetting.class);
 
-//    public Object insertSalset(EmpSalSettingDTO empSalSettingDTO) {
-//        log.info(("[SalaryService] insertSalset Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
-//        log.info(("[SalaryService] empSalSettingDTO : " + empSalSettingDTO));
-//
-//        int result = 0;
-//
-//        try {
-//
-//            EmployeeSalarySetting employeeSalarySetting = new EmployeeSalarySetting();
-//
-//            employeeSalarySetting.setSalarySettingCode(empSalSettingDTO.getSalarySettingCode());
-//            employeeSalarySetting.setMemCode(empSalSettingDTO.getMemCode());
-//            employeeSalarySetting.setBank(empSalSettingDTO.getBank());
-//            employeeSalarySetting.setAccountNumber(empSalSettingDTO.getAccountNumber());
-//            employeeSalarySetting.setSettingDate(empSalSettingDTO.getSettingDate());
-//
-//            java.util.Date now = new java.util.Date();
-//            SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
-//            String setDate = sdf.format(now);
-//            employeeSalarySetting.setSettingDate(Date.valueOf(setDate));
-//
-//            salsetRepository.save(employeeSalarySetting);
-//
-//            result = 1;
-//
-//        } catch (Exception e) {
-//
-//            log.info("[employeeSalarySetting] Exception!!");
-//        }
-//
-//            log.info("[SalaryService] insertSalset End ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
-//            return (result > 0) ? "입력 성공" : "입력 실패";
-//    }
+            employeeSalarySettingRepository.save(insertSalset);
+
+            result = 1;
+        } catch (Exception e) {
+
+            throw new RuntimeException(e);
+        }
+
+        return (result > 0) ? "급여 정보 입력 성공" : "급여 정보 입력 실패";
+    }
+
 }

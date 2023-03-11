@@ -2,6 +2,7 @@ package com.in4people.bootrestapi.salary.controller;
 
 import com.in4people.bootrestapi.common.ResponseDTO;
 import com.in4people.bootrestapi.salary.dto.EmpSalSettingDTO;
+import com.in4people.bootrestapi.salary.dto.EmployeeSalarySettingDTO;
 import com.in4people.bootrestapi.salary.service.SalaryService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -36,12 +37,12 @@ public class SalaryController {
     }
 
 
-//    @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })
-//    @PostMapping(("/empsalsetting"))
-//    public ResponseEntity<ResponseDTO> insertEmpSalSetting(@RequestBody EmpSalSettingDTO empSalSettingDTO){
-//
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(empSalSettingDTO)));
-//    }
+    @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })
+    @PostMapping(("/empsalsetting"))
+    public ResponseEntity<ResponseDTO> insertEmpSalSetting(@RequestBody EmployeeSalarySettingDTO employeeSalarySettingDTO){
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(employeeSalarySettingDTO)));
+    }
 
 
 
