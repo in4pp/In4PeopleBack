@@ -10,6 +10,6 @@ import lombok.*;
 @ToString
 public class BookmarkDTO {
 
-    private Approval approval; //  문서번호
+    private String docCode; //  문서번호
     private String memCode; // 북마크 한 사람
 }

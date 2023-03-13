@@ -89,14 +89,14 @@ public class SecurityConfig {
         //List.of == Array.asList() ->둘 다 배열을 리스트로 변경하는 메소드이지만
         //List.of는 결과값이 불변객체
         //Arrays.asList는 가변객체
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // 3000번 포트(origin)허용
-        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-type"
-                                                      , "Access-Control-Allow-Headers", "Authorization"
-                                                      , "X-Requested-With"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001")); //이 origin을 허용하겠다/
+//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3001")); //이 origin을 허용하겠다/
+        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE")); //이방식들을 가지고 쓸 것이다.
+        configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-type" //여기있는 method는 허용하겠다.
+                , "Access-Control-Allow-Headers", "Authorization"
+                , "X-Requested-With"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
 

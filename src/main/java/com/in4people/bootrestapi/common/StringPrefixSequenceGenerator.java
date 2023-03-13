@@ -31,4 +31,5 @@ public class StringPrefixSequenceGenerator extends SequenceStyleGenerator {
         super.configure(LongType.INSTANCE, params, serviceRegistry);
         valuePrefix = ConfigurationHelper.getString(VALUE_PREFIX_PARAMETER, params, VALUE_PREFIX_DEFAULT);
     }
+
 }
