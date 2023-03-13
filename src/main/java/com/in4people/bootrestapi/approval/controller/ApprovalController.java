@@ -1,5 +1,6 @@
 package com.in4people.bootrestapi.approval.controller;
 
+import com.in4people.bootrestapi.approval.dto.BookmarkDTO;
 import com.in4people.bootrestapi.approval.service.ApprovalService;
 import com.in4people.bootrestapi.common.ResponseDTO;
 import com.in4people.bootrestapi.member.service.MemberService;
@@ -28,4 +29,20 @@ public class ApprovalController {
 //    public ResponseEntity<ResponseDTO> workDocList(@RequestParam String docType){
 //        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.workDocList(docType)));
 //    }
+
+    @Operation(summary = "결재 북마크 등록", description = "결재 북마크 수정", tags = { "ApprovalController" })
+    @PostMapping("/approval/bookmark/post")
+    public ResponseEntity<ResponseDTO> postApprovalBookmark(@RequestBody BookmarkDTO bookmarkDTO){
+        System.out.println("bookmarkDTO = " + bookmarkDTO);
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "등록 성공", approvalService.postApprovalBookmark(bookmarkDTO)));
+    }
+
+    @Operation(summary = "결재 북마크 삭제", description = "결재 북마크 삭제", tags = { "ApprovalController" })
+    @DeleteMapping("/approval/bookmark/delete")
+    public ResponseEntity<ResponseDTO> deleteApprovalBookmark(@RequestBody BookmarkDTO bookmarkDTO){
+
+        System.out.println("Delete bookmarkDTO = " + bookmarkDTO);
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "삭제 성공", approvalService.deleteApprovalBookmark(bookmarkDTO)));
+    }
 }
