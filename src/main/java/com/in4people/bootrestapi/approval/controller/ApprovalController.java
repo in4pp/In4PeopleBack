@@ -23,9 +23,9 @@ public class ApprovalController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.getApprovalList(memCode)));
     }
 
-    @Operation(summary = "결재 문서 목록 테스트", description = "업무 문서리스트 테스트", tags = { "ApprovalController" })
-    @GetMapping("/approval/{docType}")
-    public ResponseEntity<ResponseDTO> workDocList(@RequestParam String docType){
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.workDocList(docType)));
-    }
+//    @Operation(summary = "결재 문서 목록 테스트", description = "업무 문서리스트 테스트", tags = { "ApprovalController" })
+//    @GetMapping("/approval/{docType}")
+//    public ResponseEntity<ResponseDTO> workDocList(@RequestParam String docType){
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.workDocList(docType)));
+//    }
 }

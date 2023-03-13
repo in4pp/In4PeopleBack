@@ -16,7 +16,7 @@ import java.util.List;
 public class ApprovalDTO {
 
     private String docCode;
-    private MemberDTO memCode; // memCode FK+PK 상신인
+    private ApprovalMemDTO approvalMemDTO; // memCode FK+PK 상신인
     private String docType;  // 결재종류(ex:업무, 근태)
     private String isApproved; // W/Y/N
 
