@@ -5,7 +5,6 @@ import com.in4people.bootrestapi.jwt.TokenProvider;
 import com.in4people.bootrestapi.member.dto.MemberDTO;
 import com.in4people.bootrestapi.member.dto.TokenDTO;
 import com.in4people.bootrestapi.member.entity.Member;
-import com.in4people.bootrestapi.member.repository.MemAuthorityRepository;
 import com.in4people.bootrestapi.member.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,7 +23,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final ModelMapper modelMapper;
-    private final MemAuthorityRepository memAuthorityRepository;
+   // private final MemAuthorityRepository memAuthorityRepository;
 
     public Object login(MemberDTO memberDTO){
         log.info("[AuthService] Login Start ============================");
