@@ -13,11 +13,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "PersonnelMember")
 @Table(name = "MEMBER")
 @ToString
 public class PersonnelMember {
-
 
     @Id
     @Column(name = "MEM_CODE")
@@ -50,20 +49,14 @@ public class PersonnelMember {
     // FK
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
-    private Department departmentCode; // 부서코드
+    private Department department; // 부서코드
     @OneToOne
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
     @ManyToOne
     @JoinColumn(name = "POSITION_CODE")
-    private Position positionCode; // 직급코드
+    private Position position; // 직급코드
 
 
 
 }
-
-
-
-
-
-

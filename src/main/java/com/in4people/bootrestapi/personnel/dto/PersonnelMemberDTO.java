@@ -5,6 +5,7 @@ import com.in4people.bootrestapi.deptandteam.dto.DepartmentDTO;
 import com.in4people.bootrestapi.deptandteam.dto.TeamDTO;
 import com.in4people.bootrestapi.member.dto.MemAuthorityDTO;
 import com.in4people.bootrestapi.position.dto.PositionDTO;
+import com.in4people.bootrestapi.position.entity.Position;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,8 +35,8 @@ public class PersonnelMemberDTO  {
     private String hourlyWage; //시급
 
     // FK
-    private DepartmentDTO departmentCode; // 부서코드
+    private String departmentCode; // 부서코드
     private TeamDTO teamCode; // 팀코드
-    private PositionDTO positionCode; // 직급코드
+    private String positionCode; // 직급코드
 
 }
