@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/salary")
 public class SalaryController {
 
     private static final Logger log = LoggerFactory.getLogger(SalaryController.class);
@@ -26,7 +26,7 @@ public class SalaryController {
         this.salaryService = salaryService;
     }
 
-    @GetMapping("/incomeTax")
+    @GetMapping("/incometax")
     public ResponseEntity<ResponseDTO> selectIncomeTax(){
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "소득세율 조회 성공", salaryService.selectIncomeTax()));
     }
@@ -44,7 +44,7 @@ public class SalaryController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(employeeSalarySettingDTO)));
     }
 
-
+    //
 
 
 }
