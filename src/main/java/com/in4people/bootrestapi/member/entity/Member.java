@@ -3,6 +3,7 @@ package com.in4people.bootrestapi.member.entity;
 import com.in4people.bootrestapi.deptandteam.entity.Department;
 import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.position.entity.Position;
+import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,10 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "MEMBER")
 @ToString
+@Table(name = "MEMBER")
 public class Member {
-
 
     @Id
     @Column(name = "MEM_CODE")
@@ -50,9 +50,11 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
     private Department departmentCode; // 부서코드
+
     @OneToOne
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
+
     @ManyToOne
     @JoinColumn(name = "POSITION_CODE")
     private Position positionCode; // 직급코드
@@ -61,6 +63,8 @@ public class Member {
     @OneToMany
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
+
+
 
 }
 

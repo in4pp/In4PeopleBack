@@ -10,15 +10,14 @@ import java.sql.Date;
 @AllArgsConstructor
 @ToString
 public class DailyWorkerSalaryDTO {
-    private int salaryCode;
-    private int totalPayment;
-    private int afterTaxIncome;
-    private Date paymentDate;
-    private char payCompleteYn;
-    private int tax;
-    private Date createAt;
-    private Date updatedAt;
-    private DailyWorkerAccountDTO dailyWorkerAccount;
-    private DailyWorkerDTO dailyWorker;
+    private int salaryCode;         //급여코드
+    private int totalPayment;       //총지급액
+    private int afterTaxIncome;     //실수령액
+    private Date paymentDate;       //지급일
+    private char payCompleteYn;     //지급완료여부
+    private int tax;                //근로소득세
+    private Date createAt;          //생성시간
+    private Date updatedAt;         //수정시간
+    private DailyWorkerDTO dailyWorker;     //일용직사원
 
 }

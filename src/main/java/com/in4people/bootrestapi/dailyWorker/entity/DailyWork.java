@@ -1,10 +1,21 @@
 package com.in4people.bootrestapi.dailyWorker.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "DAILY_WORK")
+@SequenceGenerator(	name = "DAILY_WORK_SEQ_GENERATOR",
+        sequenceName = "WORK_CODE_SEQ",
+        initialValue = 1, allocationSize = 1
+)
 public class DailyWork {
 
     @Id
