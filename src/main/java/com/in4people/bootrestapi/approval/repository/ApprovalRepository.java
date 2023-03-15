@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ApprovalRepository extends JpaRepository<Approval, String> {
-    List<Approval> findByMemCode(ApprovalMem mem);
-
+    @Query("SELECT DISTINCT a FROM Approval a JOIN FETCH a.approvalMem m WHERE m.memCode = ?1")
+    List<Approval> getApprovalList(String memCode);
 //    List<Approval> workDocList(String docType);
 
     List<Approval> findAllByDocType(String docType);
