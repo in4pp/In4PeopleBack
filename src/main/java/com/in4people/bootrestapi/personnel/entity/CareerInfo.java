@@ -27,7 +27,7 @@ public class CareerInfo {
             strategy = GenerationType.SEQUENCE,
             generator = "CAREER_SEQ_GENERATOR"
     )
-    private int careerNumber; // PK, NOT NULL, 경력번호
+    private Long careerNumber; // PK, NOT NULL, 경력번호
 
     @Column(name = "CORPORATE_NAME")
     private String corporateName; // 회사명
