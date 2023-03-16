@@ -31,7 +31,6 @@ public class EmployeeSalarySetting {
     private String memCode;
 
 
-
     @Column(name = "BANK")
     private String bank;
 
@@ -40,6 +39,14 @@ public class EmployeeSalarySetting {
 
     @Column(name = "SETTING_DATE")
     private Date settingDate;
+
+    @Column(name = "BASIC_MONTHLY_SALARY")
+    private Date basicMonthlySalary;
+
+    @Column(name = "HOURLY_WAGE")
+    private Date hourlyWage;
+
+
 
 
 }
