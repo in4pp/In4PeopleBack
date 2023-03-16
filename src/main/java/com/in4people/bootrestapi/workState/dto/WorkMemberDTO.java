@@ -26,7 +26,6 @@ public class WorkMemberDTO {
     private char isMarried;
     private char isWorking;  // 재직구분
     private String address;
-    private String hourlyWage; //시급
 
     // FK
     private DepartmentDTO departmentCode; // 부서코드
