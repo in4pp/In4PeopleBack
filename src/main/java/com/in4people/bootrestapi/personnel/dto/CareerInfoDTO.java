@@ -1,6 +1,5 @@
 package com.in4people.bootrestapi.personnel.dto;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -13,7 +12,7 @@ import java.util.Date;
 public class CareerInfoDTO {
 
     // 경력정보
-    private int careerNumber; // 경력번호, PK, NOT NULL
+    private Long careerNumber; // 경력번호, PK, NOT NULL
 
     private String corporateName; // 회사명
 
@@ -27,6 +26,6 @@ public class CareerInfoDTO {
 
     private String reasonsRetirement; // 퇴직사유
 
-    private MemberDTO memCode; // 사원번호 FK, NOT NULL
+    private PersonnelMemberDTO memCode; // 사원번호 FK, NOT NULL
 
 }

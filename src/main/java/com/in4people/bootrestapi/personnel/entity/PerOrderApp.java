@@ -14,6 +14,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "PER_ORDER_APP")
+@SequenceGenerator(
+        name = "PERAPP_SEQ_GENERATOR",
+        sequenceName = "SEQ_PERAPP_CODE",
+        initialValue = 1, allocationSize = 1
+)
 public class PerOrderApp {
 
     // 인사발령신청
@@ -21,7 +26,11 @@ public class PerOrderApp {
 
     @Id
     @Column(name = "ID_NUM")
-    private int idNum;
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "PERAPP_SEQ_GENERATOR"
+    )
+    private Long idNum; // 신청번호
 
     @Column (name = "DOC_CODE")
     private String docCode; // 문서번호
@@ -42,7 +51,7 @@ public class PerOrderApp {
     private Date orderDate; // 발령일자
 
     @Column(name = "ORDER_DETAILS")
-    private String orderDetails;
+    private String orderDetails; // 발령내용
 
     @ManyToOne
     @JoinColumn(name = "PER_CODE")
