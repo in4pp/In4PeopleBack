@@ -26,6 +26,14 @@ public class SalaryController {
         this.salaryService = salaryService;
     }
 
+
+
+    @GetMapping("/hourlyset/{memCode}")
+    public ResponseEntity<ResponseDTO> selectHourlysetMember(@PathVariable String memCode) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 급여 설정 페이지 성공",  salaryService.selectHourlysetMember(memCode)));
+    }
+
     @GetMapping("/incometax")
     public ResponseEntity<ResponseDTO> selectIncomeTax(){
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "소득세율 조회 성공", salaryService.selectIncomeTax()));
@@ -43,6 +51,8 @@ public class SalaryController {
 
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "설정 성공", salaryService.insertSalset(employeeSalarySettingDTO)));
     }
+
+
 
 
 

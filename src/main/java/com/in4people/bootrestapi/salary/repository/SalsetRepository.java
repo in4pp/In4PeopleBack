@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SalsetRepository extends JpaRepository<SalsetMember, String> {
 
+
+    SalsetMember findByMemCode(String memCode);
 }

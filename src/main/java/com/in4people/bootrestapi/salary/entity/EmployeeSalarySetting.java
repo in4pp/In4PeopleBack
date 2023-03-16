@@ -31,7 +31,6 @@ public class EmployeeSalarySetting {
     private String memCode;
 
 
-
     @Column(name = "BANK")
     private String bank;
 
