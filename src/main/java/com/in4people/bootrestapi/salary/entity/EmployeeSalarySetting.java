@@ -1,28 +1,39 @@
 package com.in4people.bootrestapi.salary.entity;
 
-import com.in4people.bootrestapi.dailyWorker.entity.DailyWorker;
+import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "EMPLOYEE_SALARY_SETTING")
-@ToString
 public class EmployeeSalarySetting {
 
     @Id
     @Column(name = "SALARY_SETTING_CODE")
     private String salarySettingCode;
+
     // 사원번호 MEM_CODE memCode VARCHAR2(100) 사원테이블에서~ FK
 
+    //JoinColumn 매핑설정
+    //JoinColumn 내가 사용할 클래스타입이랑 연결해주겠다
+    //String
+
+
+    @Column(name = "MEM_CODE")
+    private String memCode;
+
+
+
     @Column(name = "BANK")
-    private Date bank;
+    private String bank;
 
     @Column(name = "ACCOUNT_NUMBER")
     private String accountNumber;
@@ -30,21 +41,5 @@ public class EmployeeSalarySetting {
     @Column(name = "SETTING_DATE")
     private Date settingDate;
 
-    @Column(name = "MEM_CODE")
-    private String memCode;
 
-    @OneToMany
-    @JoinColumn(name = "SALARY_SETTING_CODE")
-    private List<DailyWorker> dailyWorkerList;
-
-    @Override
-    public String toString() {
-        return "EmployeeSalarySetting{" +
-                "salarySettingCode='" + salarySettingCode + '\'' +
-                ", bank=" + bank +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", settingDate=" + settingDate +
-                ", memCode='" + memCode + '\'' +
-                '}';
-    }
 }
