@@ -7,6 +7,7 @@ import com.in4people.bootrestapi.personnel.dto.PerOrderAppDTO;
 import com.in4people.bootrestapi.personnel.dto.PersonnelMemberDTO;
 import com.in4people.bootrestapi.personnel.entity.Certificate;
 import com.in4people.bootrestapi.personnel.entity.PerOrderApp;
+import com.in4people.bootrestapi.personnel.entity.PersonnelApproval;
 import com.in4people.bootrestapi.personnel.entity.PersonnelMember;
 import com.in4people.bootrestapi.personnel.repository.OrderInfoRepository;
 import com.in4people.bootrestapi.personnel.repository.PerMemberRepository;
