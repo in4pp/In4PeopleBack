@@ -12,23 +12,27 @@ import com.in4people.bootrestapi.personnel.repository.OrderInfoRepository;
 import com.in4people.bootrestapi.personnel.repository.PerMemberRepository;
 import com.in4people.bootrestapi.personnel.repository.PerOrderRepository;
 import com.in4people.bootrestapi.personnel.repository.PersonnelRepository;
-import lombok.AllArgsConstructor;
+import com.in4people.bootrestapi.util.FileUploadUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
+import java.io.Console;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class PersonnelService {
 
     private static final Logger log = LoggerFactory.getLogger(PersonnelService.class);
@@ -42,6 +46,20 @@ public class PersonnelService {
     private final ModelMapper modelMapper;
     private final PerMemberRepository perMemberRepository;
 
+    /* 이미지 저장 할 위치 및 응답 할 이미지 주소(WebConfig 설정파일 추가하기) */
+    @Value("${image.image-dir}")
+    private String IMAGE_DIR;
+    @Value("${image.image-url}")
+    private String IMAGE_URL;
+
+    @Autowired
+    public PersonnelService(PersonnelRepository personnelRepository, OrderInfoRepository orderInfoRepository, PerOrderRepository perOrderRepository, ModelMapper modelMapper, PerMemberRepository perMemberRepository){
+        this.personnelRepository = personnelRepository;
+        this.modelMapper = modelMapper;
+        this.orderInfoRepository = orderInfoRepository;
+        this.perOrderRepository = perOrderRepository;
+        this.perMemberRepository = perMemberRepository;
+    }
 
     // 테스트용 DB 출력
     public Object selectCerInfo(String cerCode) {
@@ -146,25 +164,34 @@ public class PersonnelService {
 
     // 멤버 등록
     @Transactional
-    public Object insertMemberRegist(PersonnelMemberDTO personnelMemberDTO) {
+    public Object insertMemberRegist(PersonnelMemberDTO personnelMemberDTO, MultipartFile imgs) {
 
         log.info("[PersonnelService] insertMemberRegist Start ==============================");
+        log.info("[PersonnelService] PersonnelMemberDTO : " + personnelMemberDTO);
 
+        String imageName = UUID.randomUUID().toString().replace("-", "");
+        String replaceFileName = null;
         int result = 0;
 
-//        java.util.Date now = new java.util.Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
-//        String reviewDate = sdf.format(now);
-//        perOrderAppDTO.setReviewCreateDate(perOrderAppDTO);
-
         try {
+
+            /* util 패키지에 FileUploadUtils 추가 */
+            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, imgs);
+
+            personnelMemberDTO.setMemPic(replaceFileName);
+
+            log.info("[PersonnelService] insert Image Name : ", replaceFileName);
+
             PersonnelMember personnelMember = modelMapper.map(personnelMemberDTO, PersonnelMember.class);
+
+            log.info("[PersonnelService] personnelMember : ", personnelMember);
 
             perMemberRepository.save(personnelMember);
 
             result = 1;
         } catch (Exception e) {
-            log.info("[personnelMember insert] Exception!!");
+            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+            throw new RuntimeException(e);
         }
 
         log.info("[PersonnelService] insertMemberRegist End ==============================");

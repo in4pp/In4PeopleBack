@@ -32,7 +32,6 @@ public class PersonnelMemberDTO  {
     private char isMarried;
     private char isWorking;  // 재직구분
     private String address;
-    private String hourlyWage; //시급
 
     // FK
     private String departmentCode; // 부서코드
@@ -40,3 +39,4 @@ public class PersonnelMemberDTO  {
     private String positionCode; // 직급코드
 
 }
+

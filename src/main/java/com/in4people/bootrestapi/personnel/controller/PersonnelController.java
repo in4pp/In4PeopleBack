@@ -7,23 +7,27 @@ import com.in4people.bootrestapi.common.ResponseDTO;
 import com.in4people.bootrestapi.personnel.dto.PerOrderAppDTO;
 import com.in4people.bootrestapi.personnel.dto.PersonnelMemberDTO;
 import com.in4people.bootrestapi.personnel.service.PersonnelService;
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
 @RequestMapping(value ="/api/v1", method = {RequestMethod.GET, RequestMethod.POST})
-@AllArgsConstructor
 public class PersonnelController {
 
     private final PersonnelService personnelService;
 
     private static final Logger log = LoggerFactory.getLogger(PersonnelController.class);
+
+    @Autowired
+    public PersonnelController(PersonnelService personnelService){
+        this.personnelService = personnelService;
+    }
 
     // 테스트로 해본 DB 출력
     @GetMapping("/personnel/{cerCode}")
@@ -80,9 +84,11 @@ public class PersonnelController {
 
     // 멤버 등록
     @PostMapping("/personnel/memberRegist")
-    public ResponseEntity<ResponseDTO> insertMemberRegist(@RequestBody PersonnelMemberDTO personnelMemberDTO) {
+    public ResponseEntity<ResponseDTO> insertMemberRegist(@ModelAttribute PersonnelMemberDTO personnelMemberDTO, @RequestParam(required = false) MultipartFile memPicture) {
         System.out.println("personnelMemberDTO =========================== " + personnelMemberDTO);
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "멤버 등록 성공",  personnelService.insertMemberRegist(personnelMemberDTO)));
+
+        log.info("memberinsert Controller=========================== " ,personnelMemberDTO);
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "멤버 등록 성공",  personnelService.insertMemberRegist(personnelMemberDTO, memPicture)));
     }
 
 }
