@@ -3,22 +3,15 @@ package com.in4people.bootrestapi.personnel.dto;
 
 import com.in4people.bootrestapi.deptandteam.dto.DepartmentDTO;
 import com.in4people.bootrestapi.deptandteam.dto.TeamDTO;
-import com.in4people.bootrestapi.member.dto.MemAuthorityDTO;
 import com.in4people.bootrestapi.position.dto.PositionDTO;
-import com.in4people.bootrestapi.position.entity.Position;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PersonnelMemberDTO  {
+public class PersonnelMemberSelectDTO {
 
     private String memCode; //사원번호 PK
     private String memName;
@@ -34,9 +27,9 @@ public class PersonnelMemberDTO  {
     private String address;
 
     // FK
-    private String departmentCode; // 부서코드
+    private DepartmentDTO departmentCode; // 부서코드
     private TeamDTO teamCode; // 팀코드
-    private String positionCode; // 직급코드
+    private PositionDTO positionCode; // 직급코드
 
 }
 

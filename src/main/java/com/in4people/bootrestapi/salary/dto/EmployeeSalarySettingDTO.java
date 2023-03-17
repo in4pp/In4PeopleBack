@@ -19,6 +19,8 @@ public class EmployeeSalarySettingDTO {
     private String bank;                                            // 은행
     private String accountNumber;                                 // 계좌번호
     private Date settingDate;                                     // 설정일
-//    private int basicMonthlySalary;                                 // 월기본급
-//    private int hourlyWage;                                         // 시급
+
+    private int basicMonthlySalary;
+
+    private int hourlyWage;
 }

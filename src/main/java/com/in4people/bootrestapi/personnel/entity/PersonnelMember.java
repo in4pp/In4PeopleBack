@@ -5,6 +5,7 @@ import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.member.entity.MemAuthority;
 import com.in4people.bootrestapi.position.entity.Position;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,14 +14,23 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "PersonnelMember")
 @Table(name = "MEMBER")
 @ToString
+//@SequenceGenerator(
+//        name = "MEMBER_SEQ_GENERATOR",
+//        sequenceName = "SEQ_MEMBER_CODE",
+//        initialValue = 1, allocationSize = 1
+//)
+//@DynamicInsert
 public class PersonnelMember {
-
 
     @Id
     @Column(name = "MEM_CODE")
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "MEMBER_SEQ_GENERATOR"
+//    )
     private String memCode; //사원번호 PK
     @Column(name = "MEM_NAME")
     private String memName;
@@ -45,24 +55,17 @@ public class PersonnelMember {
     @Column(name = "ADDRESS")
     private String address;
 
-
     // FK
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
-    private Department departmentCode; // 부서코드
+    private Department department; // 부서코드
     @OneToOne
     @JoinColumn(name = "TEAM_CODE")
     private Team teamCode; // 팀코드
     @ManyToOne
     @JoinColumn(name = "POSITION_CODE")
-    private Position positionCode; // 직급코드
+    private Position position; // 직급코드
 
 
 
 }
-
-
-
-
-
-
