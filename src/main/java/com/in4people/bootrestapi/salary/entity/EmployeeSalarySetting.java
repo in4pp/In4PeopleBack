@@ -41,5 +41,11 @@ public class EmployeeSalarySetting {
     @Column(name = "SETTING_DATE")
     private Date settingDate;
 
+//    @Column(name = "BASIC_MONTHLY_SALARY")
+//    private int basicMonthlySalary; // 월기본급
+
+//    @Column(name = "HOURLY_WAGE")
+//    private int hourlyWage; // 시급
+
 
 }
