@@ -55,7 +55,7 @@ public class TokenProvider {
 
         log.info("[TokenProvider] authorities {}", roles); // SLF4J에서 제공하는 치환문자 활용(+(덧셈)같은 연산처리 작업 생략
 
-        /* 1-1. 회원 아이디를 "sub(토큰제목-subject)"라는 클레임으로 토큰에 추가 */
+        /* 1-1. memCode를 "sub(토큰제목-subject)"라는 클레임으로 토큰에 추가 */
         Claims claims = Jwts.claims().setSubject(member.getMemCode());
         
         /* 1-2. 회원의 권한들을 "auth"라는 클레임으로 토큰에 추가 */

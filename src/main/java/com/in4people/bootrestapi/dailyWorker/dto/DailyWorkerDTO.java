@@ -22,4 +22,6 @@ public class DailyWorkerDTO {
     private Date updatedAt;                 //수정시간
     private EmployeeSalarySettingDTO employeeSalarySetting;    //급여설정
 
+    public void setProductImageUrl(String replaceFileName) {
+    }
 }

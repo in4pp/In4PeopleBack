@@ -1,5 +1,6 @@
-package com.in4people.bootrestapi.approval.entity;
+package com.in4people.bootrestapi.personnel.entity;
 
+import com.in4people.bootrestapi.approval.entity.*;
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,7 +17,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "APPROVAL")
-public class Approval {
+public class PersonnelApproval {
 
     @Id
     @Column(name = "DOC_CODE")
@@ -29,7 +30,7 @@ public class Approval {
 
     @OneToOne
     @JoinColumn(name = "MEM_CODE")
-    private ApprovalMem approvalMem; // memCode FK 상신인
+    private PersonnelMember memCode; // memCode FK 상신인
 
     @Column(name = "DOC_TYPE")
     private String docType;  // 결재종류(ex:업무, 근태)
@@ -63,9 +64,9 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private List<DocAttachment> docAttachmentList; // 결재_첨부파일
 
-//    @OneToMany
-//    @JoinColumn(name = "DOC_CODE")
-//    private List<PerOrderApp> perOrderAppList;
+    @OneToMany
+    @JoinColumn(name = "DOC_CODE")
+    private List<PerOrderApp> perOrderAppList;
 
 //    perOrderAppList.get(0).getDateLeave
     /*

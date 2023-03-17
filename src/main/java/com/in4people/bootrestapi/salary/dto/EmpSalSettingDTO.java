@@ -19,4 +19,6 @@ public class EmpSalSettingDTO {
     private String accountNumber;
     private Date settingDate;
 
+
+
 }
