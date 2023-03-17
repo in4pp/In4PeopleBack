@@ -33,6 +33,24 @@ public class SalaryService {
     private final SalsetRepository salsetRepository;
 
 
+
+
+
+
+
+    public Object selectHourlysetMember(String memCode) {
+        log.info(("[SalaryService] selectHourlysetMember Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
+
+        SalsetMember salsetMember = salsetRepository.findByMemCode(memCode);
+
+        log.info("[SalaryService] {}", salsetMember);
+        log.info("[SalaryService] selectHourlysetMember End ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
+
+        return modelMapper.map(salsetMember, SalsetMemberDTO.class);
+
+    }
+
+
     public Object selectIncomeTax() {
         log.info(("[SalaryService] selectIncomeTax Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
 
@@ -82,5 +100,6 @@ public class SalaryService {
 
         return (result > 0) ? "급여 정보 입력 성공" : "급여 정보 입력 실패";
     }
+
 
 }
