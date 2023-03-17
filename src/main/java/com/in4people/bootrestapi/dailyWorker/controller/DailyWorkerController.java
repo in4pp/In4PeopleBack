@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -44,13 +45,29 @@ public class DailyWorkerController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", dailyWorkerService.selectDailyWorkerInfoAll()));
     }
 
+    @GetMapping("/dailyWorker/{WorkerCode}")
+    public ResponseEntity<ResponseDTO> selectDWorkerDetail(@PathVariable int WorkerCode) {
 
-    @Operation(summary = "일용직사원 정보 등록 요청", description = "일용직사원 정보 등록이 진행됩니다.", tags = { "DailyWorkerController" })
-    @PostMapping("/dailyWorker/insert")
-    public ResponseEntity<ResponseDTO> insertDWorker(@RequestBody DailyWorkerDTO dailyWorkerDTO) {
-
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "리뷰 입력 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO)));
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 상세정보 조회 성공",  dailyWorkerService.selectDWorkerDetail(WorkerCode)));
     }
+
+
+    @Operation(summary = "리뷰 수정 요청", description = "리뷰 작성자의 리뷰 수정이 진행됩니다.", tags = { "ReviewController" })
+    @PutMapping("/dailyWorker/update")
+    public ResponseEntity<ResponseDTO> updateProductReview(@RequestBody DailyWorkerDTO dailyWorkerDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "리뷰 수정 성공",  dailyWorkerService.updateDWorker(dailyWorkerDTO)));
+    }
+
+
+
+
+//    @Operation(summary = "일용직사원 정보 등록 요청", description = "일용직사원 정보 등록이 진행됩니다.", tags = { "DailyWorkerController" })
+//    @PostMapping("/dailyWorker/insert")
+//    public ResponseEntity<ResponseDTO> insertDWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO, MultipartFile productImage) {
+//
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO, productImage)));
+//    }
 
 
 }
