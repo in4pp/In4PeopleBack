@@ -19,13 +19,19 @@ public class WorkSettingDTO {
     private String basicworkTime;       // 기본 근무 시간
 
 
+
     private String starttimeAvailwork;  // 출근 가능 시작 시간
+
+
 
 
     private String endtimeAvailwork;    // 퇴근 가능 시작 시간
 
 
+
+
     private String basicrestTime;       // 휴게 시간
+
 
 
     private int fixedWorkingHours;      // 주 소정 근로 시간

@@ -49,5 +49,6 @@ public class DailyWorker {
     @JoinColumn(name = "SALARY_SETTING_CODE")
     private EmployeeSalarySetting employeeSalarySetting;
 
+
 }
 //커밋테스트
