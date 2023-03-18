@@ -1,7 +1,10 @@
 package com.in4people.bootrestapi.salary.entity;
 
+import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
 import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,6 +21,12 @@ public class EmployeeSalarySetting {
 
     @Id
     @Column(name = "SALARY_SETTING_CODE")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SALSET_SEQ_CODE")
+    @GenericGenerator(name = "SALSET_SEQ_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
+        parameters = {
+            @Parameter(name = StringPrefixSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "SAL_")
+
+    })
     private String salarySettingCode;
 
     // 사원번호 MEM_CODE memCode VARCHAR2(100) 사원테이블에서~ FK
@@ -41,10 +50,10 @@ public class EmployeeSalarySetting {
     private Date settingDate;
 
     @Column(name = "BASIC_MONTHLY_SALARY")
-    private Date basicMonthlySalary;
+    private int basicMonthlySalary;
 
     @Column(name = "HOURLY_WAGE")
-    private Date hourlyWage;
+    private int hourlyWage;
 
 
 
