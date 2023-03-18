@@ -3,6 +3,7 @@ package com.in4people.bootrestapi.dailyWorker.service;
 import com.in4people.bootrestapi.dailyWorker.dto.DailyWorkerDTO;
 import com.in4people.bootrestapi.dailyWorker.entity.DailyWorker;
 import com.in4people.bootrestapi.dailyWorker.repository.DailyWorkerRepository;
+import com.in4people.bootrestapi.util.FileUploadUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,39 +55,39 @@ public class DailyWorkerService {
     }
 
 
-    public Object selectDWorkerDetail(int workerCode) {
-        log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
-        log.info("[dailyWorkerService] workerCode : " + workerCode);
+//    public Object selectDWorkerDetail(int workerCode) {
+//        log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
+//        log.info("[dailyWorkerService] workerCode : " + workerCode);
+//
+//
+//        DailyWorker dailyWorker = dailyWorkerRepository.findById(workerCode).orElse(null);
+//
+//        log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
+//
+//        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+//    }
 
-
-        DailyWorker dailyWorker = dailyWorkerRepository.findById(workerCode).orElse(null);
-
-        log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
-
-        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
-    }
-
-    @Transactional
-    public Object updateDWorker(DailyWorkerDTO dailyWorkerDTO) {
-        log.info("[dailyWorkerService] updateDWorker Start ==============================");
-        log.info("[dailyWorkerService] dailyWorkerDTO : " + dailyWorkerDTO);
-
-        int result = 0;
-
-        try {
-            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-
-            dailyWorkerRepository.save(dailyWorker);
-
-            result = 1;
-        } catch (Exception e) {
-            log.info("[dailyWorker update] Exception!!");
-        }
-
-        log.info("[dailyWorkerService] updateDWorker End ==============================");
-
-        return (result > 0) ? "사원정보 수정 성공" : "사원정보 수정 실패";
-    }
+//    @Transactional
+//    public Object updateDWorker(DailyWorkerDTO dailyWorkerDTO) {
+//        log.info("[dailyWorkerService] updateDWorker Start ==============================");
+//        log.info("[dailyWorkerService] dailyWorkerDTO : " + dailyWorkerDTO);
+//
+//        int result = 0;
+//
+//        try {
+//            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
+//
+//            dailyWorkerRepository.save(dailyWorker);
+//
+//            result = 1;
+//        } catch (Exception e) {
+//            log.info("[dailyWorker update] Exception!!");
+//        }
+//
+//        log.info("[dailyWorkerService] updateDWorker End ==============================");
+//
+//        return (result > 0) ? "사원정보 수정 성공" : "사원정보 수정 실패";
+//    }
 
 
 
@@ -114,37 +115,40 @@ public class DailyWorkerService {
 //    }
 
 
-//    @Transactional
-//    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile productImage) {
-//        log.info("[ProductService] insert Start ===================================");
-//        log.info("[ProductService] dailyWorkerDTO : " + dailyWorkerDTO);
-//
-//        String imageName = UUID.randomUUID().toString().replace("-", "");
-//        String replaceFileName = null;
-//        int result = 0;
-//
-//        try {
-//
-//            /* util 패키지에 FileUploadUtils 추가 */
-//            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, productImage);
-//
-//            dailyWorkerDTO.setProductImageUrl(replaceFileName);
-//
-//            log.info("[Service] insert Image Name : ", replaceFileName);
-//
-//            DailyWorkerDTO insertWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-//
-//            dailyWorkerRepository.save(insertWorker);
-//
-//            result = 1;
-//        } catch (Exception e) {
-//            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
-//            throw new RuntimeException(e);
-//        }
-//
-//        return (result > 0) ? "사원등록 성공" : "사원등록 실패";
-//    }
-//
+    @Transactional
+    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile dwImage) {
+        log.info("[ProductService] dailyworker insert Start ===================================");
+        log.info("[ProductService] dailyWorkerDTO : " + dailyWorkerDTO);
+
+        String imageName = UUID.randomUUID().toString().replace("-", "");
+        String replaceFileName = null;
+        int result = 0;
+
+        try {
+
+            /* util 패키지에 FileUploadUtils 추가 */
+            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, dwImage);
+
+            dailyWorkerDTO.setWorkerPic(replaceFileName);
+
+            log.info("[Service] insert Image Name : ", replaceFileName);
+
+            DailyWorker insertWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
+
+            log.info("[Service] dailyWorker : ", insertWorker);
+
+            dailyWorkerRepository.save(insertWorker);
+
+            result = 1;
+        } catch (Exception e) {
+            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+            throw new RuntimeException(e);
+        }
+        log.info("[Service] dailyworker insert End ==============================");
+
+        return (result > 0) ? "사원등록 성공" : "사원등록 실패";
+    }
+
 //    @Transactional
 //    public Object updateDailyWoker(DailyWorkerDTO productDTO, MultipartFile productImage) {
 //        log.info("[ProductService] updateProduct Start ===================================");
