@@ -13,9 +13,7 @@ public class PerOrderAppDTO {
 
     // 인사발령신청
 
-    // 결재  NOT NULL
-
-    private  int idNum; // 신청번호, PK
+    private Long idNum; // 신청번호, PK
 
     private String docCode; // 문서번호
 
@@ -31,6 +29,6 @@ public class PerOrderAppDTO {
 
     private String orderDetails; // 발령내용
 
-    private PerOrderDTO perCode; // 인사발령코드, FK, NOT NULL
+    private PerOrderDTO perCode; // 인사발령코드, NOT NULL
 
 }

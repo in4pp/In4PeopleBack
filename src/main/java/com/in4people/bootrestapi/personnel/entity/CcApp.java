@@ -12,6 +12,11 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "CC_APP")
+@SequenceGenerator(
+        name = "CCAPP_SEQ_GENERATOR",
+        sequenceName = "SEQ_CCAPP_CODE",
+        initialValue = 1, allocationSize = 1
+)
 public class CcApp {
 
     // 경조비 신청
@@ -39,7 +44,14 @@ public class CcApp {
 
 
     @Id
-    @Column(name = "DOC_CODE")
+    @Column(name = "ID_NUM")
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "CCAPP_SEQ_GENERATOR"
+    )
+    private Long idNum; // 신청번호
+
+    @Column (name = "DOC_CODE")
     private String docCode; // 문서번호
 
     @ManyToOne

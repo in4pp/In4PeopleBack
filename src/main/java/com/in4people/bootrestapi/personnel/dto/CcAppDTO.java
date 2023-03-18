@@ -11,8 +11,10 @@ public class CcAppDTO {
 
     // 경조비 신청
 
-//    private String docCode; // 문서번호
+    private Long idNum; // 신청번호, PK, NOT NULl
 
-    private CcExpenseDTO ccCode; // 경조비코드, FK, NOT NULL
+    private String docCode; // 문서번호, NOT NULL
+
+    private CcExpenseDTO ccCode; // 경조비코드, NOT NULL
 
 }

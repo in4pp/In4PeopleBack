@@ -29,6 +29,7 @@ public class SalsetMember {
     @Column(name = "ADDRESS")
     private String address;
 
+
     // FK
     @ManyToOne
     @JoinColumn(name = "DEPARTMENT_CODE")
