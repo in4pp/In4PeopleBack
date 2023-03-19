@@ -43,8 +43,6 @@ public class Member {
     private char isWorking;  // 재직구분
     @Column(name = "ADDRESS")
     private String address;
-    @Column(name = "HOURLY_WAGE")
-    private String hourlyWage; //시급
 
     // FK
     @ManyToOne
@@ -63,8 +61,6 @@ public class Member {
     @OneToMany
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
-
-
 
 }
 

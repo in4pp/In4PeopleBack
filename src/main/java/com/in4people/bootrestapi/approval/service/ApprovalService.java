@@ -1,15 +1,18 @@
 package com.in4people.bootrestapi.approval.service;
 
 import com.in4people.bootrestapi.approval.dto.ApprovalDTO;
+import com.in4people.bootrestapi.approval.dto.ApprovalMemDTO;
 import com.in4people.bootrestapi.approval.dto.BookmarkDTO;
 import com.in4people.bootrestapi.approval.entity.Approval;
+import com.in4people.bootrestapi.approval.entity.ApprovalMem;
 import com.in4people.bootrestapi.approval.entity.Bookmark;
 import com.in4people.bootrestapi.approval.paging.CriteriaAP;
 import com.in4people.bootrestapi.approval.repository.ApprovalRepository;
 import com.in4people.bootrestapi.approval.repository.BookmarkRepository;
+import com.in4people.bootrestapi.member.entity.Member;
+import com.in4people.bootrestapi.member.repository.MemberRepository;
 import com.in4people.bootrestapi.member.service.MemberService;
 import lombok.AllArgsConstructor;
-import org.hibernate.type.descriptor.java.DateTypeDescriptor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +23,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +33,7 @@ public class ApprovalService {
     private static final Logger log = LoggerFactory.getLogger(MemberService.class);
     private final ApprovalRepository approvalRepository;
     private final BookmarkRepository bookmarkRepository;
+    private final MemberRepository memberRepository;
     private final ModelMapper modelMapper;
 
     public String changeSearchDate(String inputDate){
@@ -89,6 +92,21 @@ public class ApprovalService {
         System.out.println("approvalList = " + approvalList);
 
         return approvalList.stream().map(approval -> modelMapper.map(approval, ApprovalDTO.class)).collect(Collectors.toList());
+    }
+
+    public Object getSearchInfoAPI(String nameOrPosition, String inputValue) {
+        log.info("[ApprovalService] getSearchInfoAPI Start =============== ");
+        System.out.println("nameOrPosition = " + nameOrPosition);
+        System.out.println("inputValue = " + inputValue);
+
+        List<ApprovalMem> foundMembers = null;
+        if(nameOrPosition.equals("이름")) {
+           foundMembers = memberRepository.getSearchInfoByName(inputValue);
+        } else if(nameOrPosition.equals("직급")){
+           foundMembers = memberRepository.getSearchInfoByPosition(inputValue);
+        }
+
+        return foundMembers.stream().map(member -> modelMapper.map(member, ApprovalMemDTO.class)).collect(Collectors.toList());
     }
 
 //    public Object workDocList(String docType) {

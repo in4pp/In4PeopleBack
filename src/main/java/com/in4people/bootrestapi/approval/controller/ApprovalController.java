@@ -23,6 +23,13 @@ public class ApprovalController {
 
     private final ApprovalService approvalService;
 
+    @PostMapping("/approval/test")
+    public ResponseEntity<ResponseDTO> postApprovalBookmark(@RequestBody ApprovalDTO approvalDTO){
+        System.out.println("approvalDTO = " + approvalDTO);
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "등록 성공", approvalService.postApprovalBookmark(bookmarkDTO)));
+        return null;
+    }
+
     @Operation(summary = "결재 상신함 문서 목록", description = "상신 문서리스트", tags = { "ApprovalController" })
     @GetMapping("/approval")
     public ResponseEntity<ResponseDTO> getApprovalList(@RequestParam String memCode, @RequestParam(name="offset", defaultValue = "1") String offset){
@@ -48,11 +55,11 @@ public class ApprovalController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.getSearchApproval(memCode, startDate, endDate)));
     }
 
-//    @Operation(summary = "결재 문서 목록 테스트", description = "업무 문서리스트 테스트", tags = { "ApprovalController" })
-//    @GetMapping("/approval/{docType}")
-//    public ResponseEntity<ResponseDTO> workDocList(@RequestParam String docType){
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.workDocList(docType)));
-//    }
+    @Operation(summary = "결재대상 정보 조회", description = "업무 상신 결재대상 정보 조회", tags = { "ApprovalController" })
+    @GetMapping("/approval/searchInfo")
+    public ResponseEntity<ResponseDTO> getSearchInfoAPI(@RequestParam String nameOrPosition, @RequestParam String inputValue){
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", approvalService.getSearchInfoAPI(nameOrPosition, inputValue)));
+    }
 
     @Operation(summary = "결재 북마크 등록", description = "결재 북마크 수정", tags = { "ApprovalController" })
     @PostMapping("/approval/bookmark/post")
