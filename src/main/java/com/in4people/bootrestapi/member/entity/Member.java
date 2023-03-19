@@ -3,7 +3,6 @@ package com.in4people.bootrestapi.member.entity;
 import com.in4people.bootrestapi.deptandteam.entity.Department;
 import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.position.entity.Position;
-import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 
 import javax.persistence.*;
@@ -43,6 +42,7 @@ public class Member {
     private char isWorking;  // 재직구분
     @Column(name = "ADDRESS")
     private String address;
+
 
     // FK
     @ManyToOne
