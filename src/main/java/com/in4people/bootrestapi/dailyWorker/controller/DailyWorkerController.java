@@ -50,11 +50,12 @@ public class DailyWorkerController {
 
     @Operation(summary = "일용직사원 정보 등록 요청", description = "일용직사원 정보 등록이 진행됩니다.", tags = { "DailyWorkerController" })
     @PostMapping("/dailyWorker/insert")
-    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO) {
-        System.out.println("dailyWorkerDTO = " + dailyWorkerDTO);
-        log.info("controller start ===========================");
+    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO, @RequestParam(required = false) MultipartFile workerPic, @RequestParam String createAt1, @RequestParam String updatedAt1) {
+
+        System.out.println("dailyWorkerDTO =========================== " + dailyWorkerDTO);
         log.info("dailyWorker insert Controller=========================== " , dailyWorkerDTO);
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO)));
+        return null;
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO, dwImage)));
     }
 
     @Operation(summary = "상세 페이지 조회 요청", description = "상세 페이지 조회가 진행됩니다.", tags = { "ReviewController" })
