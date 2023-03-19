@@ -40,9 +40,6 @@ public class CcApp {
 //    Approval 테이블에 insert
 //    2.생성된 doccode뽑아서 + 선택된 경조비코드를 param으로 받아서 CC_APP에 insert
 
-
-
-
     @Id
     @Column(name = "ID_NUM")
     @GeneratedValue(

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonnelRepository extends JpaRepository<Certificate, String> {
+public interface TestRepository extends JpaRepository<Certificate, String> {
     Certificate findByCerCode(String cerCode);
 }

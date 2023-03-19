@@ -13,6 +13,7 @@ import lombok.*;
 @ToString
 public class PersonnelMemberSelectDTO {
 
+    // 부서명 직급명 필요할 때
     private String memCode; //사원번호 PK
     private String memName;
     private String password;

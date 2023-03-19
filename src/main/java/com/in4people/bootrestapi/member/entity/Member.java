@@ -43,8 +43,7 @@ public class Member {
     private char isWorking;  // 재직구분
     @Column(name = "ADDRESS")
     private String address;
-    @Column(name = "HOURLY_WAGE")
-    private String hourlyWage; //시급
+
 
     // FK
     @ManyToOne

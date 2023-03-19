@@ -1,18 +1,18 @@
 package com.in4people.bootrestapi.personnel.service;
 
-import com.in4people.bootrestapi.approval.entity.Approval;
 import com.in4people.bootrestapi.common.Criteria;
 import com.in4people.bootrestapi.personnel.dto.CertificateDTO;
 import com.in4people.bootrestapi.personnel.dto.PerOrderAppDTO;
+import com.in4people.bootrestapi.personnel.dto.PersonnelApprovalDTO;
 import com.in4people.bootrestapi.personnel.dto.PersonnelMemberDTO;
 import com.in4people.bootrestapi.personnel.entity.Certificate;
 import com.in4people.bootrestapi.personnel.entity.PerOrderApp;
 import com.in4people.bootrestapi.personnel.entity.PersonnelApproval;
 import com.in4people.bootrestapi.personnel.entity.PersonnelMember;
-import com.in4people.bootrestapi.personnel.repository.OrderInfoRepository;
+import com.in4people.bootrestapi.personnel.repository.PerApprovalRepository;
 import com.in4people.bootrestapi.personnel.repository.PerMemberRepository;
 import com.in4people.bootrestapi.personnel.repository.PerOrderRepository;
-import com.in4people.bootrestapi.personnel.repository.PersonnelRepository;
+import com.in4people.bootrestapi.personnel.repository.TestRepository;
 import com.in4people.bootrestapi.util.FileUploadUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -24,11 +24,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.Console;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -38,9 +36,9 @@ public class PersonnelService {
 
     private static final Logger log = LoggerFactory.getLogger(PersonnelService.class);
 
-    private final PersonnelRepository personnelRepository;
+    private final TestRepository testRepository;
 
-    private final OrderInfoRepository orderInfoRepository;
+    private final PerApprovalRepository perApprovalRepository;
 
     private final PerOrderRepository perOrderRepository;
 
@@ -54,10 +52,10 @@ public class PersonnelService {
     private String IMAGE_URL;
 
     @Autowired
-    public PersonnelService(PersonnelRepository personnelRepository, OrderInfoRepository orderInfoRepository, PerOrderRepository perOrderRepository, ModelMapper modelMapper, PerMemberRepository perMemberRepository){
-        this.personnelRepository = personnelRepository;
+    public PersonnelService(TestRepository testRepository, PerApprovalRepository perApprovalRepository, PerOrderRepository perOrderRepository, ModelMapper modelMapper, PerMemberRepository perMemberRepository){
+        this.testRepository = testRepository;
         this.modelMapper = modelMapper;
-        this.orderInfoRepository = orderInfoRepository;
+        this.perApprovalRepository = perApprovalRepository;
         this.perOrderRepository = perOrderRepository;
         this.perMemberRepository = perMemberRepository;
     }
@@ -65,7 +63,7 @@ public class PersonnelService {
     // 테스트용 DB 출력
     public Object selectCerInfo(String cerCode) {
 
-        Certificate certificate = personnelRepository.findByCerCode(cerCode);
+        Certificate certificate = testRepository.findByCerCode(cerCode);
         log.info("[PersonnelService] {}", certificate);
 
         return modelMapper.map(certificate, CertificateDTO.class);
@@ -76,7 +74,7 @@ public class PersonnelService {
 
         log.info("[PersonnelService] selectOrderInfoTotal start ============================ ");
 
-        List<PersonnelApproval> orderInfoList = orderInfoRepository.findByDocTypeAndIsApproved("인사발령", "Y");
+        List<PersonnelApproval> orderInfoList = perApprovalRepository.findByDocTypeAndIsApproved("인사발령", "Y");
 
         log.info("[PersonnelService] selectOrderInfoTotal end ============================ ");
         log.info("[orderInfoList count] >>>>>>>>>>>>> " , orderInfoList);
@@ -93,7 +91,7 @@ public class PersonnelService {
 
         Pageable paging = PageRequest.of(index, count, Sort.by("docCode").descending());
         log.info("[orderInfoList] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 야호");
-        Page<PersonnelApproval> result = orderInfoRepository.findByDocTypeAndIsApproved("인사발령","Y", paging);
+        Page<PersonnelApproval> result = perApprovalRepository.findByDocTypeAndIsApproved("인사발령","Y", paging);
 
         List<PersonnelApproval> orderInfoList = result.getContent();
         log.info("[orderInfoList] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + result.getContent() );
@@ -198,6 +196,47 @@ public class PersonnelService {
         log.info("[PersonnelService] insertMemberRegist End ==============================");
 
         return (result > 0) ? "멤버 등록 성공" : "멤버 등록 실패" ;
+
+    }
+
+    // 증명서 신청 등록
+    public Object insertcerApp(PersonnelApprovalDTO personnelApprovalDTO) {
+
+        log.info("[PersonnelService] insertcerApp Start ==============================");
+
+        int result = 0;
+
+//        java.util.Date now = new java.util.Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+//        String reviewDate = sdf.format(now);
+//        perOrderAppDTO.setReviewCreateDate(perOrderAppDTO);
+
+        try {
+            PersonnelApproval personnelApproval = modelMapper.map(personnelApprovalDTO, PersonnelApproval.class);
+
+            perApprovalRepository.save(personnelApproval);
+
+            result = 1;
+        } catch (Exception e) {
+            log.info("[personnelApproval insert] Exception!!");
+        }
+
+        log.info("[PersonnelService] insertcerApp End ==============================");
+
+        return (result > 0) ? "증명서 신청 등록 성공" : "증명서 신청 등록 실패" ;
+
+    }
+
+    // 맴버 상세 페이지 조회
+    public Object selectMemberDetail(String memCode) {
+
+        log.info("[PersonnelService] getMemberDetail Start ==============================");
+
+        PersonnelMember member = perMemberRepository.findById(memCode).get();
+
+        log.info("[PersonnelService] getMemberDetail End ==============================");
+
+        return modelMapper.map(member, PersonnelMemberDTO.class);
 
     }
 }
