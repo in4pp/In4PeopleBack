@@ -50,28 +50,30 @@ public class DailyWorkerController {
 
     @Operation(summary = "일용직사원 정보 등록 요청", description = "일용직사원 정보 등록이 진행됩니다.", tags = { "DailyWorkerController" })
     @PostMapping("/dailyWorker/insert")
-    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO, @RequestParam(required = false) MultipartFile dwImage) {
-        System.out.println("dailyWorkerDTO =========================== " + dailyWorkerDTO);
-
+    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO) {
+        System.out.println("dailyWorkerDTO = " + dailyWorkerDTO);
+        log.info("controller start ===========================");
         log.info("dailyWorker insert Controller=========================== " , dailyWorkerDTO);
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO, dwImage)));
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO)));
     }
 
+    @Operation(summary = "상세 페이지 조회 요청", description = "상세 페이지 조회가 진행됩니다.", tags = { "ReviewController" })
+    @GetMapping("/dailyWorker/detail/{workerCode}")
+    public ResponseEntity<ResponseDTO> selectWorkerDetail(@PathVariable String workerCode) {
 
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공",  dailyWorkerService.selectWorkerDetail(workerCode)));
+    }
 
-//    @GetMapping("/dailyWorker/{WorkerCode}")
-//    public ResponseEntity<ResponseDTO> selectDWorkerDetail(@PathVariable int WorkerCode) {
-//
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 상세정보 조회 성공",  dailyWorkerService.selectDWorkerDetail(WorkerCode)));
-//    }
-
-
-//    @Operation(summary = "리뷰 수정 요청", description = "리뷰 작성자의 리뷰 수정이 진행됩니다.", tags = { "ReviewController" })
+//    @Operation(summary = "사원 정보 수정 요청", description = "사원 정보 수정이 진행됩니다.", tags = { "ReviewController" })
 //    @PutMapping("/dailyWorker/update")
 //    public ResponseEntity<ResponseDTO> updateProductReview(@RequestBody DailyWorkerDTO dailyWorkerDTO) {
 //
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "리뷰 수정 성공",  dailyWorkerService.updateDWorker(dailyWorkerDTO)));
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 정보 수정 성공",  dailyWorkerService.updateDWorker(dailyWorkerDTO)));
 //    }
+
+
+
+
 
 
 

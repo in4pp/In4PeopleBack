@@ -67,71 +67,30 @@ public class DailyWorkerService {
 //        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
 //    }
 
-//    @Transactional
-//    public Object updateDWorker(DailyWorkerDTO dailyWorkerDTO) {
-//        log.info("[dailyWorkerService] updateDWorker Start ==============================");
-//        log.info("[dailyWorkerService] dailyWorkerDTO : " + dailyWorkerDTO);
-//
-//        int result = 0;
-//
-//        try {
-//            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-//
-//            dailyWorkerRepository.save(dailyWorker);
-//
-//            result = 1;
-//        } catch (Exception e) {
-//            log.info("[dailyWorker update] Exception!!");
-//        }
-//
-//        log.info("[dailyWorkerService] updateDWorker End ==============================");
-//
-//        return (result > 0) ? "사원정보 수정 성공" : "사원정보 수정 실패";
-//    }
 
 
 
-
-
-//    @Transactional
-//    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO) {
-//        log.info("[ReviewService] insertProductReview Start ==============================");
-//
-//        int result = 0;
-//
-//        try {
-//            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-//
-//            dailyWorkerRepository.save(dailyWorker);
-//
-//            result = 1;
-//        } catch (Exception e) {
-//            log.info("[dailyWorker insert] Exception!!");
-//        }
-//
-//        log.info("[dailyWorkerService] insertDailyWorker End ==============================");
-//
-//        return (result > 0) ? "리뷰 입력 성공" : "리뷰 입력 실패" ;
-//    }
 
 
     @Transactional
-    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile dwImage) {
+    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO) {
+        log.info("service start ===========================");
         log.info("[ProductService] dailyworker insert Start ===================================");
         log.info("[ProductService] dailyWorkerDTO : " + dailyWorkerDTO);
 
-        String imageName = UUID.randomUUID().toString().replace("-", "");
-        String replaceFileName = null;
+//        String imageName = UUID.randomUUID().toString().replace("-", "");
+//        log.info("imageName : " + imageName);
+//        String replaceFileName = null;
         int result = 0;
 
         try {
-
+//        log.info("dwImage : " + dwImage);
             /* util 패키지에 FileUploadUtils 추가 */
-            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, dwImage);
-
-            dailyWorkerDTO.setWorkerPic(replaceFileName);
-
-            log.info("[Service] insert Image Name : ", replaceFileName);
+//            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, dwImage);
+//
+//            dailyWorkerDTO.setWorkerPic(replaceFileName);
+//
+//            log.info("[Service] insert Image Name : ", replaceFileName);
 
             DailyWorker insertWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
 
@@ -141,13 +100,25 @@ public class DailyWorkerService {
 
             result = 1;
         } catch (Exception e) {
-            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+//            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
             throw new RuntimeException(e);
         }
         log.info("[Service] dailyworker insert End ==============================");
 
         return (result > 0) ? "사원등록 성공" : "사원등록 실패";
     }
+
+    public Object selectWorkerDetail(String workerCode) {
+        log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
+        log.info("[dailyWorkerService] workerCode : " + workerCode);
+        DailyWorker dailyWorker = dailyWorkerRepository.findById(Integer.valueOf(workerCode)).get();
+
+        log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
+
+        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+    }
+
+
 
 //    @Transactional
 //    public Object updateDailyWoker(DailyWorkerDTO productDTO, MultipartFile productImage) {
