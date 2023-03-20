@@ -3,7 +3,6 @@ package com.in4people.bootrestapi.member.entity;
 import com.in4people.bootrestapi.deptandteam.entity.Department;
 import com.in4people.bootrestapi.deptandteam.entity.Team;
 import com.in4people.bootrestapi.position.entity.Position;
-import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
 import lombok.*;
 
 import javax.persistence.*;
@@ -62,8 +61,6 @@ public class Member {
     @OneToMany
     @JoinColumn(name = "MEM_CODE")
     private List<MemAuthority> memAuthorityList; // 권한 목록
-
-
 
 }
 

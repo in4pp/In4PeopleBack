@@ -45,6 +45,12 @@ public class DailyWorker {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
+    @Column(name = "WORKER_PIC")
+    private String workerPic;
+
+    @Column(name = "EMAIL")
+    private String workerEmail;
+
     @ManyToOne
     @JoinColumn(name = "SALARY_SETTING_CODE")
     private EmployeeSalarySetting employeeSalarySetting;

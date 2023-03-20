@@ -28,6 +28,13 @@ public class SalaryController {
 
 
 
+    @GetMapping("/monthly/{memCode}")
+    public ResponseEntity<ResponseDTO> selectMonthlyWage(@PathVariable String memCode){
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 월급 조회 성공", salaryService.selectMonthlyWage(memCode)));
+    }
+
+
+
     @GetMapping("/hourlyset/{memCode}")
     public ResponseEntity<ResponseDTO> selectHourlysetMember(@PathVariable String memCode) {
 

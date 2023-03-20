@@ -14,6 +14,10 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "MEMBER")
+@NamedEntityGraph(name = "ApprovalMem.fetchAll", attributeNodes = {
+        @NamedAttributeNode("departmentCode"),
+        @NamedAttributeNode("positionCode"),
+})
 public class ApprovalMem {
 
     @Id
