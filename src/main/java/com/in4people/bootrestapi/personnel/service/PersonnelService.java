@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -227,16 +228,86 @@ public class PersonnelService {
 
     }
 
-    // 맴버 상세 페이지 조회
+    // 맴버들끼리 서로 조회할 수 있는 상세 페이지 조회
     public Object selectMemberDetail(String memCode) {
 
         log.info("[PersonnelService] getMemberDetail Start ==============================");
 
         PersonnelMember member = perMemberRepository.findById(memCode).get();
+        member.setMemPic(IMAGE_URL + member.getMemPic());
 
         log.info("[PersonnelService] getMemberDetail End ==============================");
 
-        return modelMapper.map(member, PersonnelMemberDTO.class);
+        return modelMapper.map(member, PersonnelMember.class);
 
+    }
+
+
+    //  인사정보 수정하기 위한 select
+    public Object selectMemberUpdate(String memCode) {
+
+        log.info("[PersonnelService] getMemberDetail Start ==============================");
+
+        PersonnelMember member = perMemberRepository.findById(memCode).get();
+        member.setMemPic(IMAGE_URL + member.getMemPic());
+
+        log.info("[PersonnelService] getMemberDetail End ==============================");
+
+        PersonnelMemberDTO personnelMemberDTO = modelMapper.map(member, PersonnelMemberDTO.class);
+        return personnelMemberDTO;
+    }
+
+    // 멤버 정보 수정
+    @Transactional
+    public Object updateMember(PersonnelMemberDTO personnelMemberDTO, MultipartFile imgs) {
+
+        log.info("[PersonnelService] updateMember Start ==============================");
+        log.info("[PersonnelService] PersonnelMemberDTO : " + personnelMemberDTO);
+
+        String replaceFileName = null;
+        int result = 0;
+
+        try {
+
+            /* update 할 엔티티 조회 */
+            PersonnelMember member = perMemberRepository.findById(personnelMemberDTO.getMemCode()).get();
+            String oriImage = member.getMemPic();
+            log.info("[updateMember] oriImage : " + oriImage);
+
+            /* update를 위한 엔티티 값 수정 */
+            member.setMemName(personnelMemberDTO.getMemName());
+            member.setPassword(personnelMemberDTO.getPassword());
+            member.setRegiNumber(personnelMemberDTO.getRegiNumber());
+            member.setGender(personnelMemberDTO.getGender());
+            member.setPhone(personnelMemberDTO.getPhone());
+            member.setEmail(personnelMemberDTO.getEmail());
+            member.setNationality(personnelMemberDTO.getNationality());
+            member.setIsMarried(personnelMemberDTO.getIsMarried());
+            member.setAddress(personnelMemberDTO.getAddress()); // 어떻게바꾸지
+
+            if(imgs != null){
+                String imageName = UUID.randomUUID().toString().replace("-", "");
+                replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, imgs);
+                log.info("[updateMember] InsertFileName : " + replaceFileName);
+
+                member.setMemPic(replaceFileName);	// 새로운 파일 이름으로 update
+                log.info("[updateMember] deleteImage : " + oriImage);
+
+                boolean isDelete = FileUploadUtils.deleteFile(IMAGE_DIR, oriImage);
+                log.info("[update] isDelete : " + isDelete);
+            } else {
+
+                /* 이미지 변경 없을 시 */
+                member.setMemPic(oriImage);
+            }
+
+            result = 1;
+        } catch (IOException e) {
+            log.info("[updateMember] Exception!!");
+            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+            throw new RuntimeException(e);
+        }
+        log.info("[PersonnelService] updateMember End ===================================");
+        return (result > 0) ? "멤버 업데이트 성공" : "멤버 업데이트 실패";
     }
 }

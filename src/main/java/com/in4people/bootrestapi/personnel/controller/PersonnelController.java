@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
-@RequestMapping(value ="/api/v1", method = {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value ="/api/v1")
 public class PersonnelController {
 
     private final PersonnelService personnelService;
@@ -84,11 +84,11 @@ public class PersonnelController {
 
 
     // 멤버 등록
-    @PostMapping("/personnel/memberRegist")
+    @PostMapping(value = "/personnel/memberRegist")
     public ResponseEntity<ResponseDTO> insertMemberRegist(@ModelAttribute PersonnelMemberDTO personnelMemberDTO, @RequestParam(required = false) MultipartFile memPicture) {
         System.out.println("personnelMemberDTO =========================== " + personnelMemberDTO);
 
-        log.info("memberinsert Controller=========================== " ,personnelMemberDTO);
+        log.info("memberInsert Controller=========================== " ,personnelMemberDTO);
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "멤버 등록 성공",  personnelService.insertMemberRegist(personnelMemberDTO, memPicture)));
     }
 
@@ -101,10 +101,30 @@ public class PersonnelController {
     }
 
 
-    // 멤버 상세 페이지 조회
+    // 멤버들끼리 서로 볼 수 있는 상세 페이지 조회
     @GetMapping("/personnel/memDetail/{memCode}")
     public ResponseEntity<ResponseDTO> selectMemberDetail(@PathVariable String memCode) {
 
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공",  personnelService.selectMemberDetail(memCode)));
+    }
+
+
+    // 본인 인사 정보 페이지 조회하여 수정하려고 만듦
+    @GetMapping("/personnel/memberUpdate/{memCode}")
+    public ResponseEntity<ResponseDTO> selectMemberUpdate(@PathVariable String memCode) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공",  personnelService.selectMemberUpdate(memCode)));
+    }
+
+
+    // 멤버 정보 수정
+    @PutMapping(value = "/personnel/memberUpdate")
+    public ResponseEntity<ResponseDTO> updateMember(@ModelAttribute PersonnelMemberDTO personnelMemberDTO, @RequestParam(required = false) MultipartFile memPicture) {
+        System.out.println("personnelMemberDTO =========================== " + personnelMemberDTO);
+
+        log.info("memberUpdate Controller=========================== " ,personnelMemberDTO);
+
+        log.info("memCode : " +personnelMemberDTO.getMemCode() );
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "멤버 수정 성공",  personnelService.updateMember(personnelMemberDTO, memPicture)));
     }
 }
