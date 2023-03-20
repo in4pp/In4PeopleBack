@@ -37,7 +37,7 @@ public class MonthlyWage {
     private int monthlyPaycheck;
 
     @Column(name = "NET_SALARY")
-    private int netSalary;
+    private double netSalary;
 
     @Column(name = "PAYMENT_DATE")
     private Date paymentDate;
@@ -49,19 +49,19 @@ public class MonthlyWage {
     private int totalSum;
 
     @Column(name = "NATIONAL_PENSION")
-    private int nationalPension;
+    private double nationalPension;
 
     @Column(name = "HEALTH_INSURANCE")
-    private int healthInsurance;
+    private double healthInsurance;
 
     @Column(name = "EMPLOYMENT_INSURANCE")
-    private int employmentInsurance;
+    private double employmentInsurance;
 
     @Column(name = "INCOME_TAX1")
-    private int incomeTax1;
+    private double incomeTax1;
 
     @Column(name = "INCOME_TAX2")
-    private int incomeTax2;
+    private double incomeTax2;
 
     // fk
     @Column(name = "SALARY_SETTING_CODE")
