@@ -2,10 +2,9 @@ package com.in4people.bootrestapi.dailyWorker.dto;
 
 import com.in4people.bootrestapi.salary.dto.EmployeeSalarySettingDTO;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Embeddable;
 import java.util.Date;
+
 
 @Getter
 @Setter
@@ -19,12 +18,15 @@ public class DailyWorkerDTO {
     private String workerRegNumber;         //주민번호
     private String workerPhone;             //폰번호
     private String workerAddress;           //주소
-    private Date createAt;                  //생성시간
-    private Date updatedAt;                 //수정시간
-//    private MultipartFile workerPic;        //사진
+    private String startDate;                //근무시작일
+    private String endDate;               //근무종료일
+    private String pictureUrl;              //사진
     private String workerEmail;             //이메일
-    private EmployeeSalarySettingDTO employeeSalarySetting;    //급여설정
+    private String bank;                    //은행
+    private String accountNumber;           //계좌번호
 
-    public void setProductImageUrl(String replaceFileName) {
-    }
+//    private EmployeeSalarySettingDTO employeeSalarySetting;    //급여설정
+
+
+
 }

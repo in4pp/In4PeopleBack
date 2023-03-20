@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -69,28 +69,30 @@ public class DailyWorkerService {
 
 
 
-
-
-
     @Transactional
-    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO) {
-        log.info("service start ===========================");
-        log.info("[ProductService] dailyworker insert Start ===================================");
-        log.info("[ProductService] dailyWorkerDTO : " + dailyWorkerDTO);
+    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile workerPic) {
+        log.info("[Service] dailyWorkerService insert Start ===================================");
+        log.info("[Service] dailyWorkerDTO : " + dailyWorkerDTO);
 
-//        String imageName = UUID.randomUUID().toString().replace("-", "");
-//        log.info("imageName : " + imageName);
-//        String replaceFileName = null;
+        String imageName = UUID.randomUUID().toString().replace("-", "");
+        log.info("imageName : " + imageName);
+        String replaceFileName = null;
         int result = 0;
 
+//        java.util.Date now = new java.util.Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+//        String reviewDate = sdf.format(now);
+//        dailyWorkerDTO.setCreateAt(now);
+
+
         try {
-//        log.info("dwImage : " + dwImage);
+            log.info("workerPic : " + workerPic);
             /* util 패키지에 FileUploadUtils 추가 */
-//            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, dwImage);
-//
-//            dailyWorkerDTO.setWorkerPic(replaceFileName);
-//
-//            log.info("[Service] insert Image Name : ", replaceFileName);
+            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, workerPic);
+
+           dailyWorkerDTO.setPictureUrl(replaceFileName);
+
+            log.info("[Service] insert Image Name : ", replaceFileName);
 
             DailyWorker insertWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
 
@@ -100,10 +102,10 @@ public class DailyWorkerService {
 
             result = 1;
         } catch (Exception e) {
-//            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
             throw new RuntimeException(e);
         }
-        log.info("[Service] dailyworker insert End ==============================");
+        log.info("[Service] dailyWorkerService insert End ==============================");
 
         return (result > 0) ? "사원등록 성공" : "사원등록 실패";
     }
