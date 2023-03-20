@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 
 @AllArgsConstructor

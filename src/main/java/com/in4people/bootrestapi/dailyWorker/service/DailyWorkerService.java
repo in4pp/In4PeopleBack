@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -67,69 +67,30 @@ public class DailyWorkerService {
 //        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
 //    }
 
-//    @Transactional
-//    public Object updateDWorker(DailyWorkerDTO dailyWorkerDTO) {
-//        log.info("[dailyWorkerService] updateDWorker Start ==============================");
-//        log.info("[dailyWorkerService] dailyWorkerDTO : " + dailyWorkerDTO);
-//
-//        int result = 0;
-//
-//        try {
-//            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-//
-//            dailyWorkerRepository.save(dailyWorker);
-//
-//            result = 1;
-//        } catch (Exception e) {
-//            log.info("[dailyWorker update] Exception!!");
-//        }
-//
-//        log.info("[dailyWorkerService] updateDWorker End ==============================");
-//
-//        return (result > 0) ? "사원정보 수정 성공" : "사원정보 수정 실패";
-//    }
-
-
-
-
-
-//    @Transactional
-//    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO) {
-//        log.info("[ReviewService] insertProductReview Start ==============================");
-//
-//        int result = 0;
-//
-//        try {
-//            DailyWorker dailyWorker = modelMapper.map(dailyWorkerDTO, DailyWorker.class);
-//
-//            dailyWorkerRepository.save(dailyWorker);
-//
-//            result = 1;
-//        } catch (Exception e) {
-//            log.info("[dailyWorker insert] Exception!!");
-//        }
-//
-//        log.info("[dailyWorkerService] insertDailyWorker End ==============================");
-//
-//        return (result > 0) ? "리뷰 입력 성공" : "리뷰 입력 실패" ;
-//    }
 
 
     @Transactional
-    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile dwImage) {
-        log.info("[ProductService] dailyworker insert Start ===================================");
-        log.info("[ProductService] dailyWorkerDTO : " + dailyWorkerDTO);
+    public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile workerPic) {
+        log.info("[Service] dailyWorkerService insert Start ===================================");
+        log.info("[Service] dailyWorkerDTO : " + dailyWorkerDTO);
 
         String imageName = UUID.randomUUID().toString().replace("-", "");
+        log.info("imageName : " + imageName);
         String replaceFileName = null;
         int result = 0;
 
+//        java.util.Date now = new java.util.Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
+//        String reviewDate = sdf.format(now);
+//        dailyWorkerDTO.setCreateAt(now);
+
+
         try {
-
+            log.info("workerPic : " + workerPic);
             /* util 패키지에 FileUploadUtils 추가 */
-            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, dwImage);
+            replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, workerPic);
 
-            dailyWorkerDTO.setWorkerPic(replaceFileName);
+           dailyWorkerDTO.setPictureUrl(replaceFileName);
 
             log.info("[Service] insert Image Name : ", replaceFileName);
 
@@ -144,10 +105,22 @@ public class DailyWorkerService {
             FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
             throw new RuntimeException(e);
         }
-        log.info("[Service] dailyworker insert End ==============================");
+        log.info("[Service] dailyWorkerService insert End ==============================");
 
         return (result > 0) ? "사원등록 성공" : "사원등록 실패";
     }
+
+    public Object selectWorkerDetail(String workerCode) {
+        log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
+        log.info("[dailyWorkerService] workerCode : " + workerCode);
+        DailyWorker dailyWorker = dailyWorkerRepository.findById(Integer.valueOf(workerCode)).get();
+
+        log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
+
+        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+    }
+
+
 
 //    @Transactional
 //    public Object updateDailyWoker(DailyWorkerDTO productDTO, MultipartFile productImage) {
