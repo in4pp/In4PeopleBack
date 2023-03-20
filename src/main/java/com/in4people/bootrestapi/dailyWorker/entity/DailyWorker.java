@@ -39,15 +39,27 @@ public class DailyWorker {
     @Column(name = "WORKER_ADDRESS")
     private String workerAddress;
 
-    @Column(name = "CREATED_AT")
-    private Date createAt;
+    @Column(name = "START_DATE", columnDefinition = "DATE DEFAULT SYSDATE")
+    private String startDate;
 
-    @Column(name = "UPDATED_AT")
-    private Date updatedAt;
+    @Column(name = "END_DATE", columnDefinition = "DATE DEFAULT SYSDATE")
+    private String endDate;
 
-    @ManyToOne
-    @JoinColumn(name = "SALARY_SETTING_CODE")
-    private EmployeeSalarySetting employeeSalarySetting;
+    @Column(name = "WORKER_PIC")
+    private String pictureUrl;
+
+    @Column(name = "EMAIL")
+    private String workerEmail;
+
+    @Column(name = "BANK")
+    private String bank;
+
+    @Column(name = "ACCOUNT_NUMBER")
+    private String accountNumber;
+
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "SALARY_SETTING_CODE")
+//    private EmployeeSalarySetting employeeSalarySetting;
+
 
 }
-//커밋테스트

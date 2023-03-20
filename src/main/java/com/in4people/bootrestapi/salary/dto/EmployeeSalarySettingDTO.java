@@ -17,6 +17,11 @@ public class EmployeeSalarySettingDTO {
     // 사원번호 MEM_CODE memCode VARCHAR2(100) 사원테이블에서~ FK
     private String memCode;
     private String bank;                                            // 은행
-    private String accountNumber;                                 // 계좌번호
+    private String accountNumber;
+    // 계좌번호
     private Date settingDate;                                     // 설정일
+
+    private int basicMonthlySalary;
+
+    private int hourlyWage;
 }
