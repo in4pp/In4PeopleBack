@@ -1,10 +1,9 @@
 package com.in4people.bootrestapi.salary.dto;
 
-import com.in4people.bootrestapi.member.dto.MemberDTO;
-import com.in4people.bootrestapi.salary.entity.SalsetMember;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,4 +22,9 @@ public class EmployeeSalarySettingDTO {
     private int basicMonthlySalary;
 
     private int hourlyWage;
+
+
+    // 리스트~~
+    private List<MonthlyWageDTO> montlyWageList;
+
 }

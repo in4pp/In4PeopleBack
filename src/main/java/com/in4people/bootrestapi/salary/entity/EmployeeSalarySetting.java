@@ -1,13 +1,13 @@
 package com.in4people.bootrestapi.salary.entity;
 
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
-import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -54,6 +54,13 @@ public class EmployeeSalarySetting {
 
     @Column(name = "HOURLY_WAGE")
     private int hourlyWage;
+
+    @OneToMany
+    @JoinColumn(name = "SALARY_SETTING_CODE")
+    private List<MonthlyWage> montlyWageList;
+
+
+
 
 
 
