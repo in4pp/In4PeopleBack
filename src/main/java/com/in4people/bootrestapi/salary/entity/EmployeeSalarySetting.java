@@ -1,6 +1,7 @@
 package com.in4people.bootrestapi.salary.entity;
 
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
+import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;

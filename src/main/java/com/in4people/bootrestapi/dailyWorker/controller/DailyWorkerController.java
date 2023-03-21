@@ -4,6 +4,7 @@ import com.in4people.bootrestapi.common.ResponseDTO;
 import com.in4people.bootrestapi.dailyWorker.dto.DailyWorkerDTO;
 import com.in4people.bootrestapi.dailyWorker.service.DailyWorkerService;
 import com.in4people.bootrestapi.personnel.controller.PersonnelController;
+import com.in4people.bootrestapi.salary.dto.EmployeeSalarySettingDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/api/v1")
 public class DailyWorkerController {
 
-    private static final Logger log = LoggerFactory.getLogger(PersonnelController.class);
+    private static final Logger log = LoggerFactory.getLogger(DailyWorkerController.class);
 
     private final DailyWorkerService dailyWorkerService;
     @Autowired
@@ -45,34 +46,42 @@ public class DailyWorkerController {
     @GetMapping("/dailyWorker/workers")
     public ResponseEntity<ResponseDTO> selectDailyWorkerInfoAll() {
 
+        log.info("dailyWorker selectAll Controller=========================== " );
+
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", dailyWorkerService.selectDailyWorkerInfoAll()));
     }
 
+
     @Operation(summary = "일용직사원 정보 등록 요청", description = "일용직사원 정보 등록이 진행됩니다.", tags = { "DailyWorkerController" })
     @PostMapping("/dailyWorker/insert")
-    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO, @RequestParam(required = false) MultipartFile workerPic, @RequestParam String createAt1, @RequestParam String updatedAt1) {
+    public ResponseEntity<ResponseDTO> insertDailyWorker(@ModelAttribute DailyWorkerDTO dailyWorkerDTO, @RequestParam(required = false) MultipartFile workerPic
+            ) {
 
-        System.out.println("dailyWorkerDTO =========================== " + dailyWorkerDTO);
         log.info("dailyWorker insert Controller=========================== " , dailyWorkerDTO);
-        return null;
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO, dwImage)));
+//        dailyWorkerDTO.setEmployeeSalarySetting(employeeSalarySettingDTO);
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "일용직사원 등록 성공",  dailyWorkerService.insertDailyWorker(dailyWorkerDTO, workerPic)));
+    }
+
+
+    @Operation(summary = "상세 페이지 조회 요청", description = "상세 페이지 조회가 진행됩니다.", tags = { "ReviewController" })
+    @GetMapping("/dailyWorker/detail/{workerCode}")
+    public ResponseEntity<ResponseDTO> dailyWorkerDetail(@PathVariable int workerCode) {
+        log.info("dailyWorker selectAll Controller=========================== ");
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공",  dailyWorkerService.selectWorkerDetail(workerCode)));
+    }
+
+    @Operation(summary = "일용직사원 정보 수정 요청", description = "일용직사원 정보 수정이 진행됩니다.", tags = { "ReviewController" })
+    @PutMapping("/dailyWorker/update")
+    public ResponseEntity<ResponseDTO> dailyWorkerUpdate(@RequestBody DailyWorkerDTO dailyWorkerDTO,
+                                                           @RequestParam(required = false) MultipartFile workerPic) {
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 정보 수정 성공",  dailyWorkerService.updateDailyWoker(dailyWorkerDTO, workerPic)));
     }
 
 
 
-//    @GetMapping("/dailyWorker/{WorkerCode}")
-//    public ResponseEntity<ResponseDTO> selectDWorkerDetail(@PathVariable int WorkerCode) {
-//
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 상세정보 조회 성공",  dailyWorkerService.selectDWorkerDetail(WorkerCode)));
-//    }
 
-
-//    @Operation(summary = "리뷰 수정 요청", description = "리뷰 작성자의 리뷰 수정이 진행됩니다.", tags = { "ReviewController" })
-//    @PutMapping("/dailyWorker/update")
-//    public ResponseEntity<ResponseDTO> updateProductReview(@RequestBody DailyWorkerDTO dailyWorkerDTO) {
-//
-//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "리뷰 수정 성공",  dailyWorkerService.updateDWorker(dailyWorkerDTO)));
-//    }
 
 
 

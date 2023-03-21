@@ -2,7 +2,7 @@ package com.in4people.bootrestapi.dailyWorker.dto;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter

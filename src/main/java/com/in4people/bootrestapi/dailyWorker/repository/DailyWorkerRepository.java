@@ -12,6 +12,8 @@ public interface DailyWorkerRepository extends JpaRepository<DailyWorker, Intege
 
     List<DailyWorker> findByworkerNameContaining(String workerName);
 
-    List<DailyWorker> findByWorkerCode(int workerCode);
+    DailyWorker findByWorkerCode(int workerCode);
+
+    List<DailyWorker> findAllByWorkerCode(int workerCode);
 
 }

@@ -29,5 +29,6 @@ public interface ApprovalRepository extends JpaRepository<Approval, String> {
 
 //    @Query("SELECT a FROM Approval a WHERE a.memCode = ?1 ")
 //    List<Approval> findByMemCode(String memCode);
+
 }
 

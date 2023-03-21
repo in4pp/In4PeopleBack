@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     @Value("classpath:/static/imgs/")
+//    @Value("file:////imgs/")
     private String ADD_RESOURCE_LOCATION;
 
     @Value("/imgs/**")
