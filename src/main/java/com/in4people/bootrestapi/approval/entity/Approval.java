@@ -25,8 +25,8 @@ public class Approval {
 
     @Id
     @Column(name = "DOC_CODE")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_APPROVAL_CODE")
-    @GenericGenerator(name = "SEQ_APPROVAL_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DOCUMENT_CODE")
+    @GenericGenerator(name = "SEQ_DOCUMENT_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
         parameters = {
             @Parameter(name = StringPrefixSequenceGenerator.VALUE_PREFIX_PARAMETER, value= "DOC_")
     })

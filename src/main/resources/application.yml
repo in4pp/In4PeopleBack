@@ -44,7 +44,7 @@ image:
   add-resource-locations: classpath:/static/imgs/
   add-resource-handler: /imgs/**
 
-  ## ProductService에 세팅
+  ## Service에 세팅
   image-dir: src/main/resources/static/imgs
   image-url: http://localhost:7777/imgs/
 

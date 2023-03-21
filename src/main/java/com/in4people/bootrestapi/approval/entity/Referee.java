@@ -2,6 +2,8 @@ package com.in4people.bootrestapi.approval.entity;
 
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -12,6 +14,8 @@ import javax.persistence.*;
 @ToString
 @Entity(name = "Referee")
 @Table(name ="REFEREE")
+@DynamicInsert
+@DynamicUpdate
 public class Referee {
 
     @Id
