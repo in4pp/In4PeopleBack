@@ -96,10 +96,13 @@ public class DailyWorkerService {
         log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
         log.info("[dailyWorkerService] workerCode : " + workerCode);
         DailyWorker dailyWorker = dailyWorkerRepository.findById(workerCode).get();
+        dailyWorker.setPictureUrl(IMAGE_URL + dailyWorker.getPictureUrl());
 
         log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
 
-        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+//        DailyWorkerDTO dailyWorkerDTO = modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+
+        return modelMapper.map(dailyWorker, DailyWorker.class);
     }
 
 
