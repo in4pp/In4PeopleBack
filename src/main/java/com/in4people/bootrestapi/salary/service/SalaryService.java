@@ -105,6 +105,7 @@ public class SalaryService {
         System.out.println("monthlyWageDTOList = " + monthlyWageDTOList);
 
         return monthlyWageDTOList;
+//        return salsetMemberList.stream().map(salsetMember -> modelMapper.map(salsetMember, SalsetMemberDTO.class)).collect(Collectors.toList());
 
     }
 
