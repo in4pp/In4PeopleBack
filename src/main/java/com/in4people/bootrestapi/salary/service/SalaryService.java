@@ -84,27 +84,23 @@ public class SalaryService {
 
             for (EmployeeSalarySettingDTO employeeSalarySetting : salsetMember.getEmployeeSalarySettingList()) {
                 MonthlyWageDTO monthlyWageDTO = new MonthlyWageDTO();
-                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary());        // 월기본급
-                monthlyWageDTO.setPaymentDate(employeeSalarySetting.getSettingDate());                      // 해당 월
-                monthlyWageDTO.setBonusSUM(200000);                                                         // 상여금합계
-                monthlyWageDTO.setTotalSum(employeeSalarySetting.getBasicMonthlySalary() + monthlyWageDTO.getBonusSUM());        // 총합계
-                monthlyWageDTO.setNationalPension(monthlyWageDTO.getTotalSum() * 0.045);        // 국민연금공제액
-                monthlyWageDTO.setHealthInsurance(monthlyWageDTO.getTotalSum() * 0.035);        // 건강보험공제액
-                monthlyWageDTO.setEmploymentInsurance(monthlyWageDTO.getTotalSum() * 0.009);        // 고용보험공제액
-                monthlyWageDTO.setIncomeTax1(monthlyWageDTO.getTotalSum() * 0.03);        // 소득세공제액
-                monthlyWageDTO.setIncomeTax2(monthlyWageDTO.getTotalSum() * 0.003);        // 지방소득세공제액
+                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary());                        // 월기본급
+                monthlyWageDTO.setPaymentDate(employeeSalarySetting.getSettingDate());                                   // 해당 월
+                monthlyWageDTO.setBonusSUM(200000);                                                                      // 상여금합계
+                monthlyWageDTO.setTotalSum(employeeSalarySetting.getBasicMonthlySalary() + monthlyWageDTO.getBonusSUM());// 총합계
+                monthlyWageDTO.setNationalPension(monthlyWageDTO.getTotalSum() * 0.045);                                 // 국민연금공제액
+                monthlyWageDTO.setHealthInsurance(monthlyWageDTO.getTotalSum() * 0.035);                                 // 건강보험공제액
+                monthlyWageDTO.setEmploymentInsurance(monthlyWageDTO.getTotalSum() * 0.009);                             // 고용보험공제액
+                monthlyWageDTO.setIncomeTax1(monthlyWageDTO.getTotalSum() * 0.03);                                       // 소득세공제액
+                monthlyWageDTO.setIncomeTax2(monthlyWageDTO.getTotalSum() * 0.003);                                      // 지방소득세공제액
 
                 monthlyWageDTO.setNetSalary(monthlyWageDTO.getTotalSum() - monthlyWageDTO.getNationalPension()
                         - monthlyWageDTO.getHealthInsurance() - monthlyWageDTO.getEmploymentInsurance() - monthlyWageDTO.getIncomeTax1() - monthlyWageDTO.getIncomeTax2());        // 실수령액
 
                 employeeSalarySetting.getMontlyWageList().add(monthlyWageDTO);
             }
-
-
         }
-
         return salsetMemberDTOList;
-
     }
 
 
@@ -119,18 +115,12 @@ public class SalaryService {
             int result = 0;
 
             try {
-
-
                 EmployeeSalarySetting insertSalset = modelMapper.map(employeeSalarySettingDTO, EmployeeSalarySetting.class);
-
                 employeeSalarySettingRepository.save(insertSalset);
-
                 result = 1;
             } catch (Exception e) {
-
                 throw new RuntimeException(e);
             }
-
             return (result > 0) ? "급여 정보 입력 성공" : "급여 정보 입력 실패";
         }
 
