@@ -1,11 +1,14 @@
 package com.in4people.bootrestapi.schedule.entity;
 
 
+import com.in4people.bootrestapi.approveWork.entity.DocumentApproval;
 import com.in4people.bootrestapi.approveWork.entity.ReporterTag;
-
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
 import com.in4people.bootrestapi.workState.entity.WorkMember;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,7 +21,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "APPLICATION_WORK_SCHEDULE")
-public class ApplicationWorkSchedule {
+public class ApplicationWorkScheduleDetail {
 
     @Id
     @Column(name = "SCHEDULE_NUMBER")
@@ -50,8 +53,9 @@ public class ApplicationWorkSchedule {
     @JoinColumn(name = "REPORTER_TAG_CODE")
     private ReporterTag reporterTagCode;        // 상신자 태그 코드
 
-    @Column(name = "DOCUMENT_NUMBER")
-    private String documentNumber;         // 전자 결제 번호
+    @OneToOne
+    @JoinColumn(name = "DOCUMENT_NUMBER")
+    private DocumentApproval documentNumber;         // 전자 결제 번호
 
     @Override
     public String toString() {

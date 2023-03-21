@@ -9,16 +9,18 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 // 전자 결제 이력 entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
+@ToString
 @Table(name = "DOCUMENT_APPROVAL")
 public class DocumentApproval {
+
 
     @Id
     @Column(name = "DOCUMENT_NUMBER")
@@ -37,7 +39,7 @@ public class DocumentApproval {
 
 
     // FK
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "APPROVED__CODE")
     private ApprovedCategory approvedCode;            // 결제 상태 코드
 
@@ -52,7 +54,17 @@ public class DocumentApproval {
     @JoinColumn(name = "ADJUST_ATTEND_NUMBER")
     private AdjustingAttendance adjustAttendNumber;      // 근태 조정 번호
 
+
+
+
     @ManyToOne
     @JoinColumn(name = "SCHEDULE_NUMBER")
     private ApplicationWorkSchedule scheduleNumber;          // 스케줄 번호
+
+
+
+
+
+
+
 }

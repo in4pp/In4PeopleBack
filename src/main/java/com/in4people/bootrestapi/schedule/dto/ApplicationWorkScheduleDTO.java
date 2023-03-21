@@ -22,7 +22,7 @@ public class ApplicationWorkScheduleDTO {
 
     private Date scheduleApplicationDate;  // 신청일자
 
-    private String worktypeCode;           // 근무 유형 코드
+
 
     // FK
     private WorkSettingDTO workSettingNumber;      // 근무 설정 번호
@@ -32,4 +32,6 @@ public class ApplicationWorkScheduleDTO {
     private ReporterTagDTO reporterTagCode;        // 상신자 태그 코드
 
     private DocumentApprovalDTO documentNumber;         // 전자 결제 번호
+
+
 }
