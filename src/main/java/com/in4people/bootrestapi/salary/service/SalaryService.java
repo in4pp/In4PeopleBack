@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class SalaryService {
     private final SalsetRepository salsetRepository;
     private final EmployeeSalarySettingHourlyWageRepository employeeSalarySettingHourlyWageRepository;
     private final MonthlyWageRepository monthlyWageRepository;
-
+    private final EntityManager em;
 
 
     public Object selectSalinfo() {
@@ -75,17 +76,15 @@ public class SalaryService {
     public Object selectCalculateMonthlyWage() {
 
         List<SalsetMember> salsetMemberList = salsetRepository.findAll();
-
+        List<SalsetMemberDTO> salsetMemberDTOList = salsetMemberList.stream().map(salsetMember1 -> modelMapper.map(salsetMember1, SalsetMemberDTO.class)).collect(Collectors.toList());
 
         System.out.println("salsetMemberList = " + salsetMemberList);
 
-        List<MonthlyWageDTO> monthlyWageDTOList = new ArrayList<>();
+        for (SalsetMemberDTO salsetMember : salsetMemberDTOList) {
 
-        for(SalsetMember salsetMember : salsetMemberList) {
-
-            for(EmployeeSalarySetting employeeSalarySetting : salsetMember.getEmployeeSalarySettingList()) {
+            for (EmployeeSalarySettingDTO employeeSalarySetting : salsetMember.getEmployeeSalarySettingList()) {
                 MonthlyWageDTO monthlyWageDTO = new MonthlyWageDTO();
-                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary() /2);        // 월기본급
+                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary() / 2);        // 월기본급
                 monthlyWageDTO.setPaymentDate(employeeSalarySetting.getSettingDate());                      // 해당 월
                 monthlyWageDTO.setBonusSUM(200000);                                                         // 상여금합계
                 monthlyWageDTO.setTotalSum(employeeSalarySetting.getBasicMonthlySalary() + monthlyWageDTO.getBonusSUM());        // 총합계
@@ -98,40 +97,43 @@ public class SalaryService {
                 monthlyWageDTO.setNetSalary(monthlyWageDTO.getTotalSum() - monthlyWageDTO.getNationalPension()
                         - monthlyWageDTO.getHealthInsurance() - monthlyWageDTO.getEmploymentInsurance() - monthlyWageDTO.getIncomeTax1() - monthlyWageDTO.getIncomeTax2());        // 실수령액
 
-
-                monthlyWageDTOList.add(monthlyWageDTO);
+                employeeSalarySetting.getMontlyWageList().add(monthlyWageDTO);
             }
-        }
-        System.out.println("monthlyWageDTOList = " + monthlyWageDTOList);
 
-        return monthlyWageDTOList;
-//        return salsetMemberList.stream().map(salsetMember -> modelMapper.map(salsetMember, SalsetMemberDTO.class)).collect(Collectors.toList());
+
+        }
+
+        return salsetMemberDTOList;
 
     }
 
 
-    public Object insertSalset(EmployeeSalarySettingDTO employeeSalarySettingDTO) {
-        log.info(("[SalaryService] insertSalset Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
-        log.info(("[SalaryService] employeeSalarySettingDTO : " + employeeSalarySettingDTO));
-
-        int result = 0;
-
-        try {
 
 
-            EmployeeSalarySetting insertSalset = modelMapper.map(employeeSalarySettingDTO, EmployeeSalarySetting.class);
 
-            employeeSalarySettingRepository.save(insertSalset);
 
-            result = 1;
-        } catch (Exception e) {
+        public Object insertSalset(EmployeeSalarySettingDTO employeeSalarySettingDTO){
+            log.info(("[SalaryService] insertSalset Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
+            log.info(("[SalaryService] employeeSalarySettingDTO : " + employeeSalarySettingDTO));
 
-            throw new RuntimeException(e);
+            int result = 0;
+
+            try {
+
+
+                EmployeeSalarySetting insertSalset = modelMapper.map(employeeSalarySettingDTO, EmployeeSalarySetting.class);
+
+                employeeSalarySettingRepository.save(insertSalset);
+
+                result = 1;
+            } catch (Exception e) {
+
+                throw new RuntimeException(e);
+            }
+
+            return (result > 0) ? "급여 정보 입력 성공" : "급여 정보 입력 실패";
         }
 
-        return (result > 0) ? "급여 정보 입력 성공" : "급여 정보 입력 실패";
+
     }
 
-
-
-}
