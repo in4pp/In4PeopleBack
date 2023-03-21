@@ -16,12 +16,17 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "APPROVAL")
+@NamedEntityGraph(name = "Approval.fetchAll", attributeNodes = {
+        @NamedAttributeNode("approverList"),
+        @NamedAttributeNode("approvalMem"),
+        @NamedAttributeNode("bookmark"),
+})
 public class Approval {
 
     @Id
     @Column(name = "DOC_CODE")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_APPROVAL_CODE")
-    @GenericGenerator(name = "SEQ_APPROVAL_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DOCUMENT_CODE")
+    @GenericGenerator(name = "SEQ_DOCUMENT_CODE", strategy = "com.in4people.bootrestapi.common.StringPrefixSequenceGenerator",
         parameters = {
             @Parameter(name = StringPrefixSequenceGenerator.VALUE_PREFIX_PARAMETER, value= "DOC_")
     })
@@ -47,9 +52,9 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private List<Approver> approverList; // 결재자 리스트
 
-    @OneToMany
-    @JoinColumn(name = "DOC_CODE")
-    private List<Referee> refereeList; // 참조인 리스트
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "DOC_CODE")
+//    private List<Referee> refereeList; // 참조인 리스트
 
     @Column(name ="TITLE")
     private String title; //제목
@@ -63,11 +68,6 @@ public class Approval {
     @JoinColumn(name = "DOC_CODE")
     private List<DocAttachment> docAttachmentList; // 결재_첨부파일
 
-//    @OneToMany
-//    @JoinColumn(name = "DOC_CODE")
-//    private List<PerOrderApp> perOrderAppList;
-
-//    perOrderAppList.get(0).getDateLeave
     /*
     상신함 - memCode = 나
     참조된함 - WHERE REFFEREE.memCode = 나

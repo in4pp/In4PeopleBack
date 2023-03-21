@@ -44,7 +44,7 @@ image:
   add-resource-locations: classpath:/static/imgs/
   add-resource-handler: /imgs/**
 
-  ## ProductService에 세팅
+  ## Service에 세팅
   image-dir: src/main/resources/static/imgs
   image-url: http://localhost:7777/imgs/
 
@@ -52,3 +52,11 @@ image:
 logging:
   level:
     root: info
+
+
+#  spring.mail.host=smtp.gmail.com
+#  spring.mail.port=587
+#  spring.mail.username=<보내는 이메일 계정>
+#  spring.mail.password=<보내는 이메일 계정 비밀번호>
+#  spring.mail.properties.mail.smtp.auth=true
+#  spring.mail.properties.mail.smtp.starttls.enable=true

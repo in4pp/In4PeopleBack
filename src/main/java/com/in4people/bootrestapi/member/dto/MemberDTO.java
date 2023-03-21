@@ -31,6 +31,7 @@ public class MemberDTO implements UserDetails {
     private char isWorking;  // 재직구분
     private String address;
 
+
     // FK
     private DepartmentDTO departmentCode; // 부서코드
     private TeamDTO teamCode; // 팀코드
