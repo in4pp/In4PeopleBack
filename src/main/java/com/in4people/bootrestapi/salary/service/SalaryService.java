@@ -30,42 +30,18 @@ public class SalaryService {
     private final MonthlyWageRepository monthlyWageRepository;
 
 
-    public Object selectMonthlyWage(String memCode) {
 
-        log.info(("[SalaryService] selectMonthlyWage Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
+    public Object selectSalinfo() {
 
-//        SalsetMember salsetMember = salsetRepository.findByMemCode(memCode);
+        log.info(("[SalaryService] selectSalinfo Start ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓"));
 
-//        MonthlyWage monthlyWage = monthlyWageRepository.findByMemCode(memCode);
+        List<SalsetMember> salsetMemberList = salsetRepository.findAll();
 
-        EmployeeSalarySetting employeeSalarySetting = employeeSalarySettingRepository.findByMemCode(memCode);
+        log.info("[SalaryService] {}", salsetMemberList);
+        log.info(("[SalaryService] selectSalinfo End ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑"));
 
-
-
-//        int wage = employeeSalarySetting.getBasicMonthlySalary();
-//
-//        System.out.println("wage = " + wage);
-
-
-
-
-//        for (int i = 0; i < monthlyWageList.size(); i++ ){
-//            employeeSalarySetting.getMontlyWageList().get(1).setMonthlyPaycheck(wage);
-//            employeeSalarySetting.getMontlyWageList().get(1).setTotalSum(wage + 200000);
-//            employeeSalarySetting.getMontlyWageList().get(1).setTotalSum(wage + 200000);
-
-
-//        }
-//        wage =
-
-
-
-        log.info("[SalaryService] {}", employeeSalarySetting);
-        log.info("[SalaryService] selectMonthlyWage End ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑");
-//
-        return modelMapper.map(employeeSalarySetting, EmployeeSalarySettingDTO.class);
+        return salsetMemberList.stream().map(salsetMember -> modelMapper.map(salsetMember, SalsetMemberDTO.class)).collect(Collectors.toList());
     }
-
 
 
     public Object selectHourlysetMember(String memCode) {
@@ -96,7 +72,7 @@ public class SalaryService {
 
     }
 
-    public Object selectSalarySetting() {
+    public Object selectCalculateMonthlyWage() {
 
         List<SalsetMember> salsetMemberList = salsetRepository.findAll();
 
