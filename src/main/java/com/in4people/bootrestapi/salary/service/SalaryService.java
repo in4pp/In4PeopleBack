@@ -84,7 +84,7 @@ public class SalaryService {
 
             for (EmployeeSalarySettingDTO employeeSalarySetting : salsetMember.getEmployeeSalarySettingList()) {
                 MonthlyWageDTO monthlyWageDTO = new MonthlyWageDTO();
-                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary() / 2);        // 월기본급
+                monthlyWageDTO.setMonthlyPaycheck(employeeSalarySetting.getBasicMonthlySalary());        // 월기본급
                 monthlyWageDTO.setPaymentDate(employeeSalarySetting.getSettingDate());                      // 해당 월
                 monthlyWageDTO.setBonusSUM(200000);                                                         // 상여금합계
                 monthlyWageDTO.setTotalSum(employeeSalarySetting.getBasicMonthlySalary() + monthlyWageDTO.getBonusSUM());        // 총합계
