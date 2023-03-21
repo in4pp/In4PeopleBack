@@ -46,7 +46,7 @@ public class SalaryController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "소득세율 조회 성공", salaryService.selectIncomeTax()));
     }
 
-    @GetMapping("/monthlySetting")
+    @GetMapping("/monthlysetting")
     public ResponseEntity<ResponseDTO> selectCalculateMonthlyWage(){
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원급여 설정 조회 성공", salaryService.selectCalculateMonthlyWage()));
     }
