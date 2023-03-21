@@ -1,7 +1,9 @@
 package com.in4people.bootrestapi.approval.controller;
 
 import com.in4people.bootrestapi.approval.dto.ApprovalDTO;
+import com.in4people.bootrestapi.approval.dto.ApproverDTO;
 import com.in4people.bootrestapi.approval.dto.BookmarkDTO;
+import com.in4people.bootrestapi.approval.dto.InsertApprovalDTO;
 import com.in4people.bootrestapi.approval.paging.CriteriaAP;
 import com.in4people.bootrestapi.approval.paging.PageDTOAP;
 import com.in4people.bootrestapi.approval.paging.PagingResponseDTOAP;
@@ -12,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.util.List;
@@ -45,7 +48,7 @@ public class ApprovalController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", pagingResponseDTO));
     }
 
-    @Operation(summary = "결재 상신함 문서 목록", description = "상신 문서리스트", tags = { "ApprovalController" })
+    @Operation(summary = "상신함 날짜로 검색", description = "상신함 날짜로 검색", tags = { "ApprovalController" })
     @GetMapping("/approval/search")
     public ResponseEntity<ResponseDTO> getSearchApproval(@RequestParam String memCode, @RequestParam String startDate, @RequestParam String endDate) {
         //
@@ -76,4 +79,19 @@ public class ApprovalController {
 
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "삭제 성공", approvalService.deleteApprovalBookmark(bookmarkDTO)));
     }
+
+    @Operation(summary = "결재 문서 상신", description = "결재 문서 상신", tags = { "ApprovalController" })
+    @PostMapping(value = "/approval/insert")
+    public ResponseEntity<Object> insertApproval(@RequestBody InsertApprovalDTO insertApprovalDTO){
+        System.out.println("insertApprovalDTO = " + insertApprovalDTO);
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "결제문서 상신 완료", approvalService.insertApproval(insertApprovalDTO)));
+    }
+
+    @PostMapping(value = "/approval/insertDoc")
+    public ResponseEntity<ResponseDTO> insertApprovalDoc(@RequestParam("file") List<MultipartFile> docAttachments, @RequestParam String docCode){
+
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "결제문서 상신 완료", approvalService.insertApprovalDoc(docAttachments, docCode)));
+    }
+
 }
