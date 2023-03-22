@@ -8,4 +8,6 @@ public interface SalsetRepository extends JpaRepository<SalsetMember, String> {
 
 
     SalsetMember findByMemCode(String memCode);
+
+//    SalsetMember findByDepartmentCode(String dep_01);
 }

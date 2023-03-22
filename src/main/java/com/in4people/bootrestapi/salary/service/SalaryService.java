@@ -125,10 +125,20 @@ public class SalaryService {
         }
 
 
+//    public Object selectMemberListAboutGame() {
+//
+//        log.info("[ProductService] selectProductListAboutMeal Start ===================================");
+//
+//        List<SalsetMember> selectMemberListAboutGame = salsetRepository.findByDepartmentCode(dep_01);
+//
+//
+//        log.info("[ProductService] selectProductListAboutMeal End ==============================");
+//
+//        return selectMemberListAboutGame.stream().map(salsetMember -> modelMapper.map(salsetMember, SalsetMemberDTO.class)).collect(Collectors.toList());
+//    }
 
 
 
 
-
-    }
+}
 

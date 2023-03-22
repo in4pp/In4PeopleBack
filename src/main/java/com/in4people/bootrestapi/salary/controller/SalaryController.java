@@ -56,6 +56,11 @@ public class SalaryController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "급여 환경 설정을 위한 조회 성공", salaryService.selectSalinfo()));
     }
 
+//    @GetMapping("/salinfo/game")
+//    public ResponseEntity<ResponseDTO> selectMemberListAboutGame(){
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "급여 환경 설정을 위한 조회 성공", salaryService.selectMemberListAboutGame()));
+//    }
+
 
 
     @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })
