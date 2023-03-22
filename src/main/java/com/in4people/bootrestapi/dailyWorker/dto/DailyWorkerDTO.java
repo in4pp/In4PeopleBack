@@ -18,8 +18,8 @@ public class DailyWorkerDTO {
     private String workerRegNumber;         //주민번호
     private String workerPhone;             //폰번호
     private String workerAddress;           //주소
-    private String startDate;                //근무시작일
-    private String endDate;               //근무종료일
+    private String startDate;               //근무시작일
+    private String endDate;                 //근무종료일
     private String pictureUrl;              //사진
     private String workerEmail;             //이메일
     private String bank;                    //은행

@@ -24,7 +24,8 @@ public interface ApprovalRepository extends JpaRepository<Approval, String> {
     Page<Approval> getApprovalList(String memCode, Pageable paging);
 
     @EntityGraph(value = "Approval.fetchAll", type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT DISTINCT a FROM Approval a WHERE a.approvalMem.memCode = :memCode AND to_char(a.reportDate, 'YY-MM-DD') BETWEEN :startDate AND :endDate ORDER BY a.reportDate desc ")
+    @Query("SELECT DISTINCT a FROM Approval a WHERE a.approvalMem.memCode = :memCode" +
+            " AND to_char(a.reportDate, 'YY-MM-DD') BETWEEN :startDate AND :endDate ORDER BY a.reportDate desc ")
     List<Approval> getSearchApproval(String memCode, String startDate, String endDate);
 
 //    @Query("SELECT a FROM Approval a WHERE a.memCode = ?1 ")
