@@ -57,7 +57,11 @@ public class SecurityConfig {
                 .authorizeRequests()  // 다음 리퀘스트에 대한 사용권한 체크
                      .antMatchers("/").authenticated()
                      .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                     .antMatchers("/api/v1/dailyWorker/**").permitAll()
+
+                     .antMatchers("/api/v1/dailyWorker/**").permitAll()
+                     .antMatchers("/api/v1/approval/submit").hasRole("INSA1")
+                     .antMatchers("/api/v1/approval/").hasAnyRole("DESIGN1", "MARKETING1")
+                     .antMatchers("/api/v1/marketing/management").hasRole("MARKETING2")
 
                      .anyRequest().permitAll()
                     // cors를 위해 preflight 요청 처리용 options 요청 허용

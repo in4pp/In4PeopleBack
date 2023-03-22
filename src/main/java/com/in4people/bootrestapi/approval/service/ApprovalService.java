@@ -148,7 +148,7 @@ public class ApprovalService {
         try {
             Bookmark bookmark = modelMapper.map(bookmarkDTO, Bookmark.class);
 
-//            bookmarkRepository.detach(bookmark);
+            bookmarkRepository.delete(bookmark);
 
             result = 1;
         } catch (Exception e) {
