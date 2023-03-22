@@ -13,4 +13,5 @@ public interface PerMemberRepository extends JpaRepository<PersonnelMember, Stri
 
     Page<PersonnelMember> findByIsWorking(char isWorking, Pageable paging);
 
+    List<PersonnelMember> findBymemNameContaining(String memName);
 }

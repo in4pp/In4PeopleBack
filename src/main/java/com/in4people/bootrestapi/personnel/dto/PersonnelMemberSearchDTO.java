@@ -11,9 +11,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PersonnelMemberSelectDTO {
+public class PersonnelMemberSearchDTO {
 
-    // 부서명 직급명 필요할 때
     private String memCode; //사원번호 PK
     private String memName;
     private String password;

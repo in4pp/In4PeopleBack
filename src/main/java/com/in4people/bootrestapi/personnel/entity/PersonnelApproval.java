@@ -75,6 +75,4 @@ public class PersonnelApproval {
     결재함 - WHERE APPROVER.memCode = 나
     * */
 
-
-
 }

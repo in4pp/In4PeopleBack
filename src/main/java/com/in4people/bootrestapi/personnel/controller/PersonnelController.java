@@ -127,4 +127,13 @@ public class PersonnelController {
         log.info("memCode : " +personnelMemberDTO.getMemCode() );
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "멤버 수정 성공",  personnelService.updateMember(personnelMemberDTO, memPicture)));
     }
+
+
+    // 사원 명부 검색 기능
+    @GetMapping("/personnel/search/{memName}")
+    public ResponseEntity<ResponseDTO> selectSearchMemberList(@PathVariable String memName) {
+
+        System.out.println("[Controller] memName = " + memName);
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "검색 성공", personnelService.selectSearchMemberList(memName)));
+    }
 }

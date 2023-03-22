@@ -1,10 +1,7 @@
 package com.in4people.bootrestapi.personnel.service;
 
 import com.in4people.bootrestapi.common.Criteria;
-import com.in4people.bootrestapi.personnel.dto.CertificateDTO;
-import com.in4people.bootrestapi.personnel.dto.PerOrderAppDTO;
-import com.in4people.bootrestapi.personnel.dto.PersonnelApprovalDTO;
-import com.in4people.bootrestapi.personnel.dto.PersonnelMemberDTO;
+import com.in4people.bootrestapi.personnel.dto.*;
 import com.in4people.bootrestapi.personnel.entity.Certificate;
 import com.in4people.bootrestapi.personnel.entity.PerOrderApp;
 import com.in4people.bootrestapi.personnel.entity.PersonnelApproval;
@@ -135,7 +132,7 @@ public class PersonnelService {
 
     }
 
-    // 인사발령 등록
+    // 인사발령 등록 -- 미구현
     @Transactional
     public Object insertOrderApp(PerOrderAppDTO perOrderAppDTO) {
         log.info("[PersonnelService] insertOrderApp Start ==============================");
@@ -200,7 +197,7 @@ public class PersonnelService {
 
     }
 
-    // 증명서 신청 등록
+    // 증명서 신청 등록 -- 미구현
     public Object insertcerApp(PersonnelApprovalDTO personnelApprovalDTO) {
 
         log.info("[PersonnelService] insertcerApp Start ==============================");
@@ -275,6 +272,7 @@ public class PersonnelService {
             log.info("[updateMember] oriImage : " + oriImage);
 
             /* update를 위한 엔티티 값 수정 */
+            member.setMemCode(personnelMemberDTO.getMemCode());
             member.setMemName(personnelMemberDTO.getMemName());
             member.setPassword(personnelMemberDTO.getPassword());
             member.setRegiNumber(personnelMemberDTO.getRegiNumber());
@@ -283,7 +281,7 @@ public class PersonnelService {
             member.setEmail(personnelMemberDTO.getEmail());
             member.setNationality(personnelMemberDTO.getNationality());
             member.setIsMarried(personnelMemberDTO.getIsMarried());
-            member.setAddress(personnelMemberDTO.getAddress()); // 어떻게바꾸지
+            member.setAddress(personnelMemberDTO.getAddress());
 
             if(imgs != null){
                 String imageName = UUID.randomUUID().toString().replace("-", "");
@@ -309,5 +307,13 @@ public class PersonnelService {
         }
         log.info("[PersonnelService] updateMember End ===================================");
         return (result > 0) ? "멤버 업데이트 성공" : "멤버 업데이트 실패";
+    }
+
+    // 사원명부 검색기능
+    public List<PersonnelMember> selectSearchMemberList(String memName) {
+
+        List<PersonnelMember> memberList = perMemberRepository.findBymemNameContaining(memName);
+
+        return memberList.stream().map(memList -> modelMapper.map(memList, PersonnelMember.class)).collect(Collectors.toList());
     }
 }
