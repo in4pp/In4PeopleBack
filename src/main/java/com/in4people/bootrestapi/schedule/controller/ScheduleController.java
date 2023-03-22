@@ -1,7 +1,6 @@
 package com.in4people.bootrestapi.schedule.controller;
 
 import com.in4people.bootrestapi.common.ResponseDTO;
-import com.in4people.bootrestapi.schedule.dto.WorkSettingDTO;
 import com.in4people.bootrestapi.schedule.dto.WorkSettingUpDTO;
 import com.in4people.bootrestapi.schedule.service.ScheduleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,5 +40,32 @@ import org.springframework.web.bind.annotation.*;
 
           return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "기본근무 설정 수정 성공", scheduleService.updateWorkSetting(workSettingUpDTO)));
          }
+
+
+         @Operation(summary = "스케줄 신청 리스트 조회 요청 ", description = "스케줄 신청 리스트 정보가 조회됩니다.", tags = {"ScheduleController"})
+         @GetMapping("/workmanage/scheduleApprove") // 기본 근무설정 불러오기
+         public ResponseEntity<ResponseDTO> selectScheduleApprove(){
+
+
+          return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", scheduleService.selectScheduleApprove()));
+         }
+
+         @Operation(summary = "스케줄 신청 요일별 근무 정보 요청 ", description = "스케줄 신청 리스트의 요일별 근무시간정보가 조회됩니다.", tags = {"ScheduleController"})
+         @GetMapping("/workmanage/scheduleApprove/detail") // 기본 근무설정 불러오기
+         public ResponseEntity<ResponseDTO> selectScheduleApproveDay(){
+
+
+          return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공", scheduleService.selectScheduleApproveDay()));
+         }
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
@@ -55,20 +56,6 @@ public class DailyWorkerService {
     }
 
 
-//    public Object selectDWorkerDetail(int workerCode) {
-//        log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
-//        log.info("[dailyWorkerService] workerCode : " + workerCode);
-//
-//
-//        DailyWorker dailyWorker = dailyWorkerRepository.findById(workerCode).orElse(null);
-//
-//        log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
-//
-//        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
-//    }
-
-
-
     @Transactional
     public Object insertDailyWorker(DailyWorkerDTO dailyWorkerDTO, MultipartFile workerPic) {
         log.info("[Service] dailyWorkerService insert Start ===================================");
@@ -78,11 +65,6 @@ public class DailyWorkerService {
         log.info("imageName : " + imageName);
         String replaceFileName = null;
         int result = 0;
-
-//        java.util.Date now = new java.util.Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
-//        String reviewDate = sdf.format(now);
-//        dailyWorkerDTO.setCreateAt(now);
 
 
         try {
@@ -110,68 +92,75 @@ public class DailyWorkerService {
         return (result > 0) ? "사원등록 성공" : "사원등록 실패";
     }
 
-    public Object selectWorkerDetail(String workerCode) {
+    public Object selectWorkerDetail(int workerCode) {
         log.info("[dailyWorkerService] selectDWorkerDetail Start ==============================");
         log.info("[dailyWorkerService] workerCode : " + workerCode);
-        DailyWorker dailyWorker = dailyWorkerRepository.findById(Integer.valueOf(workerCode)).get();
+        DailyWorker dailyWorker = dailyWorkerRepository.findById(workerCode).get();
+        dailyWorker.setPictureUrl(IMAGE_URL + dailyWorker.getPictureUrl());
 
         log.info("[dailyWorkerService] selectDWorkerDetail End ==============================");
 
-        return modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+//        DailyWorkerDTO dailyWorkerDTO = modelMapper.map(dailyWorker, DailyWorkerDTO.class);
+
+        return modelMapper.map(dailyWorker, DailyWorker.class);
     }
 
 
+    @Transactional
+    public Object updateDailyWoker(DailyWorkerDTO dailyWorkerDTO, MultipartFile workerPic) {
+        log.info("[Service] updateDailyWoker Start ===================================");
+        log.info("[Service] dailyWorkerDTO : " + dailyWorkerDTO);
 
-//    @Transactional
-//    public Object updateDailyWoker(DailyWorkerDTO productDTO, MultipartFile productImage) {
-//        log.info("[ProductService] updateProduct Start ===================================");
-//        log.info("[ProductService] productDTO : " + productDTO);
-//
-//        String replaceFileName = null;
-//        int result = 0;
-//
-//        try {
-//
-//            /* update 할 엔티티 조회 */
-//            Product product = dailyWorkerRepository.findById(productDTO.getProductCode()).get();
-//            String oriImage = product.getProductImageUrl();
-//            log.info("[updateProduct] oriImage : " + oriImage);
-//
-//            /* update를 위한 엔티티 값 수정 */
-//            product.setCategoryCode(productDTO.getCategoryCode());
-//            product.setProductName(productDTO.getProductName());
-//            product.setProductPrice(productDTO.getProductPrice());
-//            product.setProductOrderable(productDTO.getProductOrderable());
-//            product.setCategoryCode(productDTO.getCategoryCode());
-//            product.setProductStock(productDTO.getProductStock());
-//            product.setProductDescription(productDTO.getProductDescription());
-//
-//            if(productImage != null){
-//                String imageName = UUID.randomUUID().toString().replace("-", "");
-//                replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, productImage);
-//                log.info("[updateProduct] InsertFileName : " + replaceFileName);
-//
-//                product.setProductImageUrl(replaceFileName);	// 새로운 파일 이름으로 update
-//                log.info("[updateProduct] deleteImage : " + oriImage);
-//
-//                boolean isDelete = FileUploadUtils.deleteFile(IMAGE_DIR, oriImage);
-//                log.info("[update] isDelete : " + isDelete);
-//            } else {
-//
-//                /* 이미지 변경 없을 시 */
-//                product.setProductImageUrl(oriImage);
-//            }
-//
-//            result = 1;
-//        } catch (IOException e) {
-//            log.info("[updateProduct] Exception!!");
-//            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
-//            throw new RuntimeException(e);
-//        }
-//        log.info("[ProductService] updateProduct End ===================================");
-//        return (result > 0) ? "상품 업데이트 성공" : "상품 업데이트 실패";
-//    }
+        String replaceFileName = null;
+        int result = 0;
+
+        try {
+
+            /* update 할 엔티티 조회 */
+            DailyWorker dailyWorker = dailyWorkerRepository.findByWorkerCode(dailyWorkerDTO.getWorkerCode());
+
+            System.out.println("dailyWorker =============== " + dailyWorker);
+
+            String imageurl = dailyWorker.getPictureUrl();
+            log.info("[update] imageurl : " + imageurl);
+
+            /* update를 위한 엔티티 값 수정 */
+            dailyWorker.setWorkerName(dailyWorkerDTO.getWorkerName());
+            dailyWorker.setWorkerRegNumber(dailyWorkerDTO.getWorkerRegNumber());
+            dailyWorker.setWorkerPhone(dailyWorkerDTO.getWorkerPhone());
+            dailyWorker.setWorkerAddress(dailyWorkerDTO.getWorkerAddress());
+            dailyWorker.setStartDate(dailyWorkerDTO.getStartDate());
+            dailyWorker.setEndDate(dailyWorkerDTO.getEndDate());
+            dailyWorker.setWorkerEmail(dailyWorkerDTO.getWorkerEmail());
+            dailyWorker.setBank(dailyWorkerDTO.getBank());
+            dailyWorker.setAccountNumber(dailyWorkerDTO.getAccountNumber());
 
 
+            if(workerPic != null){
+                String imageName = UUID.randomUUID().toString().replace("-", "");
+                replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, workerPic);
+                log.info("[updateProduct] InsertFileName : " + replaceFileName);
+
+                dailyWorker.setPictureUrl(replaceFileName);	// 새로운 파일 이름으로 update
+                log.info("[updateProduct] deleteImage : " + imageurl);
+
+                boolean isDelete = FileUploadUtils.deleteFile(IMAGE_DIR, imageurl);
+                log.info("[update] isDelete : " + isDelete);
+            } else {
+
+                /* 이미지 변경 없을 시 */
+                dailyWorker.setPictureUrl(imageurl);
+            }
+
+            result = 1;
+        } catch (IOException e) {
+            log.info("[updateProduct] Exception!!");
+            FileUploadUtils.deleteFile(IMAGE_DIR, replaceFileName);
+            throw new RuntimeException(e);
+        }
+        log.info("[ProductService] updateProduct End ===================================");
+        return (result > 0) ? "업데이트 성공" : "업데이트 실패";
+    }
 
 }
+

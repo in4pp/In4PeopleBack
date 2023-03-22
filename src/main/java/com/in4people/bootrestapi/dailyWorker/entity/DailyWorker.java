@@ -1,10 +1,7 @@
 package com.in4people.bootrestapi.dailyWorker.entity;
 
 import com.in4people.bootrestapi.salary.entity.EmployeeSalarySetting;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
+@ToString
 @NoArgsConstructor
 @Entity
 @Table(name = "DAILY_WORKER")

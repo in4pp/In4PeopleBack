@@ -17,12 +17,16 @@ import java.util.Date;
 public class WorkSchedule {
 
     @Id
+    @Column(name = "DAY_NUMBER")
+    private String dayNumber; // 요일이력 번호 PK
+
+
     @Column(name = "WORK_DATE")
     private Date workDate;           // 근무 날짜 PK
 
     @ManyToOne
     @JoinColumn(name = "SCHEDULE_NUMBER")
-    private ApplicationWorkSchedule scheduleNumber;   // 스케줄 번호 FK
+    private ApplicationWorkScheduleDetail scheduleNumber;   // 스케줄 번호 FK
 
     @Column(name = "WORK_STARTTIME")
     private String workStarttime;    // 근무 시작 시간

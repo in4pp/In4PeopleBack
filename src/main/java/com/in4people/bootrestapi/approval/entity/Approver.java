@@ -3,6 +3,8 @@ package com.in4people.bootrestapi.approval.entity;
 
 import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +16,8 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name ="APPROVER")
+@DynamicInsert
+@DynamicUpdate
 public class Approver {
 
     @Id
@@ -22,7 +26,7 @@ public class Approver {
 
     @Column(name = "MEM_CODE")
     private String memCode; // 결재자 memCode
-    
+
     @Column(name = "IS_SIGN")
     private char isSign; // W/Y/N(대기,승인,반려)
 
