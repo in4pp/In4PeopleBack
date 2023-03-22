@@ -40,11 +40,10 @@ public class WorkMember {
     private String memPic;
     @Column(name = "IS_MARRIED")
     private char isMarried;
-    @Column(name = "IS_WORKING")
+    @Column(name = "IS_WORING")
     private char isWorking;  // 재직구분
     @Column(name = "ADDRESS")
     private String address;
-
 
     // FK
     @ManyToOne

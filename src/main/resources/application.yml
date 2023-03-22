@@ -16,6 +16,7 @@ spring:
   web:
     resources:
       static-locations: classpath:/imgs/
+  #  file:////imgs/
 
   ## jpa config
   jpa:
@@ -42,11 +43,13 @@ image:
 
   ## WebConfig에 세팅
   add-resource-locations: classpath:/static/imgs/
+#  file:////imgs/
   add-resource-handler: /imgs/**
 
   ## Service에 세팅
   image-dir: src/main/resources/static/imgs
   image-url: http://localhost:7777/imgs/
+#  http://3.39.37.238:7777/imgs/ -- aws이용해서 내 인스턴스랑 연결
 
 # Logging Level
 logging:

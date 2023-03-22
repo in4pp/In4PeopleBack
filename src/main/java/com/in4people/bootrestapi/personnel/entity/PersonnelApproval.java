@@ -74,4 +74,5 @@ public class PersonnelApproval {
     참조된함 - WHERE REFFEREE.memCode = 나
     결재함 - WHERE APPROVER.memCode = 나
     * */
+
 }
