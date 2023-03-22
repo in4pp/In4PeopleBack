@@ -168,13 +168,9 @@ public class ScheduleService {
             ApprovedCategory approvedCategory = approvedCategoryRepository.findByApprovedCode("apporved1");
             if (approvedCategory == null) {
                 // 예외 처리
-
                 throw new RuntimeException("approvedCategory가 null입니다.");
             }
             log.info("[SettingService] {}", approvedCategory);
-
-
-
 
 
             // 전자결제에서 스케줄신청 is not null + "apporved1"인 리스트만 불러오기
@@ -184,18 +180,10 @@ public class ScheduleService {
 
             if (approvalSchedule == null) {
                 // 예외 처리
-
                 throw new RuntimeException("approvalSchedule null입니다.");
-
             }
 
-
                 log.info("[SettingService] {}", approvalSchedule);
-
-
-
-
-
 
 
             return approvalSchedule.stream().map(schedule -> modelMapper.map(schedule, DocumentApproval.class)).collect(Collectors.toList());
