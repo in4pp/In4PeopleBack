@@ -1,7 +1,6 @@
 package com.in4people.bootrestapi.salary.entity;
 
 import com.in4people.bootrestapi.common.StringPrefixSequenceGenerator;
-import com.in4people.bootrestapi.member.entity.Member;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -18,7 +17,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "EMPLOYEE_SALARY_SETTING")
-public class EmployeeSalarySetting {
+public class EmployeeSalarySettingHourlyWage {
 
     @Id
     @Column(name = "SALARY_SETTING_CODE")
@@ -57,7 +56,7 @@ public class EmployeeSalarySetting {
     private int hourlyWage;
 
     @OneToMany
-    @JoinColumn(name = "SALARY_SETTING_CODE")
+    @JoinColumn(name = "MEM_CODE")
     private List<MonthlyWage> montlyWageList;
 
 

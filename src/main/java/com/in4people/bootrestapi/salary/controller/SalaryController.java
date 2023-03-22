@@ -28,6 +28,13 @@ public class SalaryController {
 
 
 
+//    @GetMapping("/monthly")
+//    public ResponseEntity<ResponseDTO> selectMonthlyWage(){
+//        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원 월급 조회 성공", salaryService.selectMonthlyWage()));
+//    }
+
+
+
     @GetMapping("/hourlyset/{memCode}")
     public ResponseEntity<ResponseDTO> selectHourlysetMember(@PathVariable String memCode) {
 
@@ -39,10 +46,16 @@ public class SalaryController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "소득세율 조회 성공", salaryService.selectIncomeTax()));
     }
 
-    @GetMapping("/salinfo")
-    public ResponseEntity<ResponseDTO> selectSalarySetting(){
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원급여 설정 조회 성공", salaryService.selectSalarySetting()));
+    @GetMapping("/monthlysetting")
+    public ResponseEntity<ResponseDTO> selectCalculateMonthlyWage(){
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "사원급여 설정 조회 성공", salaryService.selectCalculateMonthlyWage()));
     }
+
+    @GetMapping("/salinfo")
+    public ResponseEntity<ResponseDTO> selectMember(){
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "급여 환경 설정을 위한 조회 성공", salaryService.selectSalinfo()));
+    }
+
 
 
     @Operation(summary = "사원 급여환경 설정", description = "은행, 계좌번호, 설정일 등을 설정합니다.", tags = { "SalaryController" })

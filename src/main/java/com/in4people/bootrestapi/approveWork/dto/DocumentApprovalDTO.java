@@ -4,6 +4,7 @@ import com.in4people.bootrestapi.schedule.dto.ApplicationWorkScheduleDTO;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 // 전자 결제 이력 DTO
 @NoArgsConstructor
@@ -30,4 +31,9 @@ public class DocumentApprovalDTO {
     private AdjustingAttendanceDTO adjustAttendNumber;      // 근태 조정 번호
 
     private ApplicationWorkScheduleDTO scheduleNumber;          // 스케줄 번호
+
+
+    // 양방향
+
+//    List<ApplicationWorkScheduleDTO> applicationWorkScheduleList; // 스케줄목록
 }

@@ -13,7 +13,11 @@ import java.util.Date;
 @ToString
 public class WorkScheduleDTO {
 
-    private Date workDate;           // 근무 날짜 PK
+    private String dayNumber; // 요일이력 번호 PK
+
+    private Date workDate;           // 근무 날짜
+
+
 
     private ApplicationWorkScheduleDTO scheduleNumber;   // 스케줄 번호 FK
 

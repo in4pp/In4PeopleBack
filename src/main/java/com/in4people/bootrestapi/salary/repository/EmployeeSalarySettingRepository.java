@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EmployeeSalarySettingRepository extends JpaRepository<EmployeeSalarySetting, String> {
 
 
+    EmployeeSalarySetting findByMemCode(String memCode);
 }
