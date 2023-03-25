@@ -64,15 +64,15 @@ public class DailyWorkerController {
     }
 
 
-    @Operation(summary = "상세 페이지 조회 요청", description = "상세 페이지 조회가 진행됩니다.", tags = { "ReviewController" })
+    @Operation(summary = "상세 페이지 조회 요청", description = "상세 페이지 조회가 진행됩니다.", tags = { "DailyWorkerController" })
     @GetMapping("/dailyWorker/detail/{workerCode}")
     public ResponseEntity<ResponseDTO> dailyWorkerDetail(@PathVariable int workerCode) {
         log.info("dailyWorker selectAll Controller=========================== ");
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회 성공",  dailyWorkerService.selectWorkerDetail(workerCode)));
     }
 
-    @Operation(summary = "일용직사원 정보 수정 요청", description = "일용직사원 정보 수정이 진행됩니다.", tags = { "ReviewController" })
-    @PutMapping("/dailyWorker/update")
+    @Operation(summary = "일용직사원 정보 수정 요청", description = "일용직사원 정보 수정이 진행됩니다.", tags = { "DailyWorkerController" })
+    @PutMapping("/dailyWorker/detail/{workerCode}")
     public ResponseEntity<ResponseDTO> dailyWorkerUpdate(@RequestBody DailyWorkerDTO dailyWorkerDTO,
                                                            @RequestParam(required = false) MultipartFile workerPic) {
 
